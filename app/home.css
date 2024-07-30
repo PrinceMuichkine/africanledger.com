@@ -23,99 +23,10 @@
   color: #ffffff;
 }
 
-/* Header styles */
-.header-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-}
-
-/* Footer styles */
-.footer {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #ffffff;
-  padding: 2rem 0 1rem;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: flex-start; /* Changed back to space-between */
-  align-items: flex-start;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 3rem;
-}
-
-.footer-section {
-  flex: 0 1 auto; /* Changed to allow sections to shrink */
-}
-
-.footer-section.logo-section {
-  flex: 0 0 auto; /* Prevent logo section from growing or shrinking */
-  margin-left: 6px; /* Add space before the logo */
-  margin-right: auto; /* Push other sections to the right */
-    margin-top: 6px; /* Add space before the logo */
-}
-
-.footer-section:not(.logo-section) {
-  margin-left: 10rem; /* Add space between logo and other sections */
-}
-
-.footer-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.footer-links {
-  list-style-type: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 0.5rem;
-}
-
-.footer-links a {
-  color: #cccccc;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  margin-top: 1rem;
-  padding-left: 2rem;
-}
-
-.footer-bottom p {
-  font-size: 0.8rem;
-  color: #cccccc;
-}
-
-/* Add these styles to control initial icon size */
-.footer-links .icon {
-  width: 1em;
-  height: 1em;
-  margin-right: 0.5em;
-  vertical-align: middle;
+.main-content {
+  max-width: 1100px; 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 64px;
 }

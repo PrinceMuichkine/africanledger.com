@@ -2,11 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables and media queries */
+:root {
+  --count: 50;
+  --snap-size: 48px;
+  --offset: 1;
+}
+
+@media(min-width: 768px) {
+  :root {
+    --offset: 2;
+  }
+}
+
+/* Global reset and base styles */
 *,
 *:after,
 *:before {
   box-sizing: border-box;
   scroll-behavior: smooth;
+}
+
+html {
+  color-scheme: dark only;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -22,6 +42,7 @@ body {
   color: #fff;
 }
 
+/* Header styles */
 header {
   background-color: transparent;
   transition: background-color 0.3s ease;
@@ -41,6 +62,7 @@ header:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Main content styles */
 main {
   width: 100%;
   max-width: 1200px;
@@ -49,6 +71,7 @@ main {
   margin-top: 80px;
 }
 
+/* Logo container styles */
 .logo-container {
   display: flex;
   align-items: center;
@@ -57,6 +80,7 @@ main {
   margin: 0;
 }
 
+/* Header and footer content styles */
 .header-content,
 .footer-content {
   display: flex;
@@ -66,6 +90,7 @@ main {
   width: 100%;
 }
 
+/* Footer section styles */
 .footer-section.logo-section {
   display: flex;
   align-items: center;
@@ -79,6 +104,7 @@ main {
   margin-top: -4px;
 }
 
+/* Background grid effect */
 body::before {
   --size: 40px;
   --line: color-mix(in lch, canvasText 15%, hsl(0 0% 100% / 0.25));
@@ -86,14 +112,9 @@ body::before {
   height: 100%;
   width: 100%;
   position: fixed;
-  background: linear-gradient(
-    90deg,
-    var(--line) 1px,
-    transparent 1px var(--size)
-  )
-  50% 50% / var(--size) var(--size),
-  linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
-  var(--size) var(--size);
+  background: 
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size);
   mask: linear-gradient(-45deg, transparent 48%, white);
   top: 0;
   left: 0;
@@ -102,64 +123,147 @@ body::before {
   z-index: -10;
 }
 
-html {
-	color-scheme: dark only;
-	scroll-behavior: smooth;
-	scroll-snap-type: y mandatory;
-}
-
-:root {
-  --count: 50;
-	--snap-size: 48px;
-	--offset: 1;
-}
-
-@media(min-width: 768px) {
-	:root {
-		--offset: 2;
-	}
-}
-
+/* Media queries */
 @media(max-width: 768px) {
-	.blog-container main {
-		display: none;
-	}
+  .blog-container main {
+    display: none;
+  }
 }
 
+/* Animations */
 @keyframes img-reel {
-	to {
-		translate: 0 calc(-100% + 100vh);
-	}
+  to {
+    translate: 0 calc(-100% + 100vh);
+  }
 }
 
 @property --active {
-	initial-value: 0;
-	inherits: true;
-	syntax: '<number>';
+  initial-value: 0;
+  inherits: true;
+  syntax: '<number>';
 }
 
 @media(min-width: 768px) {
-	.blog-container li {
-		filter: saturate(0.2);
-		animation: scale-l both linear;
-		animation-timeline: view();
-		animation-range: cover calc(50% - (var(--snap-size) * var(--offset))) cover calc(50% + (var(--snap-size) * var(--offset)));
-	}
+  .blog-container li {
+    filter: saturate(0.2);
+    animation: scale-l both linear;
+    animation-timeline: view();
+    animation-range: cover calc(50% - (var(--snap-size) * var(--offset))) cover calc(50% + (var(--snap-size) * var(--offset)));
+  }
 }
 
 @keyframes scale {
-	50% {
-		--active: 1;
-		z-index: 1000;
-	}
+  50% {
+    --active: 1;
+    z-index: 1000;
+  }
 }
 
 @keyframes scale-l {
-	50% {
-		translate: -120% 0;
-		scale: 2;
-		transform: translate3d(0, 0, 1000px);
-		filter: saturate(1);
-		z-index: 1000;
-	}
+  50% {
+    translate: -120% 0;
+    scale: 2;
+    transform: translate3d(0, 0, 1000px);
+    filter: saturate(1);
+    z-index: 1000;
+  }
+}
+
+
+/* Header styles */
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Footer styles */
+.footer {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  padding: 2rem 0 1rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.footer-section {
+  flex: 0 1 auto;
+}
+
+.footer-section.logo-section {
+  flex: 0 0 auto;
+  margin-left: 6px;
+  margin-right: auto;
+  margin-top: 6px;
+}
+
+.footer-section:not(.logo-section) {
+  margin-left: 10rem;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  margin-top: 1rem;
+  padding-left: 6rem;
+}
+
+.footer-bottom p {
+  font-size: 0.5rem;
+  color: #cccccc;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.footer-links .icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
 }

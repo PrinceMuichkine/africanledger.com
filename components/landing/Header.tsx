@@ -3,9 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import styles from './Header.module.css';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,19 +19,20 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={scrolled ? 'scrolled' : ''}>
-      <div className="header-content">
-        <Link href="/" className="logo-container">
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={styles.headerContent}>
+        <Link href="/" className={styles.logoContainer}>
           <Image src="/icon.png" alt="African Ledger Logo" width={42} height={42} />
         </Link>
         <nav>
-          <ul className="nav-links">
+          <ul className={styles.navLinks}>
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/" className={pathname === '/' ? styles.active : ''}>Home</Link>
             </li>
             <li>
-              <Link href="/about">About</Link>
+              <Link href="/about" className={pathname === '/about' ? styles.active : ''}>About</Link>
             </li>
+            {/* Add more navigation items as needed */}
           </ul>
         </nav>
       </div>

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faTwitter, faFacebook, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export const Footer = () => {
   return (
@@ -31,13 +31,18 @@ export const Footer = () => {
           <h4 className="footer-title">Community</h4>
           <ul className="footer-links">
             <li>
-              <a href="https://www.linkedin.com/company/lomiafri/">
+              <a href="https://www.linkedin.com/company/africanledger/">
                 <FontAwesomeIcon icon={faLinkedin} className="icon" /> LinkedIn
               </a>
             </li>
             <li>
-              <a href="https://x.com/intent/follow?screen_name=lomiafrica">
+              <a href="https://x.com/intent/follow?screen_name=africanledger">
                 <FontAwesomeIcon icon={faTwitter} className="icon" /> X | Twitter
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/africanledger">
+                <FontAwesomeIcon icon={faGithub} className="icon" /> GitHub
               </a>
             </li>
           </ul>
