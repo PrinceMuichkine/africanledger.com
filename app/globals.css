@@ -75,11 +75,9 @@ main {
 
 .footer-section.logo-section .logo-container {
   padding: 0;
-  margin: -44px;
-    margin-top: -4px;
+  margin: -20px;
+  margin-top: -4px;
 }
-
-/* Rest of the existing CSS */
 
 body::before {
   --size: 40px;
@@ -96,12 +94,12 @@ body::before {
   50% 50% / var(--size) var(--size),
   linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
   var(--size) var(--size);
-  mask: linear-gradient(-25deg, transparent 65%, white);
+  mask: linear-gradient(-45deg, transparent 48%, white);
   top: 0;
   left: 0;
   transform-style: flat;
   pointer-events: none;
-  z-index: -1;
+  z-index: -10;
 }
 
 html {
@@ -122,29 +120,6 @@ html {
 	}
 }
 
-.blog-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-}
-
-.blog-container main {
-	padding-left: 1rem;
-	padding-right: 1rem;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	display: grid;
-	height: calc(100vh * var(--count));
-	grid-template-rows: repeat(var(--count), 1fr);
-	place-items: center;
-	animation: img-reel both steps(calc(var(--count) - 1));
-	animation-timeline: scroll(root);
-	pointer-events: none;
-}
-
 @media(max-width: 768px) {
 	.blog-container main {
 		display: none;
@@ -157,41 +132,10 @@ html {
 	}
 }
 
-.blog-container aside {
-	width: var(--snap-size);
-	margin-top: calc(50vh - (var(--snap-size) * 0.25));
-	margin-bottom: calc(50vh - (var(--snap-size) * 0.5));
-	position: fixed;
-	right: 1rem;
-	z-index: 2;
-}
-
-.blog-container aside ul {
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	list-style-type: none;
-	align-items: flex-end;
-	transform-style: preserve-3d;
-}
-
 @property --active {
 	initial-value: 0;
 	inherits: true;
 	syntax: '<number>';
-}
-
-.blog-container li {
-	scroll-snap-align: center;
-	scroll-margin-block: calc(50vh - var(--snap-size));
-	container-type: size;
-	flex: 1 1 var(--snap-size);
-	aspect-ratio: 1;
-	animation: scale both linear;
-	animation-timeline: view();
-	animation-range: cover calc(50% - (var(--snap-size) * var(--offset))) cover calc(50% + (var(--snap-size) * var(--offset)));
-	transform-origin: 100% 50%;
 }
 
 @media(min-width: 768px) {
@@ -218,85 +162,4 @@ html {
 		filter: saturate(1);
 		z-index: 1000;
 	}
-}
-
-.blog-container li img {
-	height: 100%;
-	width: 100%;
-	border-radius: 6px;
-}
-
-.blog-container li a {
-	min-width: 100cqw;
-	min-height: 100cqh;
-	max-width: 600px;
-	max-height: 600px;
-	width: 100%;
-	height: 100%;
-	display: block;
-	border: 4px solid transparent;
-	border-radius: 12px;
-	position: relative;
-	position: absolute;
-	right: 0;
-	top: 50%;
-	transform-origin: 100% 50%;
-	translate: calc((var(--active) * (var(--snap-size) + 1rem)) * -1) -50%;
-	width: calc((var(--active) * (100vw - (var(--snap-size) + 3rem))));
-	height: calc((var(--active) * (100vw - (var(--snap-size) + 3rem))));
-	aspect-ratio: 1;
-	z-index: calc(1 + (var(--active) * 999));
-}
-
-.blog-container aside span {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-}
-
-.blog-container main img {
-	width: 100%;
-	max-width: 600px;
-	max-height: 90vh;
-	object-fit: cover;
-}
-
-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-}
-
-footer h4 {
-  margin-bottom: 0.5rem;
-}
-
-footer a {
-  transition: color 0.3s;
-}
-
-footer a:hover {
-  color: #1d4ed8;
-}
-
-footer .container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-footer .grid {
-  grid-template-columns: repeat(1, 1fr);
-}
-
-@media (min-width: 768px) {
-  footer .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
