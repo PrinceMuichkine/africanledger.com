@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import AuthButton from './AuthButton';
 import { useEffect, useState } from 'react';
 
 export default function Header() {
@@ -29,9 +28,6 @@ export default function Header() {
             </li>
             <li>
               <Link href="/about">About</Link>
-            </li>
-            <li>
-              <AuthButton />
             </li>
           </ul>
         </nav>
