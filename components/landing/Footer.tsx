@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faTwitter, faFacebook, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export const Footer = () => {
   return (
@@ -37,6 +37,11 @@ export const Footer = () => {
             <li>
               <a href="https://x.com/intent/follow?screen_name=africanledger">
                 <FontAwesomeIcon icon={faTwitter} className="icon" /> X | Twitter
+              </a>
+            </li>
+            <li>
+              <a href="/rss.xml">
+                <Image src="/rss.svg" alt="RSS Feed" width={24} height={24} className="icon" /> RSS Feed
               </a>
             </li>
           </ul>
