@@ -22,7 +22,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logoContainer}>
-          <Image src="/icon.png" alt="African Ledger Logo" width={42} height={42} />
+          <Image src="/icon.png" alt="African Ledger Logo" width={41} height={41} />
         </Link>
         <nav>
           <ul className={styles.navLinks}>

@@ -18,11 +18,10 @@ export const Footer = () => {
 
         {/* Company Section */}
         <div className="footer-section">
-          <h4 className="footer-title">The African Ledger</h4>
+          <h4 className="footer-title">Company</h4>
           <ul className="footer-links">
             <li><Link href="/about">About</Link></li>
             <li><Link href="/product">Product</Link></li>
-            <li><Link href="/careers">Careers</Link></li>
           </ul>
         </div>
 
@@ -38,11 +37,6 @@ export const Footer = () => {
             <li>
               <a href="https://x.com/intent/follow?screen_name=africanledger">
                 <FontAwesomeIcon icon={faTwitter} className="icon" /> X | Twitter
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/africanledger">
-                <FontAwesomeIcon icon={faGithub} className="icon" /> GitHub
               </a>
             </li>
           </ul>
