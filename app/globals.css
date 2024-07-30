@@ -207,10 +207,12 @@ body::before {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
+  flex-wrap: wrap;
 }
 
 .footer-section {
   flex: 0 1 auto;
+    margin-bottom: 1rem; 
 }
 
 .footer-section.logo-section {
@@ -266,4 +268,26 @@ body::before {
   height: 1em;
   margin-right: 0.5em;
   vertical-align: middle;
+}
+/* Add this media query for mobile devices */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    width: 100%;
+    text-align: center;
+    margin-left: 0 !important;
+  }
+
+  .footer-section.logo-section {
+    margin: 0 auto 1rem;
+  }
+
+  .footer-bottom {
+    padding-left: 0;
+    text-align: center;
+  }
 }
