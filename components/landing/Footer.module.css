@@ -1,0 +1,137 @@
+.footer {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  padding: 2rem 0 1rem;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+}
+
+.footerSection {
+  flex: 0 1 auto;
+  margin-bottom: 1rem;
+}
+
+.logoSection {
+  flex: 0 0 auto;
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 6px;
+}
+
+.footerSection:not(.logoSection) {
+  margin-left: 10rem;
+}
+
+.footerTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footerLinks {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #ffffff;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.footerBottom {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.footerBottomContent {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.footerText {
+  color: #cccccc;
+  font-size: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.footerBottomLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerBottomLinks a {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.footerBottomLinks a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+  }
+
+  .footerSection {
+    width: 100%;
+    text-align: left;
+  }
+
+  .logoSection {
+    margin-bottom: 2rem;
+  }
+
+  .footerSection:not(.logoSection) {
+    margin-left: 0;
+  }
+}
+
+.copyrightText {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footerBottomContent {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}

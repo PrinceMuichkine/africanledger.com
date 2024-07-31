@@ -80,28 +80,13 @@ main {
   margin: 0;
 }
 
-/* Header and footer content styles */
-.header-content,
-.footer-content {
+/* Header content styles */
+.header-content {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   padding: 0 20px;
   width: 100%;
-}
-
-/* Footer section styles */
-.footer-section.logo-section {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-section.logo-section .logo-container {
-  padding: 0;
-  margin: -20px;
-  margin-top: -4px;
 }
 
 /* Background grid effect */
@@ -123,14 +108,13 @@ body::before {
   z-index: -10;
 }
 
-/* Media queries */
+/* Media queries and animations */
 @media(max-width: 768px) {
   .blog-container main {
     display: none;
   }
 }
 
-/* Animations */
 @keyframes img-reel {
   to {
     translate: 0 calc(-100% + 100vh);
@@ -169,7 +153,6 @@ body::before {
   }
 }
 
-
 /* Header styles */
 .header-content {
   max-width: 1100px;
@@ -191,103 +174,4 @@ body::before {
 .nav-links a {
   color: white;
   text-decoration: none;
-}
-
-/* Footer styles */
-.footer {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #ffffff;
-  padding: 2rem 0 1rem;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  flex-wrap: wrap;
-}
-
-.footer-section {
-  flex: 0 1 auto;
-    margin-bottom: 1rem; 
-}
-
-.footer-section.logo-section {
-  flex: 0 0 auto;
-  margin-left: 21px;
-  margin-right: auto;
-  margin-top: 6px;
-}
-
-.footer-section:not(.logo-section) {
-  margin-left: 10rem;
-}
-
-.footer-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.footer-links {
-  list-style-type: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 0.5rem;
-}
-
-.footer-links a {
-  color: #cccccc;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  margin-top: 1rem;
-  padding-left: 94px;
-}
-
-.footer-bottom p {
-  font-size: 0.5rem;
-  color: #cccccc;
-  margin: 0;
-  padding: 0.5rem 0;
-}
-
-.footer-links .icon {
-  width: 1em;
-  height: 1em;
-  margin-right: 0.5em;
-  vertical-align: middle;
-}
-/* Add this media query for mobile devices */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-section {
-    width: 100%;
-    text-align: center;
-    margin-left: 0 !important;
-  }
-
-  .footer-section.logo-section {
-    margin: 0 auto 1rem;
-  }
-
-  .footer-bottom {
-    padding-left: 0;
-    text-align: center;
-  }
 }
