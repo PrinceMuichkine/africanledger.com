@@ -175,3 +175,15 @@ body::before {
   color: white;
   text-decoration: none;
 }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}

@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.headerContent}>
+      <div className={`${styles.headerContent} container mx-auto`}>
         <Link href="/" className={styles.logoContainer}>
           <Image src="/icon.png" alt="African Ledger Logo" width={41} height={41} />
         </Link>

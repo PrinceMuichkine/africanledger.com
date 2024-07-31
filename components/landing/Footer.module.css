@@ -21,9 +21,9 @@
 
 .logoSection {
   flex: 0 0 auto;
-  margin-left: 0;
+  margin-left: -30px;
   margin-right: auto;
-  margin-top: 6px;
+  margin-top: 0px;
 }
 
 .footerSection:not(.logoSection) {
@@ -58,9 +58,9 @@
 }
 
 .icon {
-  width: 1em;
-  height: 1em;
-  margin-right: 0.5em;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
   vertical-align: middle;
 }
 
@@ -83,6 +83,7 @@
 
 .footerText {
   color: #cccccc;
+      margin-left: 32px;
   font-size: 0.75rem;
   margin: 0.5rem 0;
 }
@@ -133,5 +134,23 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
+    margin-left: 32px; 
   }
+}
+
+.rssIcon {
+  fill: #ffffff; /* Default color */
+  transition: fill 0.3s ease;
+  margin-left: -1px; /* Move slightly to the right */
+  margin-bottom: 0; /* Move slightly down */
+  vertical-align: middle; /* Align vertically with text */
+}
+
+.footerLinks a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footerLinks a:hover .rssIcon {
+  fill: #ff6600; /* RSS orange color on hover */
 }

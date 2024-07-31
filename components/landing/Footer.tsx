@@ -11,9 +11,9 @@ import { useMediaQuery } from 'react-responsive'; // You'll need to install this
 export const Footer: React.FC = () => {
   const isDesktop = useMediaQuery({ minWidth: 768 });
 
-  const copyrightStyle = isDesktop
-    ? { marginLeft: '32px' }
-    : { textAlign: 'center' as const, marginLeft: '0' };
+  const copyrightClass = isDesktop
+    ? styles.desktopCopyright
+    : styles.mobileCopyright;
 
   return (
     <footer className={styles.footer}>
@@ -50,7 +50,17 @@ export const Footer: React.FC = () => {
             </li>
             <li>
               <a href="/rss.xml">
-                <Image src="/rss.svg" alt="RSS Feed" width={24} height={24} className={styles.icon} /> RSS Feed
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className={`${styles.icon} ${styles.rssIcon}`}
+                  width="36"
+                  height="38"
+                >
+                  <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z" />
+                </svg>
+                Feed
               </a>
             </li>
           </ul>
@@ -58,9 +68,10 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className={styles.footerBottom}>
-        <div className={styles.footerBottomContent}>
-          <p className={styles.footerText} style={copyrightStyle}>
-            &copy; 2024 The African Ledger. All rights reserved.</p>
+        <div className={`${styles.footerBottomContent} container mx-auto`}>
+          <p className={`${styles.footerText} ${copyrightClass}`}>
+            &copy; 2024 The African Ledger. All rights reserved.
+          </p>
           <div className={styles.footerBottomLinks}>
             <a href="https://maps.app.goo.gl/RJoTkbkdhxsSByNt8" target="_blank" rel="noopener noreferrer">
               Nouakchott, Mauritania
