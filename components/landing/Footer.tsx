@@ -40,12 +40,12 @@ export const Footer: React.FC = () => {
           <ul className={styles.footerLinks}>
             <li>
               <a href="https://www.linkedin.com/company/africanledger/">
-                <FontAwesomeIcon icon={faLinkedin} className={styles.icon} /> LinkedIn
+                <FontAwesomeIcon icon={faLinkedin} className={`${styles.icon} ${styles.faLinkedin}`} /> LinkedIn
               </a>
             </li>
             <li>
               <a href="https://x.com/intent/follow?screen_name=africanledger">
-                <FontAwesomeIcon icon={faTwitter} className={styles.icon} /> X | Twitter
+                <FontAwesomeIcon icon={faTwitter} className={`${styles.icon} ${styles.faTwitter}`} /> X | Twitter
               </a>
             </li>
             <li>

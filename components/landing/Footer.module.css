@@ -90,8 +90,8 @@
 
 .footerBottomLinks {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+   flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -99,7 +99,9 @@
   color: #cccccc;
   text-decoration: none;
   transition: color 0.3s ease;
-    font-size: 0.75rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0;
+
 }
 
 .footerBottomLinks a:hover {
@@ -123,11 +125,24 @@
   .footerSection:not(.logoSection) {
     margin-left: 0;
   }
+  
+
+  .footerText {
+    margin-bottom: 0.5rem; 
+  }
+
+  .footerBottomLinks {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem; 
+  }
+    .footerBottomContent {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.copyrightText {
-  text-align: center;
-}
+
 
 @media (min-width: 768px) {
   .footerBottomContent {
@@ -153,4 +168,21 @@
 
 .footerLinks a:hover .rssIcon {
   fill: #ff6600; /* RSS orange color on hover */
+}
+
+.icon {
+  color: #ffffff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover .faLinkedin {
+  color: #0077b5; /* LinkedIn blue color on hover */
+}
+
+.footerLinks a:hover .faTwitter {
+  color: #1da1f2; /* Twitter blue color on hover */
+}
+
+.copyrightText {
+  text-align: center;
 }

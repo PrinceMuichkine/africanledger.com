@@ -1,3 +1,3 @@
 ### africanledger.com
 
-Can visit our [X](https://x.com/africanledger) account.
+we have an active [X](https://x.com/africanledger) account.
