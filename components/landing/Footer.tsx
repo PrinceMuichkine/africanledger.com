@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import styles from './Footer.module.css';
-import { useMediaQuery } from 'react-responsive'; // You'll need to install this package
+import styles from '../../utils/styles/footer.module.css';
+import { useMediaQuery } from 'react-responsive';
 
 export const Footer: React.FC = () => {
   const isDesktop = useMediaQuery({ minWidth: 768 });
@@ -31,6 +31,7 @@ export const Footer: React.FC = () => {
           <ul className={styles.footerLinks}>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/product">Product</Link></li>
+            <li><Link href="/careers">Careers</Link></li>
           </ul>
         </div>
 

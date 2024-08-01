@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import styles from './Header.module.css';
+import styles from '../../utils/styles/header.module.css';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
