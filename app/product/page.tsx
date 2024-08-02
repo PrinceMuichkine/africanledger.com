@@ -13,10 +13,11 @@ export default function Product() {
     return (
         <div className="home-container flex flex-col min-h-screen">
             <Header />
-            <main className="flex-1 w-full flex flex-col items-start justify-center p-4">
-                <div className="main-content w-full max-w-6xl mx-auto pl-16">
-                    <h1 className="text-5xl font-bold mb-2 text-white">Welcome to the Product page.</h1>
+            <main className="flex-1 w-full flex flex-col items-start justify-start p-4">
+                <div className="main-content w-full max-w-6xl mx-auto">
+                    <h1 className="text-5xl font-bold mb-4 text-white">Welcome to the Product page.</h1>
                     <ImageScroller images={images} />
+                    <p className="mt-4 text-white">Scroll down to see more content and footer.</p>
                 </div>
             </main>
             <Footer />
