@@ -30,7 +30,6 @@ export const Footer: React.FC = () => {
           <h4 className={styles.footerTitle}>Company</h4>
           <ul className={styles.footerLinks}>
             <li><Link href="/about">About</Link></li>
-            <li><Link href="/product">Product</Link></li>
             <li><Link href="/careers">Careers</Link></li>
           </ul>
         </div>

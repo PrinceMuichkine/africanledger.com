@@ -27,8 +27,18 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         const handleScroll = () => {
             if (scrollerRef.current) {
                 const scrollPosition = scrollerRef.current.scrollTop;
-                const itemHeight = scrollerRef.current.scrollHeight / fixedImages.length;
-                const index = Math.min(Math.floor(scrollPosition / itemHeight), fixedImages.length - 1);
+                const containerHeight = scrollerRef.current.clientHeight;
+                const scrollHeight = scrollerRef.current.scrollHeight;
+                const itemHeight = scrollHeight / fixedImages.length;
+
+                // Calculate the index based on the scroll position
+                let index = Math.floor(scrollPosition / itemHeight);
+
+                // Adjust the index for the last few images
+                if (scrollPosition + containerHeight >= scrollHeight - itemHeight) {
+                    index = fixedImages.length - 1;
+                }
+
                 setActiveImageIndex(index);
             }
         };
@@ -51,15 +61,13 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         }
     };
 
-    const safeActiveIndex = Math.max(0, Math.min(activeImageIndex, fixedImages.length - 1));
-
     return (
         <div className={styles.imageScrollerContainer}>
             <div className={styles.imageBox}>
                 <main className={styles.main}>
                     <img
-                        src={fixedImages[safeActiveIndex].src}
-                        alt={fixedImages[safeActiveIndex].alt}
+                        src={fixedImages[activeImageIndex].src}
+                        alt={fixedImages[activeImageIndex].alt}
                         className={styles.mainImg}
                     />
                 </main>
@@ -68,7 +76,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                         <nav>
                             <ul className={styles.asideUl}>
                                 {fixedImages.map((image, index) => (
-                                    <li key={image.id} className={`${styles.li} ${index === safeActiveIndex ? styles.active : ''}`}>
+                                    <li key={image.id} className={`${styles.li} ${index === activeImageIndex ? styles.active : ''}`}>
                                         <button onClick={() => handleImageClick(index)} className={styles.liButton}>
                                             <img src={image.src} alt={image.alt} className={styles.liImg} />
                                             <span className={styles.asideSpan}>See image {image.id}</span>

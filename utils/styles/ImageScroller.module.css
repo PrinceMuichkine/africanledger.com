@@ -1,9 +1,9 @@
 .imageScrollerContainer {
-  height: 55vh; /* Reduced height to leave space for the heading */
+  height: 80vh; /* Reduced height to leave space for the heading */
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 1rem; /* Add some space after the heading */
+  align-items: flex-start;
+  margin-top: -5rem; /* Add some space after the heading */
   margin-bottom: 1rem; 
 }
 
@@ -15,37 +15,57 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: -100px;
 }
 
 .imageScroller {
-  height: 55%; /* Reduced height */
+  height: 50%; /* Reduced height */
   overflow-y: auto;
   width: 80px;
   padding-right: 10px;
-  align-self: center; /* Center vertically */
+  align-self: center;
   margin-left: auto;
-  margin-right: 10px
-}
+    margin-top: 50px;
+  margin-right: 70px;
+      -ms-overflow-style: none;
+  border-radius: 8px;
+    scrollbar-width: thin;
+  -ms-overflow-style: auto;
+  position: relative;}
 
 .imageScroller::-webkit-scrollbar {
   width: 4px;
+  display: none; 
 }
 
 .imageScroller::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
+    border-radius: 3px;
+     margin: 35% 0
 }
 
 .imageScroller::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 30%;
+}
+
+.imageScroller::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .main {
   flex-grow: 1;
+  max-height: 80vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 20px;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 12px;
+  position: relative; 
 }
 
 .aside {
@@ -62,12 +82,14 @@
 }
 
 .li {
-  flex: 0 0 60px; /* Reduced size */
-  height: 60px; /* Reduced size */
+  flex: 0 0 55px; /* Reduced size */
+  height: 55px; /* Reduced size */
   position: relative;
   opacity: 0.6;
   transition: all 0.3s ease-in-out;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+    border-radius: 8px;
+      overflow: hidden; 
 }
 
 .li.active {
@@ -79,7 +101,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .liButton {
@@ -105,12 +127,21 @@
 }
 
 .mainImg {
-  max-width: 200%;
-  max-height: 200%;
-  border-radius: 8px;
-  object-fit: contain;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  position: relative;
+  max-width: 180%;
+  max-height: 180%;
+  width: auto;
+  height: auto; 
+  border-radius: 12px;
+  object-fit: cover; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: absolute;
+  top: 50%;
+    left: 50%;
+      transform: translate(-50%, -60%); 
+  transition: transform 0.8s;
+}
+.mainImg:hover {
+  transform: translate(-50%, -60%) scale(1.05); /* Maintain positioning on hover */
 }
 
 .imageCaption {
@@ -124,6 +155,7 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+
 
 @media(max-width: 768px) {
   .imageBox {
