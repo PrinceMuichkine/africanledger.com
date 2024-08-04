@@ -11,9 +11,9 @@ export default function Home() {
   }));
 
   return (
-    <div className="home-container flex flex-col min-h-screen">
+    <div className="home-container flex flex-col h-screen overflow-hidden">
       <Header />
-      <main className="flex-1 w-full flex flex-col items-center justify-center p-4">
+      <main className="flex-1 w-full flex flex-col items-center justify-center p-4 overflow-hidden">
         <div className="main-content w-full max-w-6xl mx-auto">
           <ImageScroller images={images} />
         </div>

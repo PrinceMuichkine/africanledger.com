@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, WheelEvent } from 'react';
 import styles from '../../utils/styles/ImageScroller.module.css';
 
 interface Image {
@@ -15,6 +15,7 @@ interface ImageScrollerProps {
 
 const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     const scrollerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
     const fixedImages = [...images, ...Array(Math.max(0, 100 - images.length))].slice(0, 100).map((img, index) => ({
@@ -23,32 +24,36 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         alt: img?.alt || `Image ${index + 1}`
     }));
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (scrollerRef.current) {
-                const scrollPosition = scrollerRef.current.scrollTop;
-                const containerHeight = scrollerRef.current.clientHeight;
-                const scrollHeight = scrollerRef.current.scrollHeight;
-                const itemHeight = scrollHeight / fixedImages.length;
+    const handleScroll = () => {
+        if (scrollerRef.current) {
+            const scrollPosition = scrollerRef.current.scrollTop;
+            const containerHeight = scrollerRef.current.clientHeight;
+            const scrollHeight = scrollerRef.current.scrollHeight;
+            const itemHeight = scrollHeight / fixedImages.length;
 
-                // Calculate the index based on the scroll position
-                let index = Math.floor(scrollPosition / itemHeight);
+            let index = Math.floor(scrollPosition / itemHeight);
 
-                // Adjust the index for the last few images
-                if (scrollPosition + containerHeight >= scrollHeight - itemHeight) {
-                    index = fixedImages.length - 1;
-                }
-
-                setActiveImageIndex(index);
+            if (scrollPosition + containerHeight >= scrollHeight - itemHeight) {
+                index = fixedImages.length - 1;
             }
-        };
 
+            setActiveImageIndex(index);
+        }
+    };
+
+    useEffect(() => {
         scrollerRef.current?.addEventListener('scroll', handleScroll);
-
         return () => {
             scrollerRef.current?.removeEventListener('scroll', handleScroll);
         };
     }, [fixedImages.length]);
+
+    const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        if (scrollerRef.current) {
+            scrollerRef.current.scrollTop += e.deltaY;
+        }
+    };
 
     const handleImageClick = (index: number) => {
         setActiveImageIndex(index);
@@ -62,9 +67,9 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     };
 
     return (
-        <div className={styles.imageScrollerContainer}>
+        <div className={styles.imageScrollerContainer} ref={containerRef}>
             <div className={styles.imageBox}>
-                <main className={styles.main}>
+                <main className={styles.main} onWheel={handleWheel}>
                     <img
                         src={fixedImages[activeImageIndex].src}
                         alt={fixedImages[activeImageIndex].alt}

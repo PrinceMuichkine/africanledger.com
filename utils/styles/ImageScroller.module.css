@@ -1,10 +1,11 @@
 .imageScrollerContainer {
-  height: 80vh; /* Reduced height to leave space for the heading */
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: -5rem; /* Add some space after the heading */
+  margin-top: -5rem;
   margin-bottom: 1rem; 
+  overflow: hidden; 
 }
 
 .imageBox {
@@ -15,40 +16,40 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: -100px;
+  gap: -100px;
 }
 
 .imageScroller {
-  height: 50%; /* Reduced height */
+  height: 50%;
   overflow-y: auto;
   width: 80px;
   padding-right: 10px;
   align-self: center;
   margin-left: auto;
-    margin-top: 50px;
+  margin-top: 50px;
   margin-right: 70px;
-      -ms-overflow-style: none;
+  -ms-overflow-style: none;
   border-radius: 8px;
-    scrollbar-width: thin;
+  scrollbar-width: thin;
   -ms-overflow-style: auto;
-  position: relative;}
+  position: relative;
+}
 
 .imageScroller::-webkit-scrollbar {
-  width: 4px;
   display: none; 
 }
 
 .imageScroller::-webkit-scrollbar-track {
   background: transparent;
-    border-radius: 3px;
-     margin: 35% 0
+  border-radius: 3px;
+  margin: 35% 0
 }
 
 .imageScroller::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 30%;
+  height: 30%;
 }
 
 .imageScroller::-webkit-scrollbar-thumb:hover {
@@ -66,6 +67,7 @@
   overflow-y: auto;
   border-radius: 12px;
   position: relative; 
+  user-select: none;
 }
 
 .aside {
@@ -82,14 +84,14 @@
 }
 
 .li {
-  flex: 0 0 55px; /* Reduced size */
-  height: 55px; /* Reduced size */
+  flex: 0 0 55px;
+  height: 55px;
   position: relative;
   opacity: 0.6;
   transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
-    border-radius: 8px;
-      overflow: hidden; 
+  border-radius: 8px;
+  overflow: hidden; 
 }
 
 .li.active {
@@ -134,14 +136,15 @@
   border-radius: 12px;
   object-fit: cover; 
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    position: absolute;
+  position: absolute;
   top: 50%;
-    left: 50%;
-      transform: translate(-50%, -60%); 
-  transition: transform 0.8s;
+  left: 50%;
+  transform: translate(-50%, -60%); 
+  transition: transform 0.8s, opacity 0.3s ease-in-out;
 }
+
 .mainImg:hover {
-  transform: translate(-50%, -60%) scale(1.05); /* Maintain positioning on hover */
+  transform: translate(-50%, -60%) scale(1.05);
 }
 
 .imageCaption {
@@ -155,7 +158,6 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-
 
 @media(max-width: 768px) {
   .imageBox {
