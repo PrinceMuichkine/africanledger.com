@@ -1,19 +1,27 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import styles from '../../utils/styles/footer.module.css';
-import { useMediaQuery } from 'react-responsive';
 
 export const Footer: React.FC = () => {
-  const isDesktop = useMediaQuery({ minWidth: 768 });
+  const [isDesktop, setIsDesktop] = useState(true);
 
-  const copyrightClass = isDesktop
-    ? styles.desktopCopyright
-    : styles.mobileCopyright;
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 992);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -29,8 +37,8 @@ export const Footer: React.FC = () => {
         <div className={styles.footerSection}>
           <h4 className={styles.footerTitle}>Company</h4>
           <ul className={styles.footerLinks}>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/careers">Careers</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/about">About</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/careers">Careers</Link></li>
           </ul>
         </div>
 
@@ -38,17 +46,17 @@ export const Footer: React.FC = () => {
         <div className={styles.footerSection}>
           <h4 className={styles.footerTitle}>Community</h4>
           <ul className={styles.footerLinks}>
-            <li>
+            <li className={styles.footerLinkItem}>
               <a href="https://www.linkedin.com/company/africanledger/">
                 <FontAwesomeIcon icon={faLinkedin} className={`${styles.icon} ${styles.faLinkedin}`} /> LinkedIn
               </a>
             </li>
-            <li>
+            <li className={styles.footerLinkItem}>
               <a href="https://x.com/intent/follow?screen_name=africanledger">
                 <FontAwesomeIcon icon={faTwitter} className={`${styles.icon} ${styles.faTwitter}`} /> X | Twitter
               </a>
             </li>
-            <li>
+            <li className={styles.footerLinkItem}>
               <a href="/rss.xml">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +77,7 @@ export const Footer: React.FC = () => {
 
       <div className={styles.footerBottom}>
         <div className={`${styles.footerBottomContent} container mx-auto`}>
-          <p className={`${styles.footerText} ${copyrightClass}`}>
+          <p className={styles.footerText}>
             &copy; 2024 The African Ledger. All rights reserved.
           </p>
           <div className={styles.footerBottomLinks}>

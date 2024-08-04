@@ -11,14 +11,14 @@ export default function Home() {
   }));
 
   return (
-    <div className="home-container flex flex-col h-screen overflow-hidden">
+    <div className="home-container">
       <Header />
-      <main className="flex-1 w-full flex flex-col items-center justify-center p-4 overflow-hidden">
-        <div className="main-content w-full max-w-6xl mx-auto">
-          <ImageScroller images={images} />
-        </div>
+      <main className="main-content">
+        <ImageScroller images={images} />
       </main>
-      <Footer />
+      <div className="footer-wrapper">
+        <Footer />
+      </div>
     </div>
   )
 }

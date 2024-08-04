@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Geist Sans";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -9,7 +14,7 @@
 }
 
 .scrolled {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black when scrolled */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .headerContent {
@@ -24,50 +29,186 @@
 .logoContainer {
   display: flex;
   align-items: center;
-    margin-left: -5px; 
+  margin-left: -5px;
 }
 
 @media (max-width: 768px) {
   .logoContainer {
-    padding-left: 12px; 
+    padding-left: 12px;
   }
 }
 
-
-.navLinks {
-  display: flex;
-  list-style: none;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-}
-
-.navLinks li a {
+.stylishButton {
+  height: 40px;
+  padding: -40px;
+  display: grid;
+  border-radius: 8px;
+  border: 1px solid #00CC3F;
+  letter-spacing: 0.25px;
+  cursor: pointer;
   position: relative;
-  text-decoration: none;
+  background: transparent;
   color: white;
-  font-size: 1rem; /* Adjust this value to match your desired font size */
-  transition: color 0.3s ease;
+  font-weight: 70;
+  font-size: 12px;
+  scale: 1;
+  outline-color: #00FF52;
+  outline-offset: 0.45rem;
+  font-family: Helvetica, Arial, sans-serif, system-ui;
 }
 
-.navLinks li a::after {
-  content: '';
-  position: absolute;
+.popoverContent {
+  width: 190px; /* Adjust width as needed */
+  height: auto;
+  padding: 10px; /* Padding for the popover */
+  background-color: rgba(255, 255, 255, 0.1) ; /* Dark blue background */
+  border: 1px solid rgba(211, 184, 184, 0.15); /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.inputField {
+  background-color: #050505; /* Darker blue for input */
+  color: white; /* Text color */
+  border: 1px solid #000000; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  padding: 2px 8px;
+  font-size: 12px;
+  width: calc(100% - 65px); /* Adjust width to fit with button */
+  height: 30px;
+}
+
+.inputField::placeholder {
+  color: #666;
+}
+
+.subscribeButton {
+  background-color: #050505; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  padding: 12px 20px;
+  font-size: 12px;
+  margin-left: 5px;
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Padding for button */
+  cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.9s;
+}
+
+.subscribeButton:hover {
+  background-color: #00CC3F; /* Darker shade on hover */
+}
+
+.popoverTitle {
+  background: linear-gradient(80deg, #ffffff, #00CC3F);
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.stylishButton:is(:hover, :focus-visible) {
+  --active: 1;
+}
+
+.stylishButton:active {
+  --pressed: 1;
+}
+
+.stylishButton > span:nth-of-type(1) {
+  height: 100%;
   width: 100%;
-  height: 2px;
-  bottom: -4px;
+  border-radius: 8px;
+  position: absolute;
+  inset: 0;
+  scale: calc(1 - (var(--pressed, 0) * 0.05));
+  transition: scale 0.1s;
+}
+
+.stylishButton:is(:hover, :focus-visible) .container {
+  width: 100%;
+}
+
+.container {
+  --mask-image: url(https://assets.codepen.io/605876/chev-mask_1.png);
+  --spread: 20px;
+  --size: 26px;
+  width: 40px;
+  height: 100%;
+  background: #00FF52;
+  position: absolute;
   left: 0;
-  background-color: white;
-  transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
+  transition: width 0.25s;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px  hsl(0, 65%, 5%);
+  container-type: inline-size;
 }
 
-.navLinks li a:hover::after,
-.navLinks li a.active::after {
-  transform: scaleX(1);
+.primary {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: hsl(0 0% 0% / 0.15);
+  z-index: 2;
+  mask: var(--mask-image) 50% 50% / var(--size) var(--size) no-repeat;
+  container-type: inline-size;
 }
 
-.navLinks li a:hover,
-.navLinks li a.active {
+:where(.primary, .complimentary)::after {
+  --distance: calc(100cqi + 100%);
+  content: "";
+  height: calc(var(--size) * 4);
+  aspect-ratio: 1;
+  position: absolute;
+  left: 0%;
+  top: 50%;
+  translate: -50% -50%;
+  background: radial-gradient(hsl(0 0% 0%), transparent);
+  animation: fly-by calc((2 - var(--active, 0)) * 1s) infinite linear;
+}
+
+@keyframes fly-by {
+  0% { translate: -100% -50%; }
+  100% { translate: var(--distance) -50%; }
+}
+
+.complimentary {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: var(--active, 0);
+  transition: opacity 0.25s;
+  background: hsl(0 0% 0% / 0.15);
+  mask:
+    var(--mask-image) calc(50% - (var(--spread) * 1)) 50% / var(--size) var(--size) no-repeat,
+    var(--mask-image) calc(50% - (var(--spread) * 2)) 50% / var(--size) var(--size) no-repeat,
+    var(--mask-image) calc(50% - (var(--spread) * 3)) 50% / var(--size) var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 1)) 50% / var(--size) var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 2)) 50% / var(--size) var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 3)) 50% / var(--size) var(--size) no-repeat;
+}
+
+.stylishButton > span:nth-of-type(2) {
+  padding: 0 0.8rem 0 calc(40px + 0.8rem);
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.popoverSubscribeButton {
+  background-color: rgb(212, 1, 1);
   color: white;
+  border: 2px;
+   border-color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popoverSubscribeButton:hover {
+  background-color: #FF0700;
 }

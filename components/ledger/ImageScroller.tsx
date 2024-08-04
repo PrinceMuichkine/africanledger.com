@@ -42,10 +42,13 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     };
 
     useEffect(() => {
-        scrollerRef.current?.addEventListener('scroll', handleScroll);
-        return () => {
-            scrollerRef.current?.removeEventListener('scroll', handleScroll);
-        };
+        const scroller = scrollerRef.current;
+        if (scroller) {
+            scroller.addEventListener('scroll', handleScroll);
+            return () => {
+                scroller.removeEventListener('scroll', handleScroll);
+            };
+        }
     }, [fixedImages.length]);
 
     const handleWheel = (e: WheelEvent<HTMLDivElement>) => {

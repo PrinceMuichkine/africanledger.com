@@ -65,9 +65,9 @@
 }
 
 .footerBottom {
-  margin-top: 2rem;
+  margin-top: 0rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1rem;
+  padding-top: 0.5rem;
 }
 
 .footerBottomContent {
@@ -75,24 +75,24 @@
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+  text-align: left;
   position: relative;
 }
 
 .footerText {
   color: #cccccc;
-      margin-left: 32px;
   font-size: 0.75rem;
   margin: 0.5rem 0;
 }
 
 .footerBottomLinks {
   display: flex;
-  gap: 0.5rem;
-   flex-wrap: wrap;
-  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 .footerBottomLinks a {
@@ -100,15 +100,18 @@
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 0.75rem;
-  padding: 0.25rem 0;
-
+  white-space: nowrap;
 }
 
 .footerBottomLinks a:hover {
   color: #ffffff;
 }
 
-@media (max-width: 768px) {
+.footerLinkItem {
+  padding: 1px 0;
+}
+
+@media (max-width: 991px) {
   .footerContent {
     flex-direction: column;
   }
@@ -125,40 +128,46 @@
   .footerSection:not(.logoSection) {
     margin-left: 0;
   }
-  
 
-  .footerText {
-    margin-bottom: 0.5rem; 
+  .footerBottomContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .footerBottomLinks {
     flex-direction: row;
     justify-content: center;
-    gap: 1rem; 
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
   }
-    .footerBottomContent {
-    flex-direction: column;
-    align-items: center;
+
+  .footerBottomLinks a {
+    padding: 0.25rem 0;
+  }
+
+  .footerText {
+    margin-bottom: 0.25rem;
+    order: 2;
   }
 }
 
-
-
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .footerBottomContent {
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
-    margin-left: 32px; 
+    margin-left: 32px;
   }
 }
 
 .rssIcon {
-  fill: #ffffff; /* Default color */
+  fill: #ffffff;
   transition: fill 0.3s ease;
-  margin-left: -1px; /* Move slightly to the right */
-  margin-bottom: 0; /* Move slightly down */
-  vertical-align: middle; /* Align vertically with text */
+  margin-left: -1px;
+  margin-bottom: 0;
+  vertical-align: middle;
 }
 
 .footerLinks a {
@@ -167,20 +176,20 @@
 }
 
 .footerLinks a:hover .rssIcon {
-  fill: #ff6600; /* RSS orange color on hover */
+  fill: #ff6600;
 }
 
 .icon {
-  color: #ffffff; /* Default color */
+  color: #ffffff;
   transition: color 0.3s ease;
 }
 
 .footerLinks a:hover .faLinkedin {
-  color: #0077b5; /* LinkedIn blue color on hover */
+  color: #0077b5;
 }
 
 .footerLinks a:hover .faTwitter {
-  color: #1da1f2; /* Twitter blue color on hover */
+  color: #1da1f2;
 }
 
 .copyrightText {
