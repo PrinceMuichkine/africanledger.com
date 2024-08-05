@@ -1,19 +1,27 @@
-import { createClient } from "@/utils/supabase/server";
-import { NextResponse } from "next/server";
+import { createClient } from '@supabase/supabase-js';
+import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
-  // The `/auth/callback` route is required for the server-side auth flow implemented
-  // by the SSR package. It exchanges an auth code for the user's session.
-  // https://supabase.com/docs/guides/auth/server-side/nextjs
-  const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get("code");
-  const origin = requestUrl.origin;
+// Initialize Supabase client using environment variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-  if (code) {
-    const supabase = createClient();
-    await supabase.auth.exchangeCodeForSession(code);
+export async function POST(req: Request) {
+  const { email } = await req.json(); // Parse the JSON body
+
+  // Validate email format
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
-  // URL to redirect to after sign up process completes
-  return NextResponse.redirect(`${origin}/protected`);
+  // Insert email into Supabase
+  const { data, error } = await supabase
+    .from('subscribe_emails')
+    .insert([{ email }]);
+
+  if (error) {
+    return NextResponse.json({ error: "Submission failed." }, { status: 500 });
+  }
+
+  return NextResponse.json({ message: "You're in!" }, { status: 200 });
 }

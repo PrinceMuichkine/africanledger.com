@@ -1,6 +1,7 @@
 import { GeistSans } from 'geist/font/sans'
 import { Analytics } from "@vercel/analytics/react"
 import Script from 'next/script'
+import { Toaster } from "@/components/ui/sonner";
 import './globals.css'
 
 const defaultUrl = process.env.VERCEL_URL
@@ -25,6 +26,7 @@ export default function RootLayout({
           {children}
           <Analytics />
         </main>
+        <Toaster />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8BS9YCKTYZ"
           strategy="afterInteractive"
