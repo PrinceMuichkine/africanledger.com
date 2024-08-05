@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState, WheelEvent } from 'react';
 import styles from '../../utils/styles/ImageScroller.module.css';
+import { initImageScroller } from '../../utils/actions/ImageScroller';
 
 interface Image {
     id: string;
@@ -17,6 +18,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     const scrollerRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     const fixedImages = [...images, ...Array(Math.max(0, 100 - images.length))].slice(0, 100).map((img, index) => ({
         id: img?.id || `${index + 1}`,
@@ -24,18 +26,26 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         alt: img?.alt || `Image ${index + 1}`
     }));
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const handleScroll = () => {
         if (scrollerRef.current) {
-            const scrollPosition = scrollerRef.current.scrollTop;
-            const containerHeight = scrollerRef.current.clientHeight;
-            const scrollHeight = scrollerRef.current.scrollHeight;
-            const itemHeight = scrollHeight / fixedImages.length;
+            const scroller = scrollerRef.current;
+            const scrollPosition = isMobile ? scroller.scrollLeft : scroller.scrollTop;
+            const scrollSize = isMobile ? scroller.scrollWidth : scroller.scrollHeight;
+            const clientSize = isMobile ? scroller.clientWidth : scroller.clientHeight;
+            const maxScroll = scrollSize - clientSize;
+            const scrollPercentage = scrollPosition / maxScroll;
 
-            let index = Math.floor(scrollPosition / itemHeight);
-
-            if (scrollPosition + containerHeight >= scrollHeight - itemHeight) {
-                index = fixedImages.length - 1;
-            }
+            let index = Math.round(scrollPercentage * (fixedImages.length - 1));
+            index = Math.min(Math.max(index, 0), fixedImages.length - 1);
 
             setActiveImageIndex(index);
         }
@@ -49,21 +59,38 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                 scroller.removeEventListener('scroll', handleScroll);
             };
         }
-    }, [fixedImages.length]);
+    }, [fixedImages.length, isMobile]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            initImageScroller();
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
         e.preventDefault();
         if (scrollerRef.current) {
-            scrollerRef.current.scrollTop += e.deltaY;
+            if (isMobile) {
+                scrollerRef.current.scrollLeft += e.deltaY;
+            } else {
+                scrollerRef.current.scrollTop += e.deltaY;
+            }
         }
     };
 
     const handleImageClick = (index: number) => {
         setActiveImageIndex(index);
         if (scrollerRef.current) {
-            const itemHeight = scrollerRef.current.scrollHeight / fixedImages.length;
+            const scroller = scrollerRef.current;
+            const scrollSize = isMobile ? scroller.scrollWidth : scroller.scrollHeight;
+            const clientSize = isMobile ? scroller.clientWidth : scroller.clientHeight;
+            const maxScroll = scrollSize - clientSize;
+            const scrollPosition = (index / (fixedImages.length - 1)) * maxScroll;
+
             scrollerRef.current.scrollTo({
-                top: index * itemHeight,
+                [isMobile ? 'left' : 'top']: scrollPosition,
                 behavior: 'smooth'
             });
         }

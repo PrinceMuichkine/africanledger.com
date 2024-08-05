@@ -14,8 +14,8 @@
 }
 
 .imageScroller {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.0) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .imageBox {
@@ -31,13 +31,13 @@
 }
 
 .imageScroller {
-  height: 43%;
+  height: 41%;
   overflow-y: auto;
   width: 58px;
   padding-right: 1px;
   align-self: center;
   margin-left: auto;
-  margin-top: 45px;
+  margin-top: 30px;
   margin-right: 18px;
   border-radius: 7px;
   scrollbar-width: 0px;
@@ -52,7 +52,6 @@
 
 .imageScroller::-webkit-scrollbar {
   display: none; 
-   width: 2px;
 }
 
 .imageScroller::-webkit-scrollbar-track {
@@ -184,11 +183,13 @@
 
 @media (max-width: 768px) {
   .imageScrollerContainer {
-    margin-top: 0;
+    margin-top: -60px;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
     height: auto;
+    padding-bottom: 50px;
+    overflow: visible;
   }
 
   .imageBox {
@@ -200,15 +201,18 @@
     max-height: none;
     overflow-y: visible;
     padding: 10px;
+    touch-action: pan-y;
   }
 
   .mainImg {
     width: 100%;
     height: auto;
-    max-height: none;
+    max-height: 70vh;
     position: static;
     transform: none;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
+    border-radius: 16px;
+    touch-action: pan-x pan-y;
   }
 
   .mainImg:hover {
@@ -217,28 +221,35 @@
 
   .imageScroller {
     width: 100%;
-    height: 80px;
-    padding-right: 0;
+    height: 90px;
+    padding: 0;
     margin: 10px 0;
     position: static;
     transform: none;
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
+    margin-top: 40px;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+    white-space: nowrap;
   }
 
   .asideUl {
+    display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: row;
     padding: 0 10px;
   }
 
   .li {
-    flex: 0 0 60px;
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
+    flex: 0 0 70px;
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
     margin-bottom: 0;
+    scroll-snap-align: start;
   }
 
   .imageScroller::-webkit-scrollbar {
