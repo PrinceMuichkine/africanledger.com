@@ -60,7 +60,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logoContainer}>
-          <Image src="/icon.png" alt="The African Ledger Logo" width={41} height={41} />
+          <Image src="/icon.png" alt="The African Ledger Logo" width={55} height={55} />
         </Link>
         <Popover>
           <PopoverTrigger asChild>

@@ -33,6 +33,7 @@ html {
   html {
     scroll-snap-type: none;
     overflow-y: auto;
+        scroll-snap-type: none;
   }
 
   body {

@@ -58,9 +58,11 @@
 }
 
 .popoverContent {
-  width: 190px; /* Adjust width as needed */
+  width: 188px; /* Adjust width as needed */
   height: auto;
   padding: 10px; /* Padding for the popover */
+  margin-top: 5px;
+  margin-left: -55px;
   background-color: rgb(0, 0, 0) ; /* Dark blue background */
   border: 2px solid rgb(39, 35, 35); /* Border color */
   border-radius: 8px; /* Rounded corners */
@@ -213,3 +215,4 @@
 .popoverSubscribeButton:hover {
   background-color: #FF0700;
 }
+
