@@ -26,11 +26,36 @@
 html {
   color-scheme: dark only;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+}
+
+/* For mobile devices: normal scrolling */
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none;
+    overflow-y: auto;
+  }
+
+  body {
+    min-height: auto;
+    height: auto;
+  }
+}
+
+/* For desktop: static, snap-scrolling behavior */
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    height: 100vh;
+    overflow-y: hidden;
+  }
 }
 
 body {
-  min-height: 100vh;
   font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
   position: relative;
   margin: 0;
