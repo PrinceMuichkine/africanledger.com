@@ -37,8 +37,9 @@ export const Footer: React.FC = () => {
         <div className={styles.footerSection}>
           <h4 className={styles.footerTitle}>Company</h4>
           <ul className={styles.footerLinks}>
-            <li className={styles.footerLinkItem}><Link href="/about">About</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/careers">Careers</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/about">africanledger.com</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/archive">archive</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/careers">careers</Link></li>
           </ul>
         </div>
 
@@ -84,8 +85,9 @@ export const Footer: React.FC = () => {
             <a href="https://maps.app.goo.gl/RJoTkbkdhxsSByNt8" target="_blank" rel="noopener noreferrer">
               Nouakchott, Mauritania
             </a>
-            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/contact">Contact | Support</Link>
             <Link href="/terms">Terms of Service</Link>
+            <Link href="/privacy">Privacy Policy</Link>
           </div>
         </div>
       </div>

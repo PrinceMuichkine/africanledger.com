@@ -28,21 +28,21 @@ html {
   scroll-behavior: smooth;
 }
 
-/* For mobile devices: normal scrolling */
+/* For mobile devices: enable scrolling */
 @media (max-width: 767px) {
   html {
     scroll-snap-type: none;
-    overflow-y: auto;
-        scroll-snap-type: none;
+    overflow-y: auto; /* Allow vertical scrolling */
   }
 
   body {
-    min-height: auto;
+    min-height: 100%; /* Change from auto to 100% */
     height: auto;
+    overflow-y: auto; /* Allow vertical scrolling */
   }
 }
 
-/* For desktop: static, snap-scrolling behavior */
+/* For desktop: keep static, snap-scrolling behavior */
 @media (min-width: 768px) {
   html {
     scroll-snap-type: y mandatory;
@@ -211,5 +211,10 @@ body::before {
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;
+  }
+}
+@media (max-width: 767px) {
+  main {
+    margin-top: 60px; 
   }
 }
