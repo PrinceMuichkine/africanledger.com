@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
             <a href="https://maps.app.goo.gl/RJoTkbkdhxsSByNt8" target="_blank" rel="noopener noreferrer">
               Nouakchott, Mauritania
             </a>
-            <Link href="/contact">Contact | Support</Link>
+            <Link href="/contact">Support | Contact</Link>
             <Link href="/terms">Terms of Service</Link>
             <Link href="/privacy">Privacy Policy</Link>
           </div>
