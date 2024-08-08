@@ -1,10 +1,17 @@
 {
+  "name": "africanledgercom",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sanity-dev": "sanity dev",
+    "sanity-start": "sanity start",
+    "sanity-build": "sanity build",
+    "sanity-deploy": "sanity deploy",
+    "sanity-deploy-graphql": "sanity graphql deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -67,6 +74,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
+    "@sanity/eslint-config-studio": "^4.0.0",
     "@types/event-source-polyfill": "^1.0.5",
     "@types/eventsource": "^1.1.15",
     "@types/node": "20.11.5",
@@ -74,6 +82,13 @@
     "@types/react-dom": "18.2.18",
     "encoding": "^0.1.13",
     "eslint": "latest",
+    "prettier": "^3.0.2",
     "punycode": "latest"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }
