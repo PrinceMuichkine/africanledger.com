@@ -3,7 +3,7 @@ import { Footer } from "../../components/landing/Footer"
 import { getArticles } from '../../utils/sanity/queries'
 import Link from 'next/link'
 import Image from 'next/image'
-import '../home.css'
+import '../../../home.css'
 
 const ARTICLES_PER_PAGE = 25
 

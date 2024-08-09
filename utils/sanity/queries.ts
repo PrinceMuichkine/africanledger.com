@@ -16,18 +16,16 @@ export async function getArticles() {
 }
 
 export async function getArticleBySlug(slug: string) {
-    return await client.fetch(`
-        *[_type == "article" && slug.current == $slug][0] {
-            title,
-            slug,
-            author->{name, slug, bio, profileImage{asset->{url}}},
-            section->{name, slug},
-            category->{name, slug},
-            publishedAt,
-            featuredImage{asset->{url}},
-            excerpt,
-            body,
-            tags[]->{name, slug}
-        }
-    `, { slug })
+  return client.fetch(`
+    *[_type == "article" && slug.current == $slug][0]{
+      title,
+      slug,
+      author->{name},
+      publishedAt,
+      featuredImage,
+      body,
+      category->{name},
+      section->{name, slug}
+    }
+  `, { slug })
 }
