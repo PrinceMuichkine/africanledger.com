@@ -3,17 +3,13 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
 
-console.log('ProjectId:', process.env.SANITY_STUDIO_PROJECT_ID);
-console.log('dataset:', process.env.SANITY_STUDIO_DATASET);
-console.log('apiVersion:', process.env.SANITY_STUDIO_API_VERSION);
-
 export default defineConfig({
   name: 'african-ledger',
   title: 'The African Ledger',
 
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
-  dataset: process.env.SANITY_STUDIO_DATASET!,
-  apiVersion: process.env.SANITY_STUDIO_API_VERSION!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET!,
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_STUDIO_API_VERSION!,
 
   plugins: [structureTool(), visionTool()],
 
