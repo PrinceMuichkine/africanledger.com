@@ -26,6 +26,12 @@ export const articleType = defineType({
       to: {type: 'author'},
     }),
     defineField({
+      name: 'section',
+      title: 'Section',
+      type: 'reference',
+      to: {type: 'section'},
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'reference',
@@ -59,18 +65,6 @@ export const articleType = defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'status',
-      title: 'Status',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Draft', value: 'draft'},
-          {title: 'Published', value: 'published'},
-        ],
-      },
-      initialValue: 'draft',
     }),
   ],
 })

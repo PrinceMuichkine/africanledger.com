@@ -7,9 +7,9 @@ export default defineConfig({
   name: 'african-ledger',
   title: 'The African Ledger',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET!,
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_STUDIO_API_VERSION!,
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
+  apiVersion: process.env.SANITY_STUDIO_API_VERSION!,
 
   plugins: [structureTool(), visionTool()],
 

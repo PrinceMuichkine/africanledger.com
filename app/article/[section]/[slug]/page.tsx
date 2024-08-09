@@ -1,6 +1,6 @@
-import Header from '../../components/landing/Header'
-import { Footer } from "../../components/landing/Footer"
-import { getArticles } from '../../utils/sanity/queries'
+import Header from '../../../../components/landing/Header'
+import { Footer } from "../../../../components/landing/Footer"
+import { getArticles } from '../../../../utils/sanity/queries'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../home.css'
