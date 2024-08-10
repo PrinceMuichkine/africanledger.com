@@ -19,6 +19,11 @@ export const metadata = {
     { rel: 'icon', sizes: '64x64', url: '/favicon-64x64.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', url: '/apple-touch-icon.png' },
   ],
+  alternates: {
+    types: {
+      'application/rss+xml': 'https://www.africanledger.com/rss.xml',
+    },
+  },
 }
 
 export default function RootLayout({

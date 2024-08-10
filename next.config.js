@@ -13,6 +13,18 @@ const nextConfig = {
     config.externals = [...config.externals, 'canvas', 'jsdom']
     return config
   },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+      {
+      source: '/rss.xml',
+      destination: '/api/rss',
+    },
+    ]
+  },
 }
 
 module.exports = nextConfig
