@@ -46,7 +46,7 @@ html {
 @media (min-width: 768px) {
   html {
     scroll-snap-type: y mandatory;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   body {

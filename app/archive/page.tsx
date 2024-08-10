@@ -3,7 +3,7 @@ import { Footer } from "../../components/landing/Footer"
 import { getArticles } from '../../utils/sanity/queries'
 import Link from 'next/link'
 import Image from 'next/image'
-import '../../utils/styles/archive.css'
+import styles from '../../utils/styles/archive.module.css'
 
 const ARTICLES_PER_PAGE = 25
 
@@ -19,45 +19,44 @@ export default async function Archive({ searchParams }: { searchParams: { page: 
         const currentArticles = articles.slice(startIndex, endIndex)
 
         return (
-            <div className="home-container">
+            <div className={styles.homeContainer}>
                 <Header />
-                <main>
-                    <h1 className="text-5xl font-bold mb-8 text-center">Archive</h1>
-                    <div className="archive-container">
+                <main className={styles.mainContent}>
+                    <h1 className={styles.archiveTitle}>Archive</h1>
+                    <div className={styles.archiveContainer}>
                         {currentArticles.map((article: any) => (
-                            <div key={article.slug.current} className="article-card">
+                            <div key={article.slug.current} className={styles.articleCard}>
                                 {article.featuredImage && (
                                     <Image
                                         src={article.featuredImage}
                                         alt={article.title}
                                         width={200}
                                         height={150}
-                                        className="article-image"
+                                        className={styles.articleImage}
                                     />
                                 )}
-                                <div className="article-content">
+                                <div className={styles.articleContent}>
                                     <div>
-                                        <h2 className="article-title">
+                                        <h2 className={styles.articleTitle}>
                                             <Link href={`/${article.section.slug.current}/${article.slug.current}`}>
                                                 {article.title}
                                             </Link>
                                         </h2>
-                                        <p className="article-excerpt">{article.excerpt}</p>
+                                        <p className={styles.articleExcerpt}>{article.excerpt}</p>
                                     </div>
-                                    <p className="article-meta">
+                                    <p className={styles.articleMeta}>
                                         By {article.author.name} | {new Date(article.publishedAt).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    {/* Pagination */}
-                    <div className="pagination">
+                    <div className={styles.pagination}>
                         {Array.from({ length: totalPages }, (_, i) => (
                             <Link
                                 key={i + 1}
                                 href={`/archive?page=${i + 1}`}
-                                className={`pagination-link ${currentPage === i + 1 ? 'active' : ''}`}
+                                className={`${styles.paginationLink} ${currentPage === i + 1 ? styles.active : ''}`}
                             >
                                 {i + 1}
                             </Link>
