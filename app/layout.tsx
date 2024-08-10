@@ -14,7 +14,6 @@ export const metadata = {
   description: 'Get in-depth global news and analysis. Our coverage spans African politics, business, tech, culture and more.',
   icons: [
     { rel: 'icon', url: '/favicon.ico' },
-    { rel: 'icon', sizes: '16x16', url: '/favicon-16x16.png' },
     { rel: 'icon', sizes: '32x32', url: '/favicon-32x32.png' },
     { rel: 'icon', sizes: '64x64', url: '/favicon-64x64.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', url: '/apple-touch-icon.png' },
