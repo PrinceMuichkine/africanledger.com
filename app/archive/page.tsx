@@ -3,7 +3,7 @@ import { Footer } from "../../components/landing/Footer"
 import { getArticles } from '../../utils/sanity/queries'
 import Link from 'next/link'
 import Image from 'next/image'
-import '../home.css'
+import '../../utils/styles/archive.css'
 
 const ARTICLES_PER_PAGE = 25
 
@@ -19,48 +19,49 @@ export default async function Archive({ searchParams }: { searchParams: { page: 
         const currentArticles = articles.slice(startIndex, endIndex)
 
         return (
-            <div className="home-container flex flex-col min-h-screen bg-gray-100">
+            <div className="home-container">
                 <Header />
-                <main className="flex-1 w-full flex flex-col items-start justify-center p-4">
-                    <div className="main-content w-full max-w-6xl mx-auto">
-                        <h1 className="text-5xl font-bold mb-8 text-gray-800">Archive</h1>
-                        <div className="space-y-8">
-                            {currentArticles.map((article: any) => (
-                                <div key={article.slug.current} className="bg-white p-6 rounded-lg shadow-md">
-                                    <h2 className="text-2xl font-bold mb-2">
-                                        <Link href={`/${article.section.slug.current}/${article.slug.current}`}>
-                                            {article.title}
-                                        </Link>
-                                    </h2>
-                                    {article.featuredImage && (
-                                        <Image
-                                            src={article.featuredImage}
-                                            alt={article.title}
-                                            width={300}
-                                            height={200}
-                                            className="mb-4 rounded"
-                                        />
-                                    )}
-                                    <p className="text-gray-600 mb-2">{article.excerpt}</p>
-                                    <p className="text-sm text-gray-500">
+                <main>
+                    <h1 className="text-5xl font-bold mb-8 text-center">Archive</h1>
+                    <div className="archive-container">
+                        {currentArticles.map((article: any) => (
+                            <div key={article.slug.current} className="article-card">
+                                {article.featuredImage && (
+                                    <Image
+                                        src={article.featuredImage}
+                                        alt={article.title}
+                                        width={200}
+                                        height={150}
+                                        className="article-image"
+                                    />
+                                )}
+                                <div className="article-content">
+                                    <div>
+                                        <h2 className="article-title">
+                                            <Link href={`/${article.section.slug.current}/${article.slug.current}`}>
+                                                {article.title}
+                                            </Link>
+                                        </h2>
+                                        <p className="article-excerpt">{article.excerpt}</p>
+                                    </div>
+                                    <p className="article-meta">
                                         By {article.author.name} | {new Date(article.publishedAt).toLocaleDateString()}
                                     </p>
                                 </div>
-                            ))}
-                        </div>
-                        {/* Pagination */}
-                        <div className="flex justify-center space-x-4 mt-8">
-                            {Array.from({ length: totalPages }, (_, i) => (
-                                <Link
-                                    key={i + 1}
-                                    href={`/archive?page=${i + 1}`}
-                                    className={`px-4 py-2 rounded ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                                        }`}
-                                >
-                                    {i + 1}
-                                </Link>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
+                    </div>
+                    {/* Pagination */}
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <Link
+                                key={i + 1}
+                                href={`/archive?page=${i + 1}`}
+                                className={`pagination-link ${currentPage === i + 1 ? 'active' : ''}`}
+                            >
+                                {i + 1}
+                            </Link>
+                        ))}
                     </div>
                 </main>
                 <Footer />
