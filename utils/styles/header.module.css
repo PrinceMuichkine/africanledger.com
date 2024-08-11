@@ -224,4 +224,41 @@
 .popoverSubscribeButton:hover {
   background-color: #FF0700;
 }
+/* NOT WORKING PROPERLY YET
+.headerActions {
+  display: flex;
+  align-items: center;
+}
 
+.searchButton {
+  margin-right: 1rem;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.searchPopover {
+  padding: 1rem;
+  width: 300px;
+}
+
+.searchInput {
+  margin-bottom: 0.5rem;
+}
+
+.searchResults {
+  margin-top: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.searchResultItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+} */

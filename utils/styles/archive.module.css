@@ -1,3 +1,10 @@
+
+/* TO WRAP THE PAGE IN 100%
+.pageWrapper {
+  height: 100%;
+  overflow: hidden;
+} */
+
 .homeContainer {
   display: flex;
   flex-direction: column;
