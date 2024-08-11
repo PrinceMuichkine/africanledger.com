@@ -1,24 +1,29 @@
 'use client';
-
 import Link from 'next/link'
-import { Button } from '@/components/custom/button'
+import styles from '../utils/styles/404.module.css'
 
 export default function NotFound() {
     return (
-        <div className='h-screen'>
-            <div className='m-auto flex h-full w-full flex-col items-center justify-center gap-2'>
-                <h1 className='text-[7rem] font-bold leading-tight'>404</h1>
-                <span className='font-medium'>Oops! Page Not Found!</span>
-                <p className='text-center text-muted-foreground'>
-                    It seems like the page you're looking for <br />
+        <div className={styles.container}>
+            <div className={styles.gridBackground}></div>
+            <div className={styles.content}>
+                <h1 className={styles.title}>404</h1>
+                <h2 className={styles.subtitle}>Oops! Page Not Found!</h2>
+                <p className={styles.message}>
+                    It seems like the page you're looking for<br />
                     does not exist or might have been removed.
                 </p>
-                <div className='mt-6 flex gap-4'>
-                    <Button variant='outline' onClick={() => window.history.back()}>
+                <div className={styles.buttonContainer}>
+                    <button
+                        className={`${styles.button} ${styles.buttonOutline}`}
+                        onClick={() => window.history.back()}
+                    >
                         Go Back
-                    </Button>
+                    </button>
                     <Link href="/" passHref>
-                        <Button>Back to Home</Button>
+                        <button className={`${styles.button} ${styles.buttonPrimary}`}>
+                            Home
+                        </button>
                     </Link>
                 </div>
             </div>

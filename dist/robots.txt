@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.africanledger.com/sitemap.xml
+Sitemap: https://www.africanledger.com/rss.xml

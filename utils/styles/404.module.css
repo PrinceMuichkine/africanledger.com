@@ -1,0 +1,76 @@
+.container {
+  height: 100vh; /* This ensures the container takes up the full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: transparent;
+  overflow: hidden; /* Change from overflow-y: hidden to overflow: hidden */
+  position: fixed; /* Add this to fix the container in place */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 10rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+  background: linear-gradient(to right, #00CC3F, #00FF52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.message {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonOutline {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.buttonOutline:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.buttonPrimary {
+  background-color: #fff;
+  color: #000;
+}
+
+.buttonPrimary:hover {
+  background-color: #f0f0f0;
+}

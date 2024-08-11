@@ -7,12 +7,12 @@ export async function getArticles() {
             slug,
             author->{name},
             section->{name, slug},
-            category->{name},
+            category->{name}, // Make sure this is correct
             publishedAt,
             excerpt,
             "featuredImage": featuredImage.asset->url
         }
-    `, {}, { next: { revalidate: 60 } }) // Add revalidation here
+    `, {}, { next: { revalidate: 60 } })
 }
 
 export async function getArticleBySlug(slug: string) {
@@ -27,5 +27,5 @@ export async function getArticleBySlug(slug: string) {
       category->{name},
       section->{name, slug}
     }
-  `, { slug }, { next: { revalidate: 60 } }) // Add revalidation here
+  `, { slug }, { next: { revalidate: 60 } }) 
 }

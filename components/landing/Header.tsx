@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,48 +12,68 @@ import styles from '../../utils/styles/header.module.css';
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [email, setEmail] = useState('');
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node) &&
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target as Node)
+      ) {
+        setIsButtonActive(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
-    console.log('Form submitted with email:', email); // Debug log
+    e.preventDefault();
+    console.log('Form submitted with email:', email);
 
-    // Validate email format
     if (!/\S+@\S+\.\S+/.test(email)) {
       toast.error("Please enter a valid email address.");
       return;
     }
 
-    // Call the API route to handle subscription
     const response = await fetch('/api/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email }), // Send email to the API
+      body: JSON.stringify({ email }),
     });
 
-    console.log('Response status:', response.status); // Debug log for response status
+    console.log('Response status:', response.status);
 
-    // Check if response is OK
     if (!response.ok) {
-      const errorText = await response.text(); // Get the response text
-      console.error('Error response:', errorText); // Log the error response
-      toast.error("Submission failed."); // Show error message
-      return; // Exit the function
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      toast.error("Submission failed.");
+      return;
     }
 
-    // Parse the JSON response
     const result = await response.json();
-    console.log('API response:', result); // Debug log
+    console.log('API response:', result);
 
-    toast.success(result.message); // Show success message
-    setEmail(''); // Clear the email input
+    toast.success(result.message);
+    setEmail('');
+  };
+
+  const handleButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsButtonActive(!isButtonActive);
   };
 
   return (
@@ -64,7 +84,11 @@ export default function Header() {
         </Link>
         <Popover>
           <PopoverTrigger asChild>
-            <button className={styles.stylishButton}>
+            <button
+              ref={buttonRef}
+              className={`${styles.stylishButton} ${isButtonActive ? styles.active : ''}`}
+              onClick={handleButtonClick}
+            >
               <span>
                 <div className={styles.container}>
                   <div className={styles.primary}></div>
@@ -74,7 +98,7 @@ export default function Header() {
               <span>Subscribe</span>
             </button>
           </PopoverTrigger>
-          <PopoverContent className={styles.popoverContent}>
+          <PopoverContent className={styles.popoverContent} ref={popoverRef}>
             <h4 className={styles.popoverTitle}>Subscribe to the feed</h4>
             <form onSubmit={handleSubmit}>
               <div className={styles.inputContainer}>
