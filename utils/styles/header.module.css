@@ -224,6 +224,7 @@
 .popoverSubscribeButton:hover {
   background-color: #FF0700;
 }
+
 /* NOT WORKING PROPERLY YET
 .headerActions {
   display: flex;

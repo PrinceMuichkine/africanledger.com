@@ -14,12 +14,18 @@ export const blockContentType = defineType({
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
         {title: 'Quote', value: 'blockquote'},
+        {title: 'Drop Cap', value: 'dropCap'},
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
+      lists: [
+        {title: 'Bullet', value: 'bullet'},
+        {title: 'Numbered', value: 'number'}, 
+      ],
       marks: {
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
+          {title: 'Underline', value: 'underline'}, 
+          {title: 'Code', value: 'code'}, 
         ],
         annotations: [
           {
@@ -31,6 +37,19 @@ export const blockContentType = defineType({
                 title: 'URL',
                 name: 'href',
                 type: 'url',
+              },
+            ],
+          },
+          {
+            title: 'Internal Link',
+            name: 'internalLink',
+            type: 'object',
+            fields: [
+              {
+                title: 'Reference',
+                name: 'reference',
+                type: 'reference',
+                to: [{type: 'article'}], 
               },
             ],
           },
@@ -46,8 +65,14 @@ export const blockContentType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
-        }
-      ]
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          options: {isHighlighted: true}, 
+        },
+      ],
     }),
   ],
 })

@@ -10,7 +10,10 @@ export async function getArticles() {
             category->{name}, // Make sure this is correct
             publishedAt,
             excerpt,
-            "featuredImage": featuredImage.asset->url
+            "featuredImage": featuredImage.asset->url,
+            illustration,
+            authorCity,
+            mainTag
         }
     `, {}, { next: { revalidate: 60 } })
 }
@@ -25,7 +28,11 @@ export async function getArticleBySlug(slug: string) {
       "featuredImage": featuredImage.asset->url,
       body,
       category->{name},
-      section->{name, slug}
+      section->{name, slug},
+      excerpt,
+      illustration,
+      authorCity,
+      mainTag
     }
   `, { slug }, { next: { revalidate: 60 } }) 
 }

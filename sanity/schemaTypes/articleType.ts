@@ -20,12 +20,6 @@ export const articleType = defineType({
       },
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
-    }),
-    defineField({
       name: 'section',
       title: 'Section',
       type: 'reference',
@@ -38,15 +32,26 @@ export const articleType = defineType({
       to: {type: 'category'},
     }),
     defineField({
+      name: 'mainTag',
+      title: 'Main Tag',
+      type: 'string',
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
       of: [{type: 'reference', to: {type: 'tag'}}],
     }),
     defineField({
-      name: 'publishedAt',
-      title: 'Published At',
-      type: 'datetime',
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: {type: 'author'},
+    }),
+    defineField({
+      name: 'authorCity',
+      title: 'Author City',
+      type: 'string',
     }),
     defineField({
       name: 'excerpt',
@@ -65,6 +70,16 @@ export const articleType = defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'caption',
+      title: 'Caption',
+      type: 'string',
+    }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
     }),
   ],
 })
