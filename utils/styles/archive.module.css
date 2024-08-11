@@ -136,11 +136,16 @@
 }
 
 @media (max-width: 768px) {
+    .mainContent {
+    margin-top: 38px; /* Reduced top margin for mobile devices */
+    padding: 1rem; /* Reduced padding for mobile devices */
+  }
   .archiveContainer {
-    width: 90%;
-    padding-left: 5%;
+    width: 100%;
+    padding: 0 1rem;
   }
   .articleCard {
+    height: auto;
     flex-direction: column;
     max-width: 100%;
   }
@@ -149,7 +154,8 @@
     height: 200px;
   }
   .archiveTitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem; 
   }
 }
 
