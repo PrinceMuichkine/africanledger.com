@@ -32,6 +32,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.className} dark`}>
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:url" content={metadata.metadataBase.toString()} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content={metadata.title} />
+        <meta name="twitter:description" content={metadata.description} />
+        {/* Add other meta tags here if needed */}
+      </head>
       <body className="bg-black text-white">
         <main className="min-h-screen flex flex-col items-center">
           {children}
