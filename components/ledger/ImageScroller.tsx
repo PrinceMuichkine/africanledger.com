@@ -28,7 +28,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setIsMobile(window.innerWidth <= 1024);
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -96,6 +96,18 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         }
     };
 
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (scrollerRef.current) {
+            scrollerRef.current.style.scrollBehavior = 'auto';
+        }
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (scrollerRef.current) {
+            scrollerRef.current.style.scrollBehavior = 'smooth';
+        }
+    };
+
     return (
         <div className={styles.imageScrollerContainer} ref={containerRef}>
             <div className={styles.imageBox}>
@@ -106,7 +118,12 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                         className={styles.mainImg}
                     />
                 </main>
-                <div ref={scrollerRef} className={styles.imageScroller}>
+                <div
+                    ref={scrollerRef}
+                    className={styles.imageScroller}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                >
                     <aside className={styles.aside}>
                         <nav>
                             <ul className={styles.asideUl}>

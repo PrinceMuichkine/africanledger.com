@@ -29,14 +29,13 @@ export function initImageScroller() {
       const deltaY = touchStartY - touchEndY;
 
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        e.preventDefault(); // Prevent default horizontal scrolling
         // Horizontal swipe
         if (deltaX > 0) {
           // Swipe left
           const nextImage = document.querySelector('.li.active').nextElementSibling;
           if (nextImage) {
             changeMainImage(nextImage.querySelector('img').src);
-            nextImage.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            nextImage.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             nextImage.classList.add('active');
             document.querySelector('.li.active').classList.remove('active');
           }
@@ -45,7 +44,7 @@ export function initImageScroller() {
           const prevImage = document.querySelector('.li.active').previousElementSibling;
           if (prevImage) {
             changeMainImage(prevImage.querySelector('img').src);
-            prevImage.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            prevImage.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             prevImage.classList.add('active');
             document.querySelector('.li.active').classList.remove('active');
           }
@@ -56,16 +55,16 @@ export function initImageScroller() {
       touchStartY = null;
     }
 
-    mainImg.addEventListener('touchstart', handleTouchStart, { passive: false });
-    mainImg.addEventListener('touchmove', handleTouchMove, { passive: false });
+    mainImg.addEventListener('touchstart', handleTouchStart, { passive: true });
+    mainImg.addEventListener('touchmove', handleTouchMove, { passive: true });
 
-    imageScroller.addEventListener('touchstart', handleTouchStart, { passive: false });
-    imageScroller.addEventListener('touchmove', handleTouchMove, { passive: false });
+    imageScroller.addEventListener('touchstart', handleTouchStart, { passive: true });
+    imageScroller.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     thumbnails.forEach(thumbnail => {
       thumbnail.addEventListener('click', () => {
         changeMainImage(thumbnail.src);
-        thumbnail.parentElement.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        thumbnail.parentElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         document.querySelector('.li.active').classList.remove('active');
         thumbnail.parentElement.classList.add('active');
       });
