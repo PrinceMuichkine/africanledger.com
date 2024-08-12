@@ -3,19 +3,36 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: -5rem;
-  margin-bottom: -10rem; 
-  overflow: hidden; 
-  position: relative;
   margin-top: -13rem;
+  margin-bottom: -10rem; 
   margin-left: 0rem;
   margin-right: 7rem;
-  overflow: hidden;
+  overflow: hidden; 
+  position: relative;
 }
 
 .imageScroller {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  height: 31%;
+  overflow-y: auto;
+  width: 58px;
+  padding-right: 1px;
+  align-self: center;
+  margin-left: auto;
+  margin-top: 30px;
+  margin-right: 18px;
+  border-radius: 7px;
+  scrollbar-width: 0px;
+  scrollbar-color: rgba(255, 255, 255, 0.0) transparent;
+  scroll-margin-left: 20px;
+  -ms-overflow-style: auto;
+  position: absolute;
+  right: -15px;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.imageScroller::-webkit-scrollbar {
+  display: none; 
 }
 
 .imageBox {
@@ -28,30 +45,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   gap: -100px;
   position: relative;
-}
-
-.imageScroller {
-  height:  31%;
-  overflow-y: auto;
-  width: 58px;
-  padding-right: 1px;
-  align-self: center;
-  margin-left: auto;
-  margin-top: 30px;
-  margin-right: 18px;
-  border-radius: 7px;
-  scrollbar-width: 0px;
-  scrollbar-color: rgba(255, 255, 255, 0.0) transparent;
-  scroll-margin-left : 20px;
-  -ms-overflow-style: auto;
-  position: absolute;
-  right: -15px;
-  top: 45%;
-  transform: translateY(-50%);
-}
-
-.imageScroller::-webkit-scrollbar {
-  display: none; 
 }
 
 .imageScroller::-webkit-scrollbar-track {
@@ -80,11 +73,29 @@
   align-items: flex-start;
   padding: 20px;
   overflow: hidden;
-  overflow-y: auto;
+    overflow-y: auto;
   border-radius: 12px;
   position: relative; 
   user-select: none;
-  overflow: hidden;
+}
+
+.mainImg {
+  max-width: 300%;
+  max-height: 180%;
+  width: 78%;
+  height: 70%; 
+  border-radius: 12px;
+  object-fit: cover; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%); 
+  transition: transform 0.8s, opacity 0.5s ease-in-out;
+}
+
+.mainImg:hover {
+  transform: translate(-50%, -60%) scale(1.05);
 }
 
 .aside {
@@ -120,7 +131,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius:7px;
+  border-radius: 7px;
 }
 
 .liButton {
@@ -145,25 +156,6 @@
   border-width: 0;
 }
 
-.mainImg {
-  max-width: 300%;
-  max-height: 180%;
-  width: 78%;
-  height: 70%; 
-  border-radius: 12px;
-  object-fit: cover; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%); 
-  transition: transform 0.8s, opacity 0.5s ease-in-out;
-}
-
-.mainImg:hover {
-  transform: translate(-50%, -60%) scale(1.05);
-}
-
 .imageCaption {
   position: absolute;
   bottom: 0;
@@ -181,12 +173,11 @@
   -webkit-user-drag: none;
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 1024px) {
   .imageScrollerContainer {
-    margin-top: -60px;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    margin-top: -4.5rem;
     height: auto;
     padding-bottom: 50px;
     overflow: visible;
@@ -195,17 +186,28 @@
   .imageBox {
     flex-direction: column;
     height: auto;
+    width: 105%;
+    max-width: none;
+    overflow: visible; 
   }
 
   .main {
     max-height: none;
+    max-width: none; 
     overflow-y: visible;
+    overflow: visible;
     padding: 10px;
     touch-action: pan-y;
+    padding-top: 0px; 
   }
 
   .mainImg {
-    width: 100%;
+    width: 110%;
+    max-width: none;
+    object-fit: contain;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     height: auto;
     max-height: 70vh;
     position: static;
@@ -222,26 +224,24 @@
   .imageScroller {
     width: 81.5%;
     height: 90px;
-    padding: 0;
-    margin: 15px auto;
     padding: 0 10px;
+    margin: 15px auto;
     position: static;
     transform: none;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    margin-top: 40px;
+    margin-top: 15px;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     touch-action: pan-x;
-    white-space: nowrap;
   }
 
   .asideUl {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    padding: 0 10px;
+    justify-content: flex-start;
+    padding: 0;
   }
 
   .li {
@@ -250,10 +250,36 @@
     height: 70px;
     margin-right: 15px;
     margin-bottom: 0;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
   }
 
-  .imageScroller::-webkit-scrollbar {
-    display: none;
+  .li:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mainImg {
+    max-height: 60vh;
+  }
+
+  .imageScroller {
+    width: 75%;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageScroller {
+    width: 79%; /* Make the scroller slightly narrower on smaller screens */
+    height: 70px; /* Reduce the height slightly for mobile */
+  }
+
+  .li {
+    flex: 0 0 70px;
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+    margin-bottom: 0;
+    scroll-snap-align: center;
   }
 }

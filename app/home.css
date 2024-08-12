@@ -19,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem 2rem 1rem; /* Reduced bottom padding */
+  padding: 2rem 2rem 1rem;
   overflow-y: auto;
 }
 
@@ -44,7 +44,7 @@
 
 .footer-wrapper {
   margin-top: auto;
-  padding-bottom: 1rem; /* Added padding to lift the footer */
+  padding-bottom: 1rem;
 }
 
 /* Ensure ImageScroller fits within the main content */
@@ -56,8 +56,7 @@
   justify-content: center;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   html, body {
     height: auto;
     overflow: visible;
@@ -76,67 +75,5 @@
 
   .main-content > div {
     overflow: visible;
-    height: 80vh; /* Increase the height of the main image container */
-  }
-
-  .main-content img {
-    width: 110%;
-    height: 110%;
-    object-fit: cover;
-  }
-
-  .image-scroller {
-    width: 90%;
-    margin: 1rem auto;
-  }
-
-  .image-scroller img {
-    width: 60px;
-    height: 45px;
-    object-fit: cover;
-    margin: 0 5px;
-    flex-shrink: 0; 
-  }
-}
-
-/* Media query for tablets and small laptops */
-@media (min-width: 768px) and (max-width: 1024px) {
-  html, body {
-    height: auto;
-    overflow: visible;
-  }
-
-  .home-container {
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
-  }
-
-  .home-main {
-    overflow-y: visible;
-    padding: 1.5rem;
-  }
-
-  .main-content > div {
-    overflow: visible;
-    height: 70vh; /* Adjust the height for tablets */
-  }
-
-  .main-content img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .image-scroller {
-    width: 80%;
-    margin: 1rem auto;
-  }
-
-  .image-scroller img {
-    width: 70px;
-    height: 52px;
-    margin: 0 5px;
-    flex-shrink: 0; 
   }
 }
