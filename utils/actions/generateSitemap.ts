@@ -48,7 +48,8 @@ export async function generateSitemap() {
     format: true,
   });
 
-  return builder.build(xmlObj);
+  const sitemap = builder.build(xmlObj);
+  await fs.writeFile(path.join(process.cwd(), 'public', 'sitemap.xml'), sitemap);
 }
 
 async function getPages(dir: string, basePath = ''): Promise<Array<{ route: string, changefreq: string, priority: string }>> {

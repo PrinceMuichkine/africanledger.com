@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { generateSitemap } from '@/utils/actions/generateSitemap';
+import { promises as fs } from 'fs';
+import path from 'path'; 
 
 export async function GET() {
   try {
-    const sitemap = await generateSitemap();
+    await generateSitemap();
+    const sitemap = await fs.readFile(path.join(process.cwd(), 'public', 'sitemap.xml'), 'utf8');
     return new NextResponse(sitemap, {
       headers: {
         'Content-Type': 'application/xml',
