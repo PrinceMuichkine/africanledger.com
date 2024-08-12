@@ -1,9 +1,9 @@
 /* Home page specific styles */
-html, body {
+/* html, body {
   height: 100%;
   overflow: hidden;
   overflow-y: hidden;
-}
+} */
 
 .home-container {
   display: flex;
@@ -71,10 +71,31 @@ html, body {
 
   .home-main {
     overflow-y: visible;
+    padding: 1rem;
   }
 
   .main-content > div {
     overflow: visible;
+    height: 80vh; /* Increase the height of the main image container */
+  }
+
+  .main-content img {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+  }
+
+  .image-scroller {
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .image-scroller img {
+    width: 60px;
+    height: 45px;
+    object-fit: cover;
+    margin: 0 5px;
+    flex-shrink: 0; 
   }
 }
 
@@ -93,9 +114,29 @@ html, body {
 
   .home-main {
     overflow-y: visible;
+    padding: 1.5rem;
   }
 
   .main-content > div {
     overflow: visible;
+    height: 70vh; /* Adjust the height for tablets */
+  }
+
+  .main-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-scroller {
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .image-scroller img {
+    width: 70px;
+    height: 52px;
+    margin: 0 5px;
+    flex-shrink: 0; 
   }
 }

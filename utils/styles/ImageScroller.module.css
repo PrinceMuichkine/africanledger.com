@@ -220,10 +220,11 @@
   }
 
   .imageScroller {
-    width: 100%;
+    width: 81.5%;
     height: 90px;
     padding: 0;
-    margin: 10px 0;
+    margin: 15px auto;
+    padding: 0 10px;
     position: static;
     transform: none;
     overflow-x: auto;
@@ -239,7 +240,7 @@
   .asideUl {
     display: flex;
     flex-direction: row;
-    justify-content: row;
+    justify-content: center;
     padding: 0 10px;
   }
 
