@@ -1,13 +1,15 @@
 "use client"
 
 import React, { useEffect, useRef, useState, WheelEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '../../utils/styles/ImageScroller.module.css';
 import { initImageScroller } from '../../utils/actions/ImageScroller';
 
 interface Image {
-    id: string;
-    src: string;
-    alt: string;
+    _id: string;
+    title: string;
+    slug: string;
+    featuredImage: string;
 }
 
 interface ImageScrollerProps {
@@ -15,20 +17,23 @@ interface ImageScrollerProps {
 }
 
 const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
+    const router = useRouter();
     const scrollerRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
-
-    const fixedImages = [...images, ...Array(Math.max(0, 100 - images.length))].slice(0, 100).map((img, index) => ({
-        id: img?.id || `${index + 1}`,
-        src: img?.src || `https://picsum.photos/600/600?random=${index + 1}`,
-        alt: img?.alt || `Image ${index + 1}`
-    }));
+    const [imageStyle, setImageStyle] = useState({});
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 1024);
+            const isMobileView = window.innerWidth <= 1024;
+            setIsMobile(isMobileView);
+            setImageStyle(isMobileView ? {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center',
+            } : {});
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -36,7 +41,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     }, []);
 
     const handleScroll = () => {
-        if (scrollerRef.current) {
+        if (scrollerRef.current && images.length > 0) {
             const scroller = scrollerRef.current;
             const scrollPosition = isMobile ? scroller.scrollLeft : scroller.scrollTop;
             const scrollSize = isMobile ? scroller.scrollWidth : scroller.scrollHeight;
@@ -44,8 +49,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
             const maxScroll = scrollSize - clientSize;
             const scrollPercentage = scrollPosition / maxScroll;
 
-            let index = Math.round(scrollPercentage * (fixedImages.length - 1));
-            index = Math.min(Math.max(index, 0), fixedImages.length - 1);
+            let index = Math.round(scrollPercentage * (images.length - 1));
+            index = Math.min(Math.max(index, 0), images.length - 1);
 
             setActiveImageIndex(index);
         }
@@ -59,7 +64,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                 scroller.removeEventListener('scroll', handleScroll);
             };
         }
-    }, [fixedImages.length, isMobile]);
+    }, [images.length, isMobile]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -82,18 +87,10 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
 
     const handleImageClick = (index: number) => {
         setActiveImageIndex(index);
-        if (scrollerRef.current) {
-            const scroller = scrollerRef.current;
-            const scrollSize = isMobile ? scroller.scrollWidth : scroller.scrollHeight;
-            const clientSize = isMobile ? scroller.clientWidth : scroller.clientHeight;
-            const maxScroll = scrollSize - clientSize;
-            const scrollPosition = (index / (fixedImages.length - 1)) * maxScroll;
+    };
 
-            scrollerRef.current.scrollTo({
-                [isMobile ? 'left' : 'top']: scrollPosition,
-                behavior: 'smooth'
-            });
-        }
+    const handleMainImageClick = () => {
+        router.push(`/article/${images[activeImageIndex].slug}`);
     };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -108,14 +105,24 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         }
     };
 
+    if (images.length === 0) {
+        return <div>No images available</div>;
+    }
+
     return (
         <div className={styles.imageScrollerContainer} ref={containerRef}>
             <div className={styles.imageBox}>
                 <main className={styles.main} onWheel={handleWheel}>
                     <img
-                        src={fixedImages[activeImageIndex].src}
-                        alt={fixedImages[activeImageIndex].alt}
+                        src={images[activeImageIndex].featuredImage}
+                        alt={images[activeImageIndex].title}
                         className={styles.mainImg}
+                        onClick={handleMainImageClick}
+                        style={{
+                            cursor: 'pointer',
+                            ...imageStyle
+                        }}
+                        loading="lazy"
                     />
                 </main>
                 <div
@@ -127,11 +134,16 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                     <aside className={styles.aside}>
                         <nav>
                             <ul className={styles.asideUl}>
-                                {fixedImages.map((image, index) => (
-                                    <li key={image.id} className={`${styles.li} ${index === activeImageIndex ? styles.active : ''}`}>
+                                {images.map((image, index) => (
+                                    <li key={image._id} className={`${styles.li} ${index === activeImageIndex ? styles.active : ''}`}>
                                         <button onClick={() => handleImageClick(index)} className={styles.liButton}>
-                                            <img src={image.src} alt={image.alt} className={styles.liImg} />
-                                            <span className={styles.asideSpan}>See image {image.id}</span>
+                                            <img
+                                                src={image.featuredImage}
+                                                alt={image.title}
+                                                className={styles.liImg}
+                                                loading="lazy"
+                                            />
+                                            <span className={styles.asideSpan}>{image.title}</span>
                                         </button>
                                     </li>
                                 ))}

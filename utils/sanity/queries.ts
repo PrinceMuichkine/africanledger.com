@@ -36,3 +36,15 @@ export async function getArticleBySlug(slug: string) {
     }
   `, { slug }, { next: { revalidate: 60 } }) 
 }
+
+export async function getArticlesForImageScroller() {
+    return client.fetch(`
+        *[_type == "article" && defined(featuredImage)] | order(publishedAt desc) {
+            _id,
+            title,
+            "slug": slug.current,
+            "featuredImage": featuredImage.asset->url,
+            publishedAt
+        }
+    `, {}, { next: { revalidate: 60 } })
+}

@@ -68,6 +68,7 @@
 .main {
   flex-grow: 1;
   max-height: 100vh;
+    padding-bottom: 56.25%; 
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -92,6 +93,7 @@
   left: 50%;
   transform: translate(-50%, -60%); 
   transition: transform 0.8s, opacity 0.5s ease-in-out;
+     object-position: center;
 }
 
 .mainImg:hover {
@@ -178,11 +180,12 @@
   .imageScrollerContainer {
     margin: 0;
     margin-top: -4.5rem;
-    height: auto;
     padding-bottom: 50px;
     overflow: visible;
     touch-action: pan-y;
     padding-right: 10px; 
+    height: auto;
+    padding-bottom: 20px;
   }
 
   .imageBox {
@@ -194,19 +197,23 @@
   }
 
   .main {
+    width: 100%;
     max-height: none;
     max-width: none; 
-    overflow-y: visible;
-    overflow: visible;
-    padding: 10px;
+    overflow: hidden;
+    padding: 0;
+    aspect-ratio: 11 / 8;
+
+    object-fit: cover;
     touch-action: pan-y;
     padding-top: 0px; 
   }
 
   .mainImg {
     width: 110%;
+    height: auto;
     max-width: none;
-    object-fit: contain;
+    object-fit: cover;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -218,6 +225,7 @@
     border-radius: 16px;
     touch-action: pan-x pan-y;
     box-sizing: border-box;
+      object-fit: contain;
   }
 
   .mainImg:hover {
@@ -238,6 +246,7 @@
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     touch-action: pan-x;
+      margin-top: 20px;
   }
 
   .asideUl {
@@ -269,6 +278,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .mainImg {
+    aspect-ratio: 16 / 9;
     max-height: 60vh;
   }
 
