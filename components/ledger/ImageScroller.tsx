@@ -34,11 +34,13 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                 objectFit: 'cover',
                 objectPosition: 'center',
             } : {});
+            // Ensure activeImageIndex is valid after resize
+            setActiveImageIndex(prevIndex => Math.min(prevIndex, images.length - 1));
         };
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [images.length]);
 
     const handleScroll = () => {
         if (scrollerRef.current && images.length > 0) {
@@ -90,7 +92,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     };
 
     const handleMainImageClick = () => {
-        router.push(`/article/${images[activeImageIndex].slug}`);
+        const activeImage = getActiveImage();
+        router.push(`/article/${activeImage.slug}`);
     };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -105,6 +108,11 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         }
     };
 
+    // Helper function to safely get the active image
+    const getActiveImage = () => {
+        return images[activeImageIndex] || images[0] || { featuredImage: '', title: '', slug: '' };
+    };
+
     if (images.length === 0) {
         return <div>No images available</div>;
     }
@@ -114,8 +122,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
             <div className={styles.imageBox}>
                 <main className={styles.main} onWheel={handleWheel}>
                     <img
-                        src={images[activeImageIndex].featuredImage}
-                        alt={images[activeImageIndex].title}
+                        src={getActiveImage().featuredImage}
+                        alt={getActiveImage().title}
                         className={styles.mainImg}
                         onClick={handleMainImageClick}
                         style={{

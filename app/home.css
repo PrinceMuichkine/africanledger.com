@@ -1,9 +1,9 @@
 /* Home page specific styles */
-/* html, body {
+html, body {
   height: 100%;
   overflow: hidden;
   overflow-y: hidden;
-} */
+}
 
 .home-container {
   display: flex;
