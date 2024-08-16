@@ -17,6 +17,7 @@ interface ArchiveProps {
     articles: Article[];
     currentPage: number;
     totalPages: number;
+    categorySlug?: string;
 }
 
 export default function Archive({ articles, currentPage, totalPages }: ArchiveProps) {

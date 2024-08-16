@@ -1,43 +1,34 @@
 import Header from '../../components/landing/Header'
 import { Footer } from "../../components/landing/Footer"
-import { getArticles } from '../../utils/sanity/queries'
-import Archive from '../../components/custom/Archive'
+import { getCategories } from '../../utils/sanity/queries'
+import CategoryArchive from '../../components/custom/CategoryArchive'
 import styles from '../../utils/styles/archive.module.css'
 
-const ARTICLES_PER_PAGE = 24
+const CATEGORIES_PER_PAGE = 4
 
-// Update the Article interface
-interface Article {
-    slug: { current: string };
+interface Category {
+    slug: string;
     title: string;
-    featuredImage: string;
-    category: { slug: { current: string }; title: string };
-    publishedAt: string;
-    excerpt: string;
+    description?: string;
+    image?: string;
 }
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string } }) {
     const currentPage = Number(searchParams.page) || 1
 
     try {
-        const articles = await getArticles()
+        const categories = await getCategories()
 
-        // Ensure the category information is correctly mapped
-        const processedArticles = articles.map((article: Article) => ({
-            ...article,
-            category: article.category || { slug: { current: 'uncategorized' }, title: 'Uncategorized' }
-        }))
-
-        const totalPages = Math.ceil(processedArticles.length / ARTICLES_PER_PAGE)
-        const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE
-        const endIndex = startIndex + ARTICLES_PER_PAGE
-        const currentArticles = processedArticles.slice(startIndex, endIndex)
+        const totalPages = Math.ceil(categories.length / CATEGORIES_PER_PAGE)
+        const startIndex = (currentPage - 1) * CATEGORIES_PER_PAGE
+        const endIndex = startIndex + CATEGORIES_PER_PAGE
+        const currentCategories = categories.slice(startIndex, endIndex)
 
         return (
             <div className={styles.homeContainer}>
                 <Header />
-                <Archive
-                    articles={currentArticles}
+                <CategoryArchive
+                    categories={currentCategories}
                     currentPage={currentPage}
                     totalPages={totalPages}
                 />
@@ -45,7 +36,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
             </div>
         )
     } catch (error) {
-        console.error("Error fetching articles:", error)
-        return <div>Error loading articles. Please try again later.</div>
+        console.error("Error fetching categories:", error)
+        return <div>Error loading categories. Please try again later.</div>
     }
 }

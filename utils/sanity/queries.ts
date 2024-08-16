@@ -7,7 +7,7 @@ export async function getArticles() {
             slug,
             author->{name},
             section->{name, slug},
-            category->{name}, // Make sure this is correct
+            category->{name},
             publishedAt,
             excerpt,
             "featuredImage": featuredImage.asset->url,
@@ -47,4 +47,33 @@ export async function getArticlesForImageScroller() {
             publishedAt
         }
     `, {}, { next: { revalidate: 60 } })
+}
+
+export async function getCategories() {
+  return client.fetch(`
+    *[_type == "category"] | order(title asc) {
+      title,
+      "slug": slug.current,
+      description,
+      "image": image.asset->url
+    }
+  `, {}, { next: { revalidate: 60 } })
+}
+
+export async function getArticlesByCategory(categorySlug: string) {
+  return client.fetch(`
+    *[_type == "article" && category->slug.current == $categorySlug] | order(publishedAt desc) {
+      title,
+      slug,
+      author->{name},
+      section->{name, slug},
+      category->{name, slug},
+      publishedAt,
+      excerpt,
+      "featuredImage": featuredImage.asset->url,
+      illustration,
+      authorCity,
+      mainTag
+    }
+  `, { categorySlug }, { next: { revalidate: 60 } })
 }
