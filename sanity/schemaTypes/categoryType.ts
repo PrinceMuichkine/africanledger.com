@@ -9,6 +9,7 @@ export const categoryType = defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
+      description: 'The name of the category (e.g., "Climate Change", "Politics", "Business")',
     }),
     defineField({
       name: 'slug',
@@ -23,6 +24,7 @@ export const categoryType = defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
+      description: 'A brief description of the category and its scope',
     }),
     defineField({
       name: 'image',

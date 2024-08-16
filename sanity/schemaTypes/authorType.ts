@@ -40,11 +40,12 @@ export const authorType = defineType({
         {
           type: 'object',
           fields: [
-            {name: 'platform', type: 'string'},
-            {name: 'url', type: 'url'},
+            {name: 'platform', type: 'string', description: 'The name of the social media platform'},
+            {name: 'url', type: 'url', description: 'The URL of the author\'s profile on this platform'},
           ],
         },
       ],
+      description: 'Links to the author\'s social media profiles',
     }),
   ],
 })

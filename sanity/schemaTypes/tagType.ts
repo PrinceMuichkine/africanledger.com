@@ -9,6 +9,7 @@ export const tagType = defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
+      description: 'The name of the tag, used for categorizing and filtering articles',
     }),
     defineField({
       name: 'slug',

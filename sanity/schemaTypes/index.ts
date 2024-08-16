@@ -5,7 +5,8 @@ import {categoryType} from './categoryType'
 import {tagType} from './tagType'
 import {sectionType} from './sectionType'
 import {newsletterType} from './newsletterType'
-import {mediaType} from './mediaType'
+import { mediaType } from './mediaType'
+import { recommendationTagType } from './recommendationTag'
 
 export const schemaTypes = [
   articleType,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   sectionType,
   newsletterType,
   mediaType,
+  recommendationTagType,
 ]

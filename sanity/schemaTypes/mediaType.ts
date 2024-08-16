@@ -9,6 +9,7 @@ export const mediaType = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The title or name of the media item',
     }),
     defineField({
       name: 'type',
@@ -26,6 +27,7 @@ export const mediaType = defineType({
       name: 'file',
       title: 'File',
       type: 'file',
+      description: 'The actual media file to be uploaded',
     }),
   ],
 })

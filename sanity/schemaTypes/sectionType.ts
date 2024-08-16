@@ -9,6 +9,7 @@ export const sectionType = defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
+      description: 'The name of the section (e.g., "Opinion", "News", "Analysis")',
     }),
     defineField({
       name: 'slug',
@@ -23,6 +24,7 @@ export const sectionType = defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
+      description: 'A brief description of the section and its content',
     }),
   ],
 })
