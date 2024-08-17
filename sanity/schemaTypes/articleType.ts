@@ -35,6 +35,12 @@ export const articleType = defineType({
       to: {type: 'category'},
       description: 'The specific category within the section; is it climate change, politics, business, etc.',
     }),
+      defineField({
+      name: 'subcategory',
+      title: 'Subcategory',
+      type: 'string',
+      description: 'The secondary category  associated with this article; it needs to be a word like "United States" for an article about the US of the Politics category',
+    }),
     defineField({
       name: 'mainTag',
       title: 'Main Tag',
@@ -112,11 +118,11 @@ defineField({
       },
       description: 'The main image displayed with the article',
     }),
-        defineField({
-      name: 'credit',
-      title: 'Credit',
+      defineField({
+      name: 'credits',
+      title: 'Credits',
       type: 'string',
-      description: 'Creditss for the featured image; "AFP/Getty Images"',
+      description: 'Credits for the featured image; "PHOTOGRAPH: AFP/GETTY IMAGES"',
     }),
     defineField({
       name: 'caption',

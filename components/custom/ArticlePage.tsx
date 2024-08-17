@@ -1,15 +1,18 @@
 import Image from 'next/image'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import styles from '../../utils/styles/article.module.css'
+import metaBarStyles from '../../utils/styles/articleMetaBar.module.css'
 import { format } from 'date-fns'
+import ArticleMetaBar from './ArticleMetaBar'
 
 interface ArticlePageProps {
     article: {
         title: string
         featuredImage: string
+        credits: string
         author: { name: string }
         publishedAt: string
-        category: { name: string }
+        subcategory: string
         excerpt: string
         body: any
         imageReference: string
@@ -50,27 +53,35 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         <div className={styles.articleContainer}>
             <div className={styles.articleHeader}>
                 <div className={styles.meta}>
-                    <span className={styles.category}>{article.category.name}</span>
+                    <span className={styles.subcategory}>{article.subcategory}</span>
+                    <span className={styles.separator}> | </span>
                     <span className={styles.mainTag}>{article.mainTag}</span>
                 </div>
                 <h1 className={styles.title}>{article.title}</h1>
                 <p className={styles.excerpt}>{article.excerpt}</p>
-                <div className={styles.imageContainer}>
-                    {article.featuredImage && (
-                        <Image
-                            src={article.featuredImage}
-                            alt={article.title}
-                            layout="fill"
-                            objectFit="cover"
-                            className={styles.featuredImage}
-                        />
+                <div className={styles.imageWrapper}>
+                    <div className={styles.imageContainer}>
+                        {article.featuredImage && (
+                            <Image
+                                src={article.featuredImage}
+                                alt={article.title}
+                                layout="fill"
+                                objectFit="cover"
+                                className={styles.featuredImage}
+                            />
+                        )}
+                        <p className={styles.publishDate}>
+                            {article.authorCity}
+                        </p>
+                    </div>
+                    {article.credits && (
+                        <p className={styles.credits}>{article.credits.toUpperCase()}</p>
                     )}
-                    <p className={styles.imageReference}>Illustration: {article.imageReference}</p>
-                    <p className={styles.publishDate}>
-                        {formattedDate} - {article.authorCity}
-                    </p>
+                    <p className={styles.imageReference}>{article.imageReference}</p>
+                    <ArticleMetaBar publishDate={formattedDate} />
                 </div>
             </div>
+            <div className={metaBarStyles.separator}></div>
             <div className={styles.articleContent}>
                 <div className={styles.content}>
                     <PortableText value={article.body} components={components} />
