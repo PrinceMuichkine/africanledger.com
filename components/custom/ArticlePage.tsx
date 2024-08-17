@@ -48,7 +48,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
 
     return (
         <div className={styles.articleContainer}>
-            <article className={styles.article}>
+            <div className={styles.articleHeader}>
                 <div className={styles.meta}>
                     <span className={styles.category}>{article.category.name}</span>
                     <span className={styles.mainTag}>{article.mainTag}</span>
@@ -70,10 +70,12 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         {formattedDate} - {article.authorCity}
                     </p>
                 </div>
+            </div>
+            <div className={styles.articleContent}>
                 <div className={styles.content}>
                     <PortableText value={article.body} components={components} />
                 </div>
-            </article>
+            </div>
         </div>
     )
 }
