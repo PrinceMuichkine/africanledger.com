@@ -6,9 +6,12 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import styles from '../../utils/styles/footer.module.css';
+import { useColorMode } from "@chakra-ui/react";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
 export const Footer: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(true);
+  const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,6 +91,9 @@ export const Footer: React.FC = () => {
             <Link href="/contact">Support | Contact</Link>
             <Link href="/terms">Terms of Service</Link>
             <Link href="/privacy">Privacy Policy</Link>
+            <button onClick={toggleColorMode} className={styles.colorModeButton}>
+              {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+            </button>
           </div>
         </div>
       </div>

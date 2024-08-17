@@ -95,7 +95,7 @@ export default function Header() {
                   <div className={styles.complimentary}></div>
                 </div>
               </span>
-              <span>Subscribe</span>
+              <span className={styles.buttonText}>Subscribe</span>
             </button>
           </PopoverTrigger>
           <PopoverContent className={styles.popoverContent} ref={popoverRef}>

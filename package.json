@@ -14,6 +14,8 @@
     "sanity-deploy-graphql": "sanity graphql deploy"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -55,7 +57,7 @@
     "event-source-polyfill": "^1.0.31",
     "eventsource": "^2.0.2",
     "fast-xml-parser": "^4.4.1",
-    "framer-motion": "^11.3.19",
+    "framer-motion": "^11.3.28",
     "geist": "^1.2.1",
     "lucide-react": "^0.417.0",
     "next": "latest",

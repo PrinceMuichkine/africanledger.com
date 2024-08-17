@@ -7,6 +7,29 @@
   --count: 50;
   --snap-size: 48px;
   --offset: 1;
+    --bg-dark: #202023;
+  --text-dark: #ffffff;
+  --bg-light: #ffffff;
+  --text-light: #000000;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+[data-theme=dark] {
+  color-scheme: dark only;
+}
+[data-theme=light],
+
+html {
+  color-scheme: light only;
 }
 
 @media(min-width: 768px) {

@@ -74,5 +74,5 @@
 }
 
 .successToast [data-icon] {
-    color: #4CAF50;
+    color:  var(--primary-color);;
 }

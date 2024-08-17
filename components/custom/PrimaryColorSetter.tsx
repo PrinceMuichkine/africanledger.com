@@ -4,12 +4,12 @@ import { useEffect, useCallback, useMemo } from 'react'
 
 // Predefined set of colors
 const colors = [
-    '#00FF52', // Green
-    '#FF0000', // Red
-    '#45B7D1', // Blue
-    '#FFA07A', // Light Salmon
+    '#00FF52', // Active
+    '#08CFCE', // Cyber
+    '#FEB60A', // Gold
+    '#E00A16', // Red
+    '#007BFF', // Blue
     '#98D8C8', // Mint
-    '#F7B801', // Yellow
 ];
 
 const getDailyColorIndex = (): number => {

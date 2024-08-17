@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react"
 import Script from 'next/script'
 import { Toaster } from "@/components/ui/sonner"
 import { PrimaryColorSetter } from '@/components/custom/PrimaryColorSetter'
+import ChakraProvider from '@/components/custom/ChakraProvider'
 import './globals.css'
 
 const defaultUrl = process.env.VERCEL_URL
@@ -42,15 +43,30 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
-        {/* Add other meta tags here if needed */}
+        <Script id="color-mode-script" strategy="beforeInteractive">
+          {`
+            (function() {
+              var colorMode = localStorage.getItem('chakra-ui-color-mode');
+              if (colorMode === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+              } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+              }
+            })();
+          `}
+        </Script>
       </head>
       <body className="bg-black text-white">
-        <PrimaryColorSetter />
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-          <Analytics />
-        </main>
-        <Toaster />
+        <ChakraProvider>
+          <PrimaryColorSetter />
+          <main>
+            {children}
+            <Analytics />
+          </main>
+          <Toaster />
+        </ChakraProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8BS9YCKTYZ"
           strategy="afterInteractive"
