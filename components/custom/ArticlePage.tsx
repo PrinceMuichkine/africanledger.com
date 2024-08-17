@@ -1,3 +1,6 @@
+'use client';
+
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import styles from '../../utils/styles/article.module.css'
@@ -10,6 +13,7 @@ interface ArticlePageProps {
         title: string
         featuredImage: string
         credits: string
+        caption: string // Add this line
         author: { name: string }
         publishedAt: string
         subcategory: string
@@ -20,6 +24,33 @@ interface ArticlePageProps {
         mainTag: string
     }
 }
+
+interface FullScreenImageProps {
+    src: string
+    alt: string
+    caption: string // Add this line
+    onClose: () => void
+}
+
+const FullScreenImage: React.FC<FullScreenImageProps> = ({ src, alt, caption, onClose }) => (
+    <div
+        className={styles.fullScreenOverlay}
+        onClick={onClose}
+    >
+        <div className={styles.fullScreenImageWrapper}>
+            <Image
+                src={src}
+                alt={alt}
+                layout="responsive"
+                width={1600}
+                height={900}
+                objectFit="contain"
+                className={styles.fullScreenImage}
+            />
+            {caption && <p className={styles.fullScreenCaption}>{caption}</p>}
+        </div>
+    </div>
+)
 
 const components: PortableTextComponents = {
     types: {
@@ -46,8 +77,17 @@ const components: PortableTextComponents = {
     },
 }
 
-export default function ArticlePage({ article }: ArticlePageProps) {
+const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
     const formattedDate = format(new Date(article.publishedAt), 'MMMM d, yyyy')
+    const [isFullScreen, setIsFullScreen] = useState(false)
+
+    const handleImageClick = () => {
+        setIsFullScreen(true)
+    }
+
+    const handleCloseFullScreen = () => {
+        setIsFullScreen(false)
+    }
 
     return (
         <div className={styles.articleContainer}>
@@ -60,7 +100,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                 <h1 className={styles.title}>{article.title}</h1>
                 <p className={styles.excerpt}>{article.excerpt}</p>
                 <div className={styles.imageWrapper}>
-                    <div className={styles.imageContainer}>
+                    <div className={styles.imageContainer} onClick={handleImageClick}>
                         {article.featuredImage && (
                             <Image
                                 src={article.featuredImage}
@@ -87,6 +127,16 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                     <PortableText value={article.body} components={components} />
                 </div>
             </div>
+            {isFullScreen && (
+                <FullScreenImage
+                    src={article.featuredImage}
+                    alt={article.title}
+                    caption={article.caption}
+                    onClose={handleCloseFullScreen}
+                />
+            )}
         </div>
     )
 }
+
+export default ArticlePage

@@ -53,9 +53,9 @@ const ArticleMetaBar: React.FC<ArticleMetaBarProps> = ({ publishDate }) => {
         }
         toastRef.current = toast(
             <div className={styles.shareToast} onClick={(e) => e.stopPropagation()}>
-                <button onClick={() => handleShare('copyLink')}>Copy Link</button>
+                <button onClick={() => handleShare('copyLink')}>Copy link</button>
                 <button onClick={() => handleShare('linkedin')}>LinkedIn</button>
-                <button onClick={() => handleShare('twitter')}>Twitter</button>
+                <button onClick={() => handleShare('twitter')}>X | Twitter</button>
                 <button onClick={() => handleShare('whatsapp')}>WhatsApp</button>
                 <button onClick={() => handleShare('facebook')}>Facebook</button>
             </div>,
