@@ -1,6 +1,6 @@
 import Header from '../components/landing/Header'
 import { Footer } from "../components/landing/Footer"
-import ImageScroller from '../components/ledger/ImageScroller'
+import ImageScroller from '../components/custom/ImageScroller'
 import { getArticlesForImageScroller } from '../utils/sanity/queries'
 import './home.css'
 
