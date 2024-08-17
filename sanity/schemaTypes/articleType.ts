@@ -42,7 +42,7 @@ export const articleType = defineType({
       description: 'The primary tag associated with this article; it can be a word or an expression like "Teranga Coconut Frenzy" for an article about high demand for coconuts in Senegal',
     }),
 defineField({
-  name: 'recommendationTag', //
+  name: 'recommendationTag', 
   title: 'Recommendation Tag',
   type: 'reference',
   to: {type: 'recommendationTag'}, 

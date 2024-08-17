@@ -68,13 +68,13 @@
 .main {
   flex-grow: 1;
   max-height: 100vh;
-    padding-bottom: 56.25%; 
+  padding-bottom: 56.25%; 
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
   overflow: hidden;
-    overflow-y: auto;
+  overflow-y: auto;
   border-radius: 12px;
   position: relative; 
   user-select: none;
