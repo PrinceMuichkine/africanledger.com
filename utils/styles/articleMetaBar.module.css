@@ -63,7 +63,6 @@
     right: 20px !important;
 }
 
-/* Style for the success toast */
 .successToast {
     background-color: #333;
     color: white;
@@ -74,5 +73,70 @@
 }
 
 .successToast [data-icon] {
-    color:  var(--primary-color);;
+    color: var(--primary-color);
+}
+
+/* Responsive styles for tablets */
+@media screen and (max-width: 768px) {
+    .metaBar {
+        margin-top: 3rem;
+        margin-bottom: -1rem;
+    }
+
+    .publishDate {
+        font-size: 0.75rem;
+    }
+
+    .shareButton {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+
+    .customToast {
+        bottom: 40px !important;
+        right: 15px !important;
+    }
+
+    .successToast {
+        padding: 14px;
+        min-width: 220px;
+    }
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 480px) {
+    .metaBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 2rem;
+        margin-bottom: -0.5rem;
+    }
+
+    .publishDate {
+        font-size: 0.7rem;
+    }
+
+    .shareButton {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+
+    .shareToast {
+        padding: 8px;
+    }
+
+    .shareToast button {
+        padding: 6px 10px;
+    }
+
+    .customToast {
+        bottom: 20px !important;
+        right: 10px !important;
+    }
+
+    .successToast {
+        padding: 12px;
+        min-width: 200px;
+    }
 }

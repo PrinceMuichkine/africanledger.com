@@ -20,7 +20,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
                 },
                 style: {
                     width: '140px', // Increased width for better button layout
-                    maxWidth: '31%',
+                    maxWidth: '32%',
                     padding: '2px', // Reduce overall padding
                     marginBottom: '30%',
                 },

@@ -33,9 +33,9 @@ const ArticleMetaBar: React.FC<ArticleMetaBarProps> = ({ publishDate }) => {
                     color: 'white',
                     fontWeight: 'bold',
                     width: '60%',
-                    borderRadius: '8px',
+                    borderRadius: '0px',
                     padding: '12px',
-                    marginBottom: '10%',
+                    marginBottom: '20%',
                 },
                 duration: 1500,
             });

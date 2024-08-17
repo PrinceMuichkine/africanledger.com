@@ -7,7 +7,8 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.headerContent}>
                 <Link href="/" className={styles.logoContainer}>
-                    <Image src="/icon.png" alt="The African Ledger Logo" width={55} height={55} />
+                    {/* Reduced the image size */}
+                    <Image src="/icon.png" alt="The African Ledger Logo" width={50} height={50} />
                 </Link>
             </div>
         </header>

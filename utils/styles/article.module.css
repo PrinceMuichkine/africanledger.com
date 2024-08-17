@@ -11,13 +11,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -22px; /* Adjust this value to set the fixed position below the header */
+  margin-top: -22px; 
 }
 
 .articleScroller {
   max-width: 731px;
   width: 90%;
-  height: calc(100vh - 413px); /* Adjust the height to leave space for header and footer */
+  height: calc(100vh - 340px); /* Adjust the height to leave space for header and footer */
   overflow-y: auto;
   padding: 0 10px;
   scrollbar-width: none;
@@ -53,7 +53,7 @@
 .subcategory {
   font-family: 'Georgia', serif;
   font-size: 0.9rem;
-  font-weight: 480;
+  font-weight: 460;
   color: var(--primary-color, #00FF52);
 }
 
@@ -65,7 +65,7 @@
 .mainTag {
   font-family: 'Georgia', serif;
   font-size: 0.9rem;
-  font-weight: 480;
+  font-weight: 460;
 }
 
 .title {
@@ -91,7 +91,7 @@
 .imageContainer {
   position: relative;
   width: 100%;
-  height: 375px;
+  height: 400px;
   margin-bottom: 1.5rem;
 }
 
@@ -248,7 +248,7 @@
   }
 
   .imageContainer {
-    height: 250px;
+    height: 290px;
   }
 
   .title {
