@@ -84,7 +84,7 @@ defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-      description: 'The main content of the article',
+      description: 'The main content of the article. Every article must finish with this as final dot: ■',
     }),
     defineField({
      name: 'sources',

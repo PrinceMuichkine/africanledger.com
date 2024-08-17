@@ -13,7 +13,7 @@ interface ArticlePageProps {
         title: string
         featuredImage: string
         credits: string
-        caption: string // Add this line
+        caption: string
         author: { name: string }
         publishedAt: string
         subcategory: string
@@ -28,7 +28,7 @@ interface ArticlePageProps {
 interface FullScreenImageProps {
     src: string
     alt: string
-    caption: string // Add this line
+    caption: string
     onClose: () => void
 }
 
