@@ -23,7 +23,7 @@
   font-weight: bold;
   margin: 0;
   line-height: 1;
-  background: linear-gradient(to right, #00CC3F, #00FF52);
+  background: linear-gradient(to right, #00CC3F, var(--primary-color, #00FF52));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

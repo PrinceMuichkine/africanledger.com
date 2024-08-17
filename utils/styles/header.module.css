@@ -43,7 +43,7 @@
   padding: -40px;
   display: grid;
   border-radius: 8px;
-  border: 1px solid #00CC3F;
+  border: 1px solid var(--primary-color, #00FF52);
   letter-spacing: 0.25px;
   cursor: pointer;
   position: relative;
@@ -52,7 +52,7 @@
   font-weight: 70;
   font-size: 12px;
   scale: 1;
-  outline-color: #00FF52;
+  outline-color: var(--primary-color, #00FF52);
   outline-offset: 0.45rem;
   font-family: Helvetica, Arial, sans-serif, system-ui;
 }
@@ -102,7 +102,7 @@
 }
 
 .popoverTitle {
-  background: linear-gradient(80deg, #ffffff, #00CC3F);
+  background: linear-gradient(80deg, #ffffff, var(--primary-color, #00FF52));
   background-clip: text; /* Standard property */
   -webkit-background-clip: text; /* For Safari */
   -webkit-text-fill-color: transparent; /* For Safari */
@@ -149,7 +149,7 @@
   --size: 26px;
   width: 50px;
   height: 100%;
-  background: #00FF52;
+  background: var(--primary-color, #00FF52);
   position: absolute;
   left: 0;
   transition: width 0.25s;

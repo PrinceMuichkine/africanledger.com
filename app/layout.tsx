@@ -1,7 +1,8 @@
 import { GeistSans } from 'geist/font/sans'
 import { Analytics } from "@vercel/analytics/react"
 import Script from 'next/script'
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/sonner"
+import { PrimaryColorSetter } from '@/components/custom/PrimaryColorSetter'
 import './globals.css'
 
 const defaultUrl = process.env.VERCEL_URL
@@ -44,6 +45,7 @@ export default function RootLayout({
         {/* Add other meta tags here if needed */}
       </head>
       <body className="bg-black text-white">
+        <PrimaryColorSetter />
         <main className="min-h-screen flex flex-col items-center">
           {children}
           <Analytics />

@@ -54,7 +54,7 @@
   font-family: 'Georgia', serif;
   font-size: 0.9rem;
   font-weight: 450;
-  color: #00FF52;
+  color: var(--primary-color, #00FF52);
 }
 
 .separator {
