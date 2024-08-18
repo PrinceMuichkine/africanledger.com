@@ -281,22 +281,26 @@
   }
 
   .imageScroller {
-    width: 75%;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
     .imageScrollerContainer {
     touch-action: pan-y;
+        margin-top: -95px;
   }
 
   .imageScroller {
-    width: 79%; /* Make the scroller slightly narrower on smaller screens */
+    width: 67%; /* Make the scroller slightly narrower on smaller screens */
     height: 70px; /* Reduce the height slightly for mobile */
-    overflow-x: scroll; /* Ensure horizontal scrolling is enabled */
+    overflow-y: hidden;
+    align-self: center;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
     scroll-snap-type: x mandatory; /* Improve scroll snapping */
     padding: 0 5px; /* Add some padding */
+    margin-top: 100px;
+
   }
 
     .asideUl {
@@ -311,9 +315,22 @@
     width: 70px;
     height: 70px;
     margin-right: 15px;
-    margin-bottom: 0;
     scroll-snap-align: center;
   }
+
+  .mainImg {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        object-fit: contain;
+        transform: none;
+        margin-bottom: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .mainImg:active {
+        transform: scale(0.98);
+    }
 
     .li:last-child {
     margin-right: 5px; /* Add a small margin to the last item */

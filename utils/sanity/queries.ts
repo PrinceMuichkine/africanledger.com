@@ -44,7 +44,7 @@ export async function getArticleBySlug(slug: string) {
 
 export async function getArticlesForImageScroller() {
     return client.fetch(`
-        *[_type == "article" && defined(featuredImage)] | order(publishedAt desc) {
+        *[_type == "article" && defined(featuredImage)] | order(publishedAt desc)[0...50] {
             _id,
             title,
             "slug": slug.current,
