@@ -84,8 +84,8 @@
 /* Responsive styles for tablets */
 @media screen and (max-width: 768px) {
     .metaBar {
-        margin-top: 3rem;
-        margin-bottom: 1rem;
+        margin-top: 4rem;
+        margin-bottom: -0.9rem;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
@@ -94,6 +94,7 @@
 
     .publishDate {
         font-size: 0.75rem;
+        margin-top: 4px;
     }
 
     .shareButton {

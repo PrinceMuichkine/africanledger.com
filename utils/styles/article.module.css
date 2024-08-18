@@ -126,18 +126,96 @@
 }
 
 .content {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-family: 'Georgia', serif;
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.content a {
+  color: var(--primary-color, #00FF52);
+  text-decoration: underline;
+  text-underline-offset: 0.21em; /* Increased space between text and underline */
+  text-decoration-thickness: 1px; /* Set initial underline thickness */
+  transition: text-decoration-thickness 0.2s ease-in-out;
+}
+
+.content a:hover, .content a:focus {
+  text-decoration-thickness: 2px; /* Thicker underline on hover/focus */
+}
+
+.content strong, .content b {
+  font-weight: 700;
+}
+
+.content em, .content i {
+  font-style: italic;
+}
+
+.content blockquote {
+  border-left: 4px solid var(--primary-color, #00FF52);
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: #666;
+}
+
+.content ul, .content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}
+.paragraph {
+  margin-bottom: 1.3rem; /* Add space between paragraphs */
+}
+
+.heading2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.heading3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.bulletList, .numberedList {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.listItem {
+  margin-bottom: 0.5rem;
+}
+
+.paragraph:last-of-type {
+  display: inline; /* Make the last paragraph inline */
+}
+
+.endSquare {
+  display: inline-block;
+  font-size: 1.75rem; /* Match the content font size */
+  margin-top: -0.45rem;
+  color: var(--primary-color, #00FF52); /* Adjust color as needed */
+  margin-left: 0.01em; /* Add a small space between the last word and the square */
+  vertical-align: baseline; /* Align with the text baseline */
+  vertical-align: -0.2rem;
 }
 
 .dropCap::first-letter {
-  font-size: 4rem;
+  font-size: 3.7rem;
   float: left;
   line-height: 1;
   padding-right: 0.15em;
   padding-left: 0.05em;
   font-family: 'Georgia', serif;
+  margin-top: -0.02rem;
 }
 
 .caption {
@@ -223,7 +301,7 @@
   .articleScroller {
     height: auto;
     max-width: 100%;
-    width: 95%; /* Increased from 90% to 95% */
+    width: 100%; /* Increased from 90% to 95% */
     padding: 0 20px; /* Reduced side padding */
   }
 
@@ -247,38 +325,48 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .mainContent {
-    margin-top: 0px;
+    margin-top: -20px;
   }
 
   .articleScroller {
-    width: 100%;
-    padding: 0 15px; 
+    width: 150%;
+    padding: 0; 
   }
 
   .imageContainer {
-    height: 290px;
+    height: 320px;
   }
 
   .title {
     font-size: 1.8rem;
     line-height: 1.2;
+        margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .excerpt {
     font-size: 0.95rem;
+        margin-bottom: 1rem;
   }
 
   .content {
-    font-size: 1rem;
+    font-size: 0.95rem;
+        line-height: 1.6;
+  }
+
+   .paragraph {
+    margin-bottom: 1rem;
   }
 
   .dropCap::first-letter {
-    font-size: 3.4rem;
+    font-size: 4.3rem;
+    height: 100%;
   float: left;
   line-height: 1;
-  padding-top: 0.1rem;
-  padding-right: 0.12em;
+  padding-right: 0.18em;
   padding-left: 0.05em;
+  padding-top: -0.2rem;
+  padding-bottom: -0.2rem;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   }
@@ -296,7 +384,7 @@
     }
 
     .imageContainer {
-        height: 180px;
+        height: 200px;
     }
 
     .title {

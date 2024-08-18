@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import styles from '../../utils/styles/footer.module.css';
+import styles from '../../utils/styles/footer-Article.module.css';
 import { useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
@@ -29,11 +28,23 @@ export const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.footerContent} container mx-auto`}>
-        {/* Logo Section */}
-        <div className={`${styles.footerSection} ${styles.logoSection}`}>
-          <Link href="/" className={styles.logoContainer}>
-            <Image src="/icon.png" alt="The African Ledger" width={150} height={150} />
-          </Link>
+        {/* Categories Section 1 */}
+        <div className={styles.footerSection}>
+          <h4 className={styles.footerTitle}>Sections</h4>
+          <ul className={styles.footerLinks}>
+            <li className={styles.footerLinkItem}><Link href="/business">Business</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/politics">Politics</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/technology">Technology</Link></li>
+          </ul>
+        </div>
+
+        {/* Categories Section 2 */}
+        <div className={`${styles.footerSection} ${styles.footerSectionNoTitle}`}>
+          <ul className={styles.footerLinks}>
+            <li className={styles.footerLinkItem}><Link href="/education">Education</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/health">Health</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/satire">Satire</Link></li>
+          </ul>
         </div>
 
         {/* Company Section */}

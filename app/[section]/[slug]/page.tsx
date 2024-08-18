@@ -1,7 +1,7 @@
 import { getArticleBySlug } from '../../../utils/sanity/queries'
 import ArticlePage from '../../../components/custom/ArticlePage'
 import Header from '../../../components/landing/Header-connect'
-import { Footer } from "../../../components/landing/Footer"
+import { Footer } from "../../../components/landing/Footer-Article"
 import styles from '../../../utils/styles/article.module.css'
 import ArticleScroller from '../../../components/custom/ArticleScroller';
 

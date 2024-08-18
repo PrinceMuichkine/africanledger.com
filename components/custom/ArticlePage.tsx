@@ -74,10 +74,20 @@ const components: PortableTextComponents = {
     block: {
         normal: ({ children, index }) => {
             if (index === 0) {
-                return <p className={styles.dropCap}>{children}</p>
+                return <p className={`${styles.paragraph} ${styles.dropCap}`}>{children}</p>
             }
-            return <p>{children}</p>
+            return <p className={styles.paragraph}>{children}</p>
         },
+        h2: ({ children }) => <h2 className={styles.heading2}>{children}</h2>,
+        h3: ({ children }) => <h3 className={styles.heading3}>{children}</h3>,
+    },
+    list: {
+        bullet: ({ children }) => <ul className={styles.bulletList}>{children}</ul>,
+        number: ({ children }) => <ol className={styles.numberedList}>{children}</ol>,
+    },
+    listItem: {
+        bullet: ({ children }) => <li className={styles.listItem}>{children}</li>,
+        number: ({ children }) => <li className={styles.listItem}>{children}</li>,
     },
 }
 
@@ -158,7 +168,11 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
             <div className={metaBarStyles.separator}></div>
             <div className={styles.articleContent}>
                 <div className={styles.content}>
-                    <PortableText value={article.body} components={components} />
+                    <PortableText
+                        value={article.body}
+                        components={components}
+                    />
+                    <span className={styles.endSquare}>■</span>
                 </div>
             </div>
             {isFullScreen && (
