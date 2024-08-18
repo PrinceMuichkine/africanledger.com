@@ -17,7 +17,7 @@
 .articleScroller {
   max-width: 731px;
   width: 90%;
-  height: calc(100vh - 365px); /* Adjust the height to leave space for header and footer */
+  height: calc(100vh - 325px); /* Adjust the height to leave space for header and footer */
   overflow-y: auto;
   padding: 0 10px;
   scrollbar-width: none;
@@ -69,7 +69,7 @@
 }
 
 .title {
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   font-family: 'Georgia', serif;
   font-weight: 510;
   margin-top: 0.5rem;
@@ -78,7 +78,7 @@
 }
 
 .excerpt {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: 'Georgia', serif;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
@@ -91,7 +91,7 @@
 .imageContainer {
   position: relative;
   width: 100%;
-  height: 436px;
+  height: 406px;
   margin-bottom: 1.5rem;
 }
 
@@ -118,11 +118,11 @@
   position: absolute;
   bottom: 15px;
   right: 10px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 5px 10px;
   border-radius: 0px;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .content {
@@ -224,11 +224,11 @@
     height: auto;
     max-width: 100%;
     width: 95%; /* Increased from 90% to 95% */
-    padding: 0 15px; /* Reduced side padding */
+    padding: 0 20px; /* Reduced side padding */
   }
 
   .imageContainer {
-    height: 300px;
+    height: 250px;
   }
 
   .title {
@@ -236,23 +236,23 @@
   }
 
   .excerpt {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .content {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .mainContent {
-    margin-top: 10px;
+    margin-top: 0px;
   }
 
   .articleScroller {
     width: 100%;
-    padding: 0 10px; 
+    padding: 0 15px; 
   }
 
   .imageContainer {
@@ -265,11 +265,11 @@
   }
 
   .excerpt {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .content {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .dropCap::first-letter {
@@ -286,4 +286,24 @@
   .fullScreenImageWrapper {
     width: 95%;
   }
+}
+
+
+/* Additional adjustments for very small screens */
+@media (max-width: 375px) {
+    .articleScroller {
+        padding: 0 10px;
+    }
+
+    .imageContainer {
+        height: 180px;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .content {
+        font-size: 0.9rem;
+    }
 }
