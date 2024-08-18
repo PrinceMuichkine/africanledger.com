@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
       <div className={`${styles.footerContent} container mx-auto`}>
         {/* Categories Section 1 */}
         <div className={styles.footerSection}>
-          <h4 className={styles.footerTitle}>Sections</h4>
+          <h4 className={styles.footerTitle}>Section</h4>
           <ul className={styles.footerLinks}>
             <li className={styles.footerLinkItem}><Link href="/business">Business</Link></li>
             <li className={styles.footerLinkItem}><Link href="/politics">Politics</Link></li>
