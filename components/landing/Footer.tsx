@@ -92,7 +92,11 @@ export const Footer: React.FC = () => {
             <Link href="/terms">Terms of Service</Link>
             <Link href="/privacy">Privacy Policy</Link>
             <button onClick={toggleColorMode} className={styles.colorModeButton}>
-              {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+              {colorMode === "dark" ? (
+                <SunIcon className={styles.colorModeIcon} />
+              ) : (
+                <MoonIcon className={styles.colorModeIcon} />
+              )}
             </button>
           </div>
         </div>

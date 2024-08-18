@@ -156,7 +156,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                             className={styles.flipButton}
                             onClick={handleFlipClick}
                         >
-                            Flip
+                            <img src="/flip.png" alt="Flip" className={styles.flipIcon} />
                         </button>
                     </div>
                 </main>

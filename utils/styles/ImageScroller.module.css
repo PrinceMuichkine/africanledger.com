@@ -12,15 +12,16 @@
 }
 
 .imageScroller {
-  height: 30%;
+  height: 36%;
   overflow-y: auto;
+  overflow-x: hidden;
   width: 58px;
   padding-right: 1px;
   align-self: center;
   margin-left: auto;
-  margin-top: 30px;
+  margin-top: 46px;
   margin-right: 18px;
-  border-radius: 7px;
+  border-radius: 6px;
   scrollbar-width: 0px;
   scrollbar-color: rgba(255, 255, 255, 0.0) transparent;
   scroll-margin-left: 20px;
@@ -160,13 +161,31 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
+    width: 40px;
+    height: 40px;
   padding: 5px 10px;
   background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+    border-radius: 50%;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   z-index: 10;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.flipButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.flipIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .mainImg {
@@ -296,8 +315,8 @@
   }
 
   .flipButton {
-    bottom: 20px;
-    right: 20px;
+    bottom: 100px; /* Move up */
+    right: 110px; /* Move left */
   }
   
 }
@@ -335,8 +354,8 @@
 
 .flipButton {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 30px;
   padding: 5px 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
