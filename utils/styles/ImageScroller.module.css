@@ -80,6 +80,95 @@
   user-select: none;
 }
 
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.flipper {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+    top: 0;
+  left: 0;
+  width: 105%;
+  height: 115%;
+  margin-left: -20px;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+.back {
+  background-color: #b433338c;
+  transform: translate(-50%, -60%) rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  padding: 20px;
+  text-align: center;
+  top: 57.7%;
+  left: 52.4%;
+  max-width: 300%;
+  max-height: 180%;
+  width: 82%;
+  height: 81%;
+  margin-left: -20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.back h2 {
+  font-size: clamp(18px, 4vw, 24px);
+  margin-bottom: 10px;
+}
+
+.back p {
+  font-size: clamp(14px, 3vw, 16px);
+  margin-bottom: 20px;
+}
+
+.back button {
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(14px, 3vw, 16px);
+}
+
+.flipButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
 .mainImg {
   max-width: 300%;
   max-height: 180%;
@@ -93,7 +182,9 @@
   left: 50%;
   transform: translate(-50%, -60%); 
   transition: transform 0.8s, opacity 0.5s ease-in-out;
-     object-position: center;
+  object-position: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .mainImg:hover {
@@ -175,6 +266,41 @@
   -webkit-user-drag: none;
 }
 
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.backface {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.backface {
+  background-color: #ca1616;
+  transform: rotateY(180deg);
+}
+
+@media (min-width: 1025px) {
+  .mainImageContainer {
+    height: 70vh;
+  }
+
+  .flipButton {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+}
 
 @media (max-width: 1024px) {
   .imageScrollerContainer {
@@ -187,6 +313,38 @@
     height: auto;
     padding-bottom: 20px;
   }
+
+  .back {
+  background-color: #e011119a;
+  transform: translate(-50%, -60%) rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  top: 50%;
+  left: 54%;
+  max-width: 300%;
+  max-height: 180%;
+  width: 103%;
+  height: 135%; 
+    box-sizing: border-box;
+  overflow: auto;
+}
+
+.flipButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
 
   .imageBox {
     flex-direction: column;
@@ -214,9 +372,8 @@
     max-height: 80vh;
     max-width: none;
     object-fit:contain;
-    position: relative;
+    position: static;
     left: 50%;
-    transform: translateX(-50%);
     height: auto;
     max-height: 70vh;
     position: static;
@@ -225,6 +382,16 @@
     border-radius: 16px;
     touch-action: pan-x pan-y;
     box-sizing: border-box;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+  .flipper.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .front, .back {
+    border-radius: 16px;
   }
 
   .mainImg:hover {
@@ -294,8 +461,8 @@
   }
 
   .imageScroller {
-    width: 74%; /* Make the scroller slightly narrower on smaller screens */
-    height: 70px; /* Reduce the height slightly for mobile */
+    width: 66%; /* Make the scroller slightly narrower on smaller screens */
+    height: 80px; /* Reduce the height slightly for mobile */
     overflow-y: hidden;
     align-self: center;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */

@@ -10,6 +10,7 @@ interface Image {
     title: string;
     slug: string;
     featuredImage: string;
+    excerpt?: string;
 }
 
 interface ImageScrollerProps {
@@ -23,6 +24,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const [imageStyle, setImageStyle] = useState({});
+    const [isFlipped, setIsFlipped] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -89,11 +91,17 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
 
     const handleImageClick = (index: number) => {
         setActiveImageIndex(index);
+        setIsFlipped(false);
     };
 
     const handleMainImageClick = () => {
         const activeImage = getActiveImage();
         router.push(`/article/${activeImage.slug}`);
+    };
+
+    const handleFlipClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsFlipped(prev => !prev);
     };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -121,17 +129,36 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         <div className={styles.imageScrollerContainer} ref={containerRef}>
             <div className={styles.imageBox}>
                 <main className={styles.main} onWheel={handleWheel}>
-                    <img
-                        src={getActiveImage().featuredImage}
-                        alt={getActiveImage().title}
-                        className={styles.mainImg}
-                        onClick={handleMainImageClick}
-                        style={{
-                            cursor: 'pointer',
-                            ...imageStyle
-                        }}
-                        loading="lazy"
-                    />
+                    <div className={styles.mainImageContainer}>
+                        <div className={`${styles.flipper} ${isFlipped ? styles.flipped : ''}`}>
+                            <div className={styles.front}>
+                                <img
+                                    src={getActiveImage().featuredImage}
+                                    alt={getActiveImage().title}
+                                    className={styles.mainImg}
+                                    onClick={handleMainImageClick}
+                                    style={{
+                                        cursor: 'pointer',
+                                        ...imageStyle
+                                    }}
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div className={styles.back}>
+                                <h2>{getActiveImage().title}</h2>
+                                <p>{getActiveImage().excerpt}</p>
+                                <button onClick={() => router.push(`/article/${getActiveImage().slug}`)}>
+                                    Read More
+                                </button>
+                            </div>
+                        </div>
+                        <button
+                            className={styles.flipButton}
+                            onClick={handleFlipClick}
+                        >
+                            Flip
+                        </button>
+                    </div>
                 </main>
                 <div
                     ref={scrollerRef}
