@@ -19,7 +19,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
                     actionButton: "group-[.toaster]:bg-primary group-[.toaster]:text-primary-foreground",
                 },
                 style: {
-                    width: '140px', // Increased width for better button layout
+                    width: '150px', // Increased width for better button layout
                     maxWidth: '32%',
                     padding: '2px', // Reduce overall padding
                     marginBottom: '30%',

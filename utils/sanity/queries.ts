@@ -29,6 +29,7 @@ export async function getArticleBySlug(slug: string) {
       "featuredImage": featuredImage.asset->url,
       credits,
       caption,
+      sources[]{name, url},
       body,
       category->{name},
       section->{name, slug},

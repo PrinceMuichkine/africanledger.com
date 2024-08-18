@@ -1,0 +1,252 @@
+.sourcesHeader {
+    display: flex;
+    align-items: center;
+    margin-top: 55px;
+    margin-bottom: -30px;
+}
+
+.sourcesIcon {
+    font-size: 6px;
+    margin-right: 4px;
+    color: var(--primary-color, #ffffff);
+    margin-top: 5px;
+}
+
+.sourcesTitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 445;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.sourcesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: -58px;
+}
+
+.sourceBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(55, 55, 55, 0.324);
+    border-radius: 2px;
+    width: 162.5px;
+    height: 70px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 445;
+    text-align: left;
+    padding: 10px;
+    flex-shrink: 0;
+    margin-top: 35px;
+}
+
+.sourceBox:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sourceName {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 100%;
+    line-height: 1.2;
+    height: 2.4em;
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+.faviconWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.sourceUrl {
+    font-size: 10px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.viewMoreBox {
+    cursor: pointer;
+}
+
+.viewMoreIcons {
+    display: flex;
+    margin-bottom: 5px;
+    gap: 2px;
+}
+
+.viewMoreIcon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.viewMoreText {
+    font-size: 11px;
+}
+
+.sourcePanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    background-color: rgba(32, 32, 32, 0.0);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.sourcePanel.open {
+    transform: translateX(0);
+}
+
+.sourcePanelContent {
+    max-height: 80vh;
+    width: 100%;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sourcePanelList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sourcePanelList .sourceBox {
+    margin-top: 0;
+    width: 100%;
+}
+
+.sourcePanelContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sourcePanelContent::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sourcePanelContent::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
+    .sourcesContainer {
+        gap: 12px;
+    }
+
+    .sourceBox {
+        width: calc(33.33% - 8px);
+        height: 60px;
+        margin-top: 20px;
+        padding: 8px;
+    }
+    
+    .sourcesTitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 445;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .sourcesHeader {
+        margin-top: 60px;
+        margin-bottom: -5px;
+    }
+
+    .sourcesContainer {
+        gap: 8px;
+        margin-bottom: -30px;
+    }
+
+    .sourceBox {
+        width: calc(50% - 5px);
+        height: 60px;
+        font-size: 0.6rem;
+        padding: 8px;
+        margin-top: 5px;
+    }
+
+    .sourceName {
+        height: 2.2;
+    }
+
+    .favicon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .sourceUrl {
+        font-size: 9px;
+    }
+
+    .viewMoreIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .viewMoreText {
+        font-size: 10px;
+    }
+
+    .sourcePanel {
+        width: 100%;
+    }
+
+    .sourcePanelContent {
+        padding: 16px;
+        background-color: rgba(32, 32, 32, 0.9);
+        width: 80%;
+        position: relative;
+        display: flex;
+    align-items: right;
+    right: -100px;
+    }
+}
+
+/* Small mobile styles */
+@media screen and (max-width: 480px) {
+    .sourceBox {
+        width: 100%;
+        height: 55px;
+    }
+
+    .sourcesTitle {
+        font-size: 0.7rem;
+    }
+
+    .sourcePanelContent {
+        padding: 12px;
+    }
+}

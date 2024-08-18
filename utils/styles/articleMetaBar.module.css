@@ -19,18 +19,23 @@
 }
 
 .shareButton {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(55, 55, 55, 0.324);
+    background-color: rgba(55, 55, 55, 0.324);
     border-radius: 4px;
     color: var(--primary-color, #00FF52);
     font-size: 0.8rem;
     padding: 5px 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    height: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .shareButton:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .shareToast {

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: ['www.google.com', 'icons.duckduckgo.com'],
     remotePatterns: [
       {
         protocol: 'https',

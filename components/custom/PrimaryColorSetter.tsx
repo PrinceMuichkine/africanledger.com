@@ -8,7 +8,6 @@ const colors = [
     '#08CFCE', // Cyber
     '#FEB60A', // Gold
     '#E00A16', // Red
-    '#007BFF', // Blue
     '#98D8C8', // Mint
 ];
 
