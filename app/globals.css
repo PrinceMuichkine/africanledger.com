@@ -141,7 +141,7 @@ main {
 /* Background grid effect */
 body::before {
   --size: 40px;
-  --line: color-mix(in lch, canvasText 15%, hsl(0 0% 100% / 0.25));
+  --line: color-mix(in lch, canvasText 15%, hsla(0, 0%, 100%, 0.333));
   content: '';
   height: 100%;
   width: 100%;

@@ -6,7 +6,15 @@ import './globals.css'
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      bg: mode("#050505", "#202023")(props), 
+      // Original
+      // bg: mode("#171923", "#050505")(props),
+      
+      // Dark charcoal
+      // bg: mode("#1c1c1c","#050505")(props),
+
+      // Event Horizon
+      bg: mode("#191521", "#050505")(props),
+      
       color: "#ffffff", 
     },
   }),
@@ -25,6 +33,16 @@ const config = {
   initialColorMode: "dark",
   useSystemColorMode: false,
 };
+
+// Add this function to force dark mode on all devices
+const forceDarkMode = () => {
+  localStorage.setItem("chakra-ui-color-mode", "dark");
+};
+
+// Call the function when the theme is imported
+if (typeof window !== 'undefined') {
+  forceDarkMode();
+}
 
 const theme = extendTheme({
   config,

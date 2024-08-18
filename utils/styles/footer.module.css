@@ -197,6 +197,24 @@
   }
 }
 
+@media (min-width: 768px) {
+    .footerBottomLinks {
+    width: auto;
+    margin-top: 0;
+  }
+
+  .footerText {
+    flex: 0 1 auto;
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .footerSection {
+    flex: 0 0 50%;
+  }
+}
+
 .rssIcon {
   fill: #ffffff;
   transition: fill 0.3s ease;
