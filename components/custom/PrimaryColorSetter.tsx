@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo } from 'react'
 
 const colors = [
     '#00FF50', // Sunday - Active
-    '#00FF52', // Monday - Active
+    '#00FF50', // Monday - Active
     '#08CFCE', // Tuesday - Cyber
     '#FEB60A', // Wednesday - Gold
     '#E00A16', // Thursday - Red

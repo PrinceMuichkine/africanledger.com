@@ -5,12 +5,18 @@ import { useRouter } from 'next/navigation';
 import styles from '../../utils/styles/ImageScroller.module.css';
 import { initImageScroller } from '../../utils/actions/ImageScroller';
 
+
 interface Image {
     _id: string;
     title: string;
     slug: string;
     featuredImage: string;
     excerpt?: string;
+    section?: { name: string; slug: string };
+    category?: { name: string; slug: string };
+    credits?: string;
+    author?: { name: string };
+    publishedAt: string;
     recommendationTag?: string;
     recommendedArticles?: Image[];
 }
@@ -28,11 +34,33 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     const [imageStyle, setImageStyle] = useState({});
     const [isFlipped, setIsFlipped] = useState(false);
     const [horizontalIndex, setHorizontalIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (images.length > 0) {
+            setIsLoading(false);
+        }
+    }, [images]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                setActiveImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+            } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                setActiveImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [images.length]);
+
 
     const handleHorizontalScroll = (direction: 'left' | 'right') => {
         const currentImage = images[activeImageIndex];
         const recommendedArticles = currentImage?.recommendedArticles || [];
-        const totalImages = recommendedArticles.length + 1; // Include the current image
+        const filteredRecommended = recommendedArticles.filter(article => article._id !== currentImage._id);
+        const totalImages = filteredRecommended.length + 1;
 
         if (direction === 'left') {
             setHorizontalIndex((prev) => (prev > 0 ? prev - 1 : totalImages - 1));
@@ -145,13 +173,54 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
             return currentImage;
         } else {
             const recommendedArticles = currentImage.recommendedArticles || [];
-            return recommendedArticles[horizontalIndex - 1] || currentImage;
+            // Skip the main image if it appears in the recommended articles
+            const filteredRecommended = recommendedArticles.filter(article => article._id !== currentImage._id);
+            return filteredRecommended[horizontalIndex - 1] || null;
         }
     };
 
     if (images.length === 0) {
         return <div>No images available</div>;
     }
+
+    const renderBackContent = (image: Image) => {
+        const isRecommended = horizontalIndex !== 0;
+
+        return (
+            <div className={styles.backContent}>
+                <h3 className={styles.title}>{image.title}</h3>
+                {image.publishedAt && (
+                    <button className={styles.metadataButton}>
+                        {new Date(image.publishedAt).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                        })}
+                    </button>
+                )}
+                {image.excerpt && <p className={styles.excerpt}>{image.excerpt}</p>}
+                {!isRecommended && (
+                    <>
+                        <div className={styles.metadata}>
+                            {image.section && (
+                                <button className={styles.metadataButton}>{image.section.name}</button>
+                            )}
+                            {image.category && (
+                                <button className={styles.metadataButton}>{image.category.name}</button>
+                            )}
+                            {image.author && (
+                                <button className={styles.metadataButton}>{image.author.name}</button>
+                            )}
+                        </div>
+                        {image.credits && (
+                            <button className={styles.metadataButton}>{image.credits}</button>
+                        )}
+                    </>
+                )}
+                <button onClick={handleMainImageClick} className={styles.readMoreButton}>Read More</button>
+            </div>
+        );
+    };
 
     const activeImage = getActiveImage();
     if (!activeImage) return null;
@@ -174,17 +243,9 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                                     }}
                                     loading="lazy"
                                 />
-                                <button className={`${styles.scrollButton} ${styles.leftButton}`} onClick={() => handleHorizontalScroll('left')}>
-                                    &lt;
-                                </button>
-                                <button className={`${styles.scrollButton} ${styles.rightButton}`} onClick={() => handleHorizontalScroll('right')}>
-                                    &gt;
-                                </button>
                             </div>
                             <div className={styles.back}>
-                                <h2>{activeImage.title}</h2>
-                                <p>{activeImage.excerpt}</p>
-                                <button onClick={handleMainImageClick}>Read More</button>
+                                {renderBackContent(activeImage)}
                             </div>
                         </div>
                         <button
@@ -194,6 +255,20 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                             <img src="/flip.png" alt="Flip" className={styles.flipIcon} />
                         </button>
                     </div>
+                    <button
+                        className={`${styles.scrollButton} ${styles.leftButton}`}
+                        onClick={() => handleHorizontalScroll('left')}
+                        style={{ display: images[activeImageIndex]?.recommendedArticles?.length ? 'block' : 'none' }}
+                    >
+                        &lt;
+                    </button>
+                    <button
+                        className={`${styles.scrollButton} ${styles.rightButton}`}
+                        onClick={() => handleHorizontalScroll('right')}
+                        style={{ display: images[activeImageIndex]?.recommendedArticles?.length ? 'block' : 'none' }}
+                    >
+                        &gt;
+                    </button>
                 </main>
                 <div
                     ref={scrollerRef}

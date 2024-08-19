@@ -44,13 +44,17 @@ export async function getArticleBySlug(slug: string) {
 
 export async function getArticlesForImageScroller() {
     return client.fetch(`
-        *[_type == "article" && defined(featuredImage)] | order(publishedAt desc)[0...50] {
+        *[_type == "article" && defined(featuredImage)] | order(publishedAt desc)[0...75] {
             _id,
             title,
             "slug": slug.current,
             "featuredImage": featuredImage.asset->url,
             publishedAt,
             excerpt,
+            "section": section->{ name, slug },
+            "category": category->{ name, slug },
+            credits,
+            "author": author->{ name },
             "recommendationTag": recommendationTag->name,
             "recommendedArticles": *[_type == "article" && recommendationTag->name == ^.recommendationTag->name && _id != ^._id] | order(publishedAt desc)[0...5] {
                 _id,
@@ -58,7 +62,11 @@ export async function getArticlesForImageScroller() {
                 "slug": slug.current,
                 "featuredImage": featuredImage.asset->url,
                 publishedAt,
-                excerpt
+                excerpt,
+                "section": section->{ name, slug },
+                "category": category->{ name, slug },
+                credits,
+                "author": author->{ name }
             }
         }
     `, {}, { next: { revalidate: 60 } })
