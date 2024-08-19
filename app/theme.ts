@@ -3,18 +3,26 @@ import { mode } from "@chakra-ui/theme-tools";
 import type { StyleFunctionProps } from "@chakra-ui/styled-system";
 import './globals.css'
 
+const themeColors = [
+  { name: "Midnight Navy", color: "#121c2b" },    // Sunday
+  { name: "Ledger", color: "#171923" },           // Monday
+  { name: "Dark charcoal", color: "#1c1c1c" },    // Tuesday
+  { name: "Charcoal Denim", color: "#2b3545" },   // Wednesday
+  { name: "Event Horizon", color: "#191521" },    // Thursday
+  { name: "Twilight Blue", color: "#1a2639" },    // Friday
+  { name: "Deep Space", color: "#0f1724" },       // Saturday
+];
+
+const getDailyThemeColor = () => {
+  const date = new Date();
+  const dayOfWeek = date.getDay(); // 0 for Sunday, 1 for Monday, etc.
+  return themeColors[dayOfWeek].color;
+};
+
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      // Original
-      // bg: mode("#171923", "#050505")(props),
-      
-      // Dark charcoal
-      // bg: mode("#1c1c1c","#050505")(props),
-
-      // Event Horizon
-      bg: mode("#191521", "#050505")(props),
-      
+      bg: mode(getDailyThemeColor(), "#050505")(props),
       color: "#ffffff", 
     },
   }),
@@ -34,7 +42,6 @@ const config = {
   useSystemColorMode: false,
 };
 
-// Add this function to force dark mode on all devices
 const forceDarkMode = () => {
   localStorage.setItem("chakra-ui-color-mode", "dark");
 };

@@ -12,8 +12,8 @@
 }
 
 .imageScroller {
-  height: 36%;
-  overflow-y: auto;
+  height: 37%;
+  overflow-y:  auto;
   overflow-x: hidden;
   width: 58px;
   padding-right: 1px;
@@ -75,7 +75,7 @@
   align-items: flex-start;
   padding: 20px;
   overflow: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   border-radius: 12px;
   position: relative; 
   user-select: none;
@@ -309,6 +309,44 @@
   transform: rotateY(180deg);
 }
 
+.scrollButton {
+  position: absolute;
+  top: 47%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.0);
+  color: transparent;
+  border: none;
+  border-radius: 16px;
+  width: 140px;
+  height: 300px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 20;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollButton:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+  /* Add touch-friendly active state */
+  .scrollButton:active {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+.leftButton {
+  left: 120px;
+  z-index: 30;
+}
+
+.rightButton {
+  right: 120px;
+  z-index: 30;
+}
+
 @media (min-width: 1025px) {
   .mainImageContainer {
     height: 70vh;
@@ -532,5 +570,29 @@
   .imageScroller {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+    .scrollButton {
+    width: 125px;
+    height: 300px;
+    top: 46%;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 20px;
+  }
+
+  .leftButton {
+    left: 40px;
+  }
+
+  .rightButton {
+    right: 10px;
+  }
+
+  .scrollButton:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  .scrollButton:active {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }

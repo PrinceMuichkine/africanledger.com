@@ -17,6 +17,11 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.header:hover,
+.header:active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .headerContent {
   max-width: 1100px;
   margin: 0 auto;
@@ -43,7 +48,7 @@
   padding: -40px;
   display: grid;
   border-radius: 4px;
-  border: 1px solid var(--primary-color, #00FF52);
+  border: 1px solid var(--primary-color);
   letter-spacing: 0.25px;
   cursor: pointer;
   position: relative;
@@ -52,7 +57,7 @@
   font-weight: 70;
   font-size: 12px;
   scale: 1;
-  outline-color: var(--primary-color, #00FF52);
+  outline-color: var(--primary-color);
   outline-offset: 0.45rem;
   font-family: Helvetica, Arial, sans-serif, system-ui;
     overflow: hidden;
@@ -151,7 +156,7 @@
   --size: 26px;
   width: 50px;
   height: 100%;
-  background: var(--primary-color, #00FF52);
+  background: var(--primary-color);
   position: absolute;
   left: 0;
   transition: width 0.25s;

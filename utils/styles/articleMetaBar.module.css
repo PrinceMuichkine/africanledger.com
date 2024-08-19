@@ -22,7 +22,7 @@
     background-color: rgba(55, 55, 55, 0.324);
     background-color: rgba(55, 55, 55, 0.324);
     border-radius: 4px;
-    color: var(--primary-color, #00FF52);
+    color: var(--primary-color);
     font-size: 0.8rem;
     padding: 5px 10px;
     cursor: pointer;

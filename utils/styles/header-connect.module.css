@@ -6,6 +6,7 @@
   background-color: rgba(0, 0, 0, 0.0);
   z-index: 1000;
   padding: 0.5rem 0;
+  transition: background-color 0.3s ease; /* Add smooth transition */
 }
 
 .headerContent {
@@ -14,10 +15,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-    height: 50px;
+  height: 50px;
+  position: relative;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Styles for header link (all screen sizes) */
+.desktopHeaderLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Hover effect for all screen sizes */
+.header:hover,
+.header:active { /* Added :active for touch devices */
+  background-color: rgba(0, 0, 0, 0.3); /* Very subtle light background on hover/touch */
+}
+
+/* Media query for desktop screens (if needed for other styles) */
+@media (min-width: 868px) {
+  /* Add any desktop-specific styles here if needed */
 }

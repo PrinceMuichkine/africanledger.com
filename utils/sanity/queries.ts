@@ -49,7 +49,17 @@ export async function getArticlesForImageScroller() {
             title,
             "slug": slug.current,
             "featuredImage": featuredImage.asset->url,
-            publishedAt
+            publishedAt,
+            excerpt,
+            "recommendationTag": recommendationTag->name,
+            "recommendedArticles": *[_type == "article" && recommendationTag->name == ^.recommendationTag->name && _id != ^._id] | order(publishedAt desc)[0...5] {
+                _id,
+                title,
+                "slug": slug.current,
+                "featuredImage": featuredImage.asset->url,
+                publishedAt,
+                excerpt
+            }
         }
     `, {}, { next: { revalidate: 60 } })
 }
@@ -82,4 +92,17 @@ export async function getArticlesByCategory(categorySlug: string) {
       mainTag
     }
   `, { categorySlug }, { next: { revalidate: 60 } })
+}
+
+export async function getRecommendedArticles(recommendationTag: string) {
+  return client.fetch(`
+    *[_type == "article" && recommendationTag->name == $recommendationTag] | order(publishedAt desc)[0...5] {
+      _id,
+      title,
+      "slug": slug.current,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      excerpt
+    }
+  `, { recommendationTag }, { next: { revalidate: 60 } })
 }

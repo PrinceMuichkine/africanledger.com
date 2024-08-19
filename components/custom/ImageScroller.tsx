@@ -11,6 +11,8 @@ interface Image {
     slug: string;
     featuredImage: string;
     excerpt?: string;
+    recommendationTag?: string;
+    recommendedArticles?: Image[];
 }
 
 interface ImageScrollerProps {
@@ -25,6 +27,19 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
     const [isMobile, setIsMobile] = useState(false);
     const [imageStyle, setImageStyle] = useState({});
     const [isFlipped, setIsFlipped] = useState(false);
+    const [horizontalIndex, setHorizontalIndex] = useState(0);
+
+    const handleHorizontalScroll = (direction: 'left' | 'right') => {
+        const currentImage = images[activeImageIndex];
+        const recommendedArticles = currentImage?.recommendedArticles || [];
+        const totalImages = recommendedArticles.length + 1; // Include the current image
+
+        if (direction === 'left') {
+            setHorizontalIndex((prev) => (prev > 0 ? prev - 1 : totalImages - 1));
+        } else {
+            setHorizontalIndex((prev) => (prev < totalImages - 1 ? prev + 1 : 0));
+        }
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,7 +51,6 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                 objectFit: 'cover',
                 objectPosition: 'center',
             } : {});
-            // Ensure activeImageIndex is valid after resize
             setActiveImageIndex(prevIndex => Math.min(prevIndex, images.length - 1));
         };
         handleResize();
@@ -57,6 +71,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
             index = Math.min(Math.max(index, 0), images.length - 1);
 
             setActiveImageIndex(index);
+            setHorizontalIndex(0); // Reset horizontal index when changing vertical scroll
         }
     };
 
@@ -91,12 +106,18 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
 
     const handleImageClick = (index: number) => {
         setActiveImageIndex(index);
+        setHorizontalIndex(0);
         setIsFlipped(false);
     };
 
     const handleMainImageClick = () => {
         const activeImage = getActiveImage();
-        router.push(`/article/${activeImage.slug}`);
+        if (activeImage && activeImage.slug) {
+            router.push(`/article/${activeImage.slug}`);
+        } else {
+            console.error('No active image or slug available');
+            // Optionally, you could show an error message to the user or handle this case differently
+        }
     };
 
     const handleFlipClick = (e: React.MouseEvent) => {
@@ -116,14 +137,24 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         }
     };
 
-    // Helper function to safely get the active image
     const getActiveImage = () => {
-        return images[activeImageIndex] || images[0] || { featuredImage: '', title: '', slug: '' };
+        const currentImage = images[activeImageIndex];
+        if (!currentImage) return null;
+
+        if (horizontalIndex === 0) {
+            return currentImage;
+        } else {
+            const recommendedArticles = currentImage.recommendedArticles || [];
+            return recommendedArticles[horizontalIndex - 1] || currentImage;
+        }
     };
 
     if (images.length === 0) {
         return <div>No images available</div>;
     }
+
+    const activeImage = getActiveImage();
+    if (!activeImage) return null;
 
     return (
         <div className={styles.imageScrollerContainer} ref={containerRef}>
@@ -133,8 +164,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                         <div className={`${styles.flipper} ${isFlipped ? styles.flipped : ''}`}>
                             <div className={styles.front}>
                                 <img
-                                    src={getActiveImage().featuredImage}
-                                    alt={getActiveImage().title}
+                                    src={activeImage.featuredImage}
+                                    alt={activeImage.title}
                                     className={styles.mainImg}
                                     onClick={handleMainImageClick}
                                     style={{
@@ -143,13 +174,17 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
                                     }}
                                     loading="lazy"
                                 />
+                                <button className={`${styles.scrollButton} ${styles.leftButton}`} onClick={() => handleHorizontalScroll('left')}>
+                                    &lt;
+                                </button>
+                                <button className={`${styles.scrollButton} ${styles.rightButton}`} onClick={() => handleHorizontalScroll('right')}>
+                                    &gt;
+                                </button>
                             </div>
                             <div className={styles.back}>
-                                <h2>{getActiveImage().title}</h2>
-                                <p>{getActiveImage().excerpt}</p>
-                                <button onClick={() => router.push(`/article/${getActiveImage().slug}`)}>
-                                    Read More
-                                </button>
+                                <h2>{activeImage.title}</h2>
+                                <p>{activeImage.excerpt}</p>
+                                <button onClick={handleMainImageClick}>Read More</button>
                             </div>
                         </div>
                         <button
