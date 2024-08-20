@@ -143,7 +143,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images }) => {
         if (activeImage && activeImage.slug) {
             router.push(`/article/${activeImage.slug}`);
         } else {
-            console.error('No active image or slug available');
+            console.error('No active image available');
             // Optionally, you could show an error message to the user or handle this case differently
         }
     };
