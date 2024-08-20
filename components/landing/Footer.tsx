@@ -94,7 +94,6 @@ export const Footer: React.FC = () => {
             <Link href="">Support | Contact</Link>
             <Link href="">Terms of Service</Link>
             <Link href="">Privacy Policy</Link>
-
             {/* <Link href="/contact">Support | Contact</Link>
             <Link href="/terms">Terms of Service</Link>
             <Link href="/privacy">Privacy Policy</Link> */}
