@@ -32,18 +32,26 @@ export const Footer: React.FC = () => {
         <div className={styles.footerSection}>
           <h4 className={styles.footerTitle}>Section</h4>
           <ul className={styles.footerLinks}>
-            <li className={styles.footerLinkItem}><Link href="/business">Business</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Business</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Politics</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Technology</Link></li>
+            {/* <li className={styles.footerLinkItem}><Link href="/business">Business</Link></li>
             <li className={styles.footerLinkItem}><Link href="/politics">Politics</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/technology">Technology</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/technology">Technology</Link></li> */}
+
           </ul>
         </div>
 
         {/* Categories Section 2 */}
         <div className={`${styles.footerSection} ${styles.footerSectionNoTitle}`}>
           <ul className={styles.footerLinks}>
-            <li className={styles.footerLinkItem}><Link href="/education">Education</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Education</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Health</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">Satire</Link></li>
+            {/* <li className={styles.footerLinkItem}><Link href="/education">Education</Link></li>
             <li className={styles.footerLinkItem}><Link href="/health">Health</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/satire">Satire</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/satire">Satire</Link></li> */}
+
           </ul>
         </div>
 
@@ -51,9 +59,12 @@ export const Footer: React.FC = () => {
         <div className={styles.footerSection}>
           <h4 className={styles.footerTitle}>Company</h4>
           <ul className={styles.footerLinks}>
-            <li className={styles.footerLinkItem}><Link href="/about">africanledger.com</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">africanledger.com</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">archive</Link></li>
+            <li className={styles.footerLinkItem}><Link href="">advertise</Link></li>
+            {/* <li className={styles.footerLinkItem}><Link href="/about">africanledger.com</Link></li>
             <li className={styles.footerLinkItem}><Link href="/archive">archive</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/careers">careers</Link></li>
+            <li className={styles.footerLinkItem}><Link href="/careers">careers</Link></li> */}
           </ul>
         </div>
 
@@ -99,9 +110,12 @@ export const Footer: React.FC = () => {
             <a href="https://maps.app.goo.gl/RJoTkbkdhxsSByNt8" target="_blank" rel="noopener noreferrer">
               Nouakchott, Mauritania
             </a>
-            <Link href="/contact">Support | Contact</Link>
+            <Link href="">Support | Contact</Link>
+            <Link href="">Terms of Service</Link>
+            <Link href="">Privacy Policy</Link>
+            {/* <Link href="/contact">Support | Contact</Link>
             <Link href="/terms">Terms of Service</Link>
-            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/privacy">Privacy Policy</Link> */}
             <button onClick={toggleColorMode} className={styles.colorModeButton}>
               {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
