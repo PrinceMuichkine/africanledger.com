@@ -48,11 +48,11 @@ export const articleType = defineType({
       description: 'The primary tag associated with this article; it can be a word or an expression like "Teranga Coconut Frenzy" for an article about high demand for coconuts in Senegal',
     }),
 defineField({
-  name: 'recommendationTag', 
-  title: 'Recommendation Tag',
-  type: 'reference',
-  to: {type: 'recommendationTag'}, 
-  description: 'A tag used for recommending related articles, used for the scroller to display similar articles',
+  name: 'recommendationTags',
+  title: 'Recommendation Tags',
+  type: 'array',
+  of: [{ type: 'reference', to: {type: 'recommendationTag'} }],
+  description: 'Tags used for recommending related articles, used for the scroller to display similar articles',
 }),
     defineField({
       name: 'tags',

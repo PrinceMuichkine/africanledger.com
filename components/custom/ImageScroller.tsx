@@ -16,7 +16,7 @@ interface Image {
     category?: { name: string; slug: string };
     credits?: string;
     author?: { name: string };
-    publishedAt: string;
+    publishedAt?: string;
     recommendationTag?: string;
     recommendedArticles?: Image[];
 }

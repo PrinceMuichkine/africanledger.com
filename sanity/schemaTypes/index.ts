@@ -7,7 +7,7 @@ import {sectionType} from './sectionType'
 import {newsletterType} from './newsletterType'
 import { mediaType } from './mediaType'
 import { recommendationTagType } from './recommendationTag'
-
+import { adType } from './adType'
 export const schemaTypes = [
   articleType,
   authorType,
@@ -17,5 +17,6 @@ export const schemaTypes = [
   sectionType,
   newsletterType,
   mediaType,
+  adType,
   recommendationTagType,
 ]

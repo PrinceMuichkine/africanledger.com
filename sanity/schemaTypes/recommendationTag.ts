@@ -27,5 +27,18 @@ export const recommendationTagType = defineType({
       type: 'text',
       description: 'A brief explanation of the logic behind the creation of this recommendation tag (optional)',
     }),
+    defineField({
+      name: 'articles',
+      title: 'Articles',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'article' } }],
+      description: 'Articles associated with this recommendation tag',
+    }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'logic',
+    },
+  },
 })
