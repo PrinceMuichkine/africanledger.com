@@ -9,7 +9,7 @@
 // import { Button } from "@/components/ui/button"
 // import { Toaster, toast } from "@/components/ui/sonner";
 // import { Search } from "lucide-react"
-// import styles from '../../utils/styles/header.module.css';
+// import styles from '../../lib/styles/header.module.css';
 // import { client } from '../../utils/sanity/client'
 
 // export default function Header() {

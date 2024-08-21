@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from '../../components/landing/Header';
 import { Footer } from '../../components/landing/Footer';
-import styles from '../../utils/styles/policy.module.css';
+import styles from '../../lib/styles/policy.module.css';
 
 const TermsOfService: React.FC = () => {
     return (

@@ -1,7 +1,7 @@
 import Header from '../components/landing/Header'
 import { Footer } from "../components/landing/Footer"
 import ImageScroller from '../components/custom/ImageScroller'
-import { getArticlesForImageScroller, getRecommendedArticles } from '../utils/sanity/queries'
+import { getArticlesForImageScroller, getRecommendedArticles } from '../lib/sanity/queries'
 import './home.css'
 
 interface Article {

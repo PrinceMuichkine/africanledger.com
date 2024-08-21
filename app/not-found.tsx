@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link'
-import styles from '../utils/styles/404.module.css'
+import styles from '../lib/styles/404.module.css'
 
 export default function NotFound() {
     return (

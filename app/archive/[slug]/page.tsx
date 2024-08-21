@@ -1,8 +1,8 @@
-import Header from '../../../components/landing/Header'
-import { Footer } from "../../../components/landing/Footer"
-import { getArticlesByCategory } from '../../../utils/sanity/queries'
-import Archive from '../../../components/custom/Archive'
-import styles from '../../../utils/styles/archive.module.css'
+import Header from '@/components/landing/Header'
+import { Footer } from '@/components/landing/Footer'
+import { getArticlesByCategory } from '@/lib/sanity/queries'
+import Archive from '@/components/custom/Archive'
+import styles from '@/lib/styles/archive.module.css'
 
 const ARTICLES_PER_PAGE = 6
 

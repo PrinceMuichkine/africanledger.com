@@ -7,7 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Toaster, toast } from "@/components/ui/sonner";
-import styles from '../../utils/styles/header.module.css';
+import styles from '../../lib/styles/header.module.css';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);

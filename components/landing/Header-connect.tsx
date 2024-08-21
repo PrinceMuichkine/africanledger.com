@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../../utils/styles/header-connect.module.css';
+import styles from '../../lib/styles/header-connect.module.css';
 
 export default function Header() {
     return (

@@ -1,9 +1,9 @@
-import { getArticleBySlug } from '../../../utils/sanity/queries'
-import ArticlePage from '../../../components/custom/ArticlePage'
-import Header from '../../../components/landing/Header-connect'
-import { Footer } from "../../../components/landing/Footer-Article"
-import styles from '../../../utils/styles/article.module.css'
-import ArticleScroller from '../../../components/custom/ArticleScroller';
+import { getArticleBySlug } from '@/lib/sanity/queries'
+import ArticlePage from '@/components/custom/ArticlePage'
+import Header from '@/components/landing/Header-connect'
+import { Footer } from '@/components/landing/Footer-Article'
+import styles from '@/lib/styles/article.module.css'
+import ArticleScroller from '@/components/custom/ArticleScroller';
 
 
 export default async function Article({ params }: { params: { slug: string } }) {

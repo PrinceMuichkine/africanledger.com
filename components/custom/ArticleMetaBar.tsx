@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import styles from '../../utils/styles/articleMetaBar.module.css';
+import styles from '../../lib/styles/articleMetaBar.module.css';
 import { toast } from 'sonner';
 
 interface ArticleMetaBarProps {

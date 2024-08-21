@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 
 interface PinInputProps {
   children:
-    | React.ReactElement<typeof PinInputField>
-    | React.ReactElement<typeof PinInputField>[]
+  | React.ReactElement<typeof PinInputField>
+  | React.ReactElement<typeof PinInputField>[]
   /**
    * className for the input container
    */
@@ -401,11 +401,11 @@ const usePinInput = ({
     if (type === 'numeric') {
       const canTypeSign =
         key === 'Backspace' ||
-        key === 'Tab' ||
-        key === 'Control' ||
-        key === 'Delete' ||
-        (ctrlKey && key === 'v') ||
-        (metaKey && key === 'v')
+          key === 'Tab' ||
+          key === 'Control' ||
+          key === 'Delete' ||
+          (ctrlKey && key === 'v') ||
+          (metaKey && key === 'v')
           ? true
           : !Number.isNaN(Number(key))
 

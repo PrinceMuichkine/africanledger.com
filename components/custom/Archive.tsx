@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { formatDistanceToNow } from 'date-fns'
-import styles from '../../utils/styles/archive.module.css'
+import styles from '../../lib/styles/archive.module.css'
 
 interface Article {
     slug: { current: string };

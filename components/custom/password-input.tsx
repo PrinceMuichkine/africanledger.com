@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { Button } from './button'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 
 export interface PasswordInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {}
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> { }
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
   ({ className, ...props }, ref) => {

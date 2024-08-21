@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import Image from 'next/image'
-import styles from '../../utils/styles/sourcebox.module.css'
+import styles from '../../lib/styles/sourcebox.module.css'
 
 interface SourceProps {
     name: string

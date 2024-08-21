@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../utils/styles/article.module.css';
+import styles from '../../lib/styles/article.module.css';
 
 interface ArticleScrollerProps {
     children: React.ReactNode;

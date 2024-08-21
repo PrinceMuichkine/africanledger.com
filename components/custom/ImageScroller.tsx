@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState, WheelEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../../utils/styles/ImageScroller.module.css';
-import { initImageScroller } from '../../utils/actions/ImageScroller';
+import styles from '@/lib/styles/ImageScroller.module.css';
+import { initImageScroller } from '@/utils/actions/ImageScroller';
 
 
 interface Image {

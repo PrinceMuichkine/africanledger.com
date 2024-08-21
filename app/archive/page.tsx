@@ -1,8 +1,8 @@
-import Header from '../../components/landing/Header'
-import { Footer } from "../../components/landing/Footer"
-import { getCategories } from '../../utils/sanity/queries'
-import CategoryArchive from '../../components/custom/CategoryArchive'
-import styles from '../../utils/styles/archive.module.css'
+import Header from '@/components/landing/Header'
+import { Footer } from '@/components/landing/Footer'
+import { getCategories } from '@/lib/sanity/queries'
+import CategoryArchive from '@/components/custom/CategoryArchive'
+import styles from '@/lib/styles/archive.module.css'
 
 const CATEGORIES_PER_PAGE = 4
 

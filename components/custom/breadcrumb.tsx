@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 
 interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {
   children:
-    | React.ReactElement<typeof BreadcrumbItem>
-    | React.ReactElement<typeof BreadcrumbItem>[]
+  | React.ReactElement<typeof BreadcrumbItem>
+  | React.ReactElement<typeof BreadcrumbItem>[]
   separator?: React.ReactNode
 }
 
@@ -43,7 +43,7 @@ interface BreadcrumbItemProps
   extends Omit<
     React.ComponentPropsWithoutRef<'li'>,
     keyof InternalBreadcrumbItemProps
-  > {}
+  > { }
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
   ({ className, children, ...props }, ref) => {

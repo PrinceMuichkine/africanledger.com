@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 
 interface PinInputOgProps {
   /**
@@ -328,11 +328,11 @@ const usePinInput = ({
     if (type === 'numeric') {
       const canTypeSign =
         key === 'Backspace' ||
-        key === 'Tab' ||
-        key === 'Control' ||
-        key === 'Delete' ||
-        (ctrlKey && key === 'v') ||
-        (metaKey && key === 'v')
+          key === 'Tab' ||
+          key === 'Control' ||
+          key === 'Delete' ||
+          (ctrlKey && key === 'v') ||
+          (metaKey && key === 'v')
           ? true
           : !Number.isNaN(Number(key))
 
