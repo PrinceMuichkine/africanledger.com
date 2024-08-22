@@ -60,7 +60,7 @@ export default function Header() {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Error response:', errorText);
-      toast.error("Submission failed.");
+      toast.error("Failed to send magic link.");
       return;
     }
 

@@ -1,27 +1,34 @@
-import { createClient } from '@supabase/supabase-js';
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
 
-// Initialize Supabase client using environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export async function GET(request: Request) {
+  const requestUrl = new URL(request.url);
+  const code = requestUrl.searchParams.get('code');
 
-export async function POST(req: Request) {
-  const { email } = await req.json(); // Parse the JSON body
+  if (code) {
+    const cookieStore = cookies();
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return cookieStore.get(name)?.value;
+          },
+          set(name: string, value: string, options: any) {
+            cookieStore.set({ name, value, ...options });
+          },
+          remove(name: string, options: any) {
+            cookieStore.set({ name, value: '', ...options });
+          },
+        },
+      }
+    );
 
-  // Validate email format
-  if (!/\S+@\S+\.\S+/.test(email)) {
-    return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // Insert email into Supabase
-  const { data, error } = await supabase
-    .from('subscribe_emails')
-    .insert([{ email }]);
-
-  if (error) {
-    return NextResponse.json({ error: "Submission failed." }, { status: 500 });
-  }
-
-  return NextResponse.json({ message: "You're in!" }, { status: 200 });
+  // URL to redirect to after sign in process completes
+  return NextResponse.redirect(requestUrl.origin);
 }

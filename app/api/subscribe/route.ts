@@ -6,25 +6,28 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Export a named function for the POST method
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json(); // Parse JSON body
+    const { email } = await req.json();
 
     // Validate email format
     if (!/\S+@\S+\.\S+/.test(email)) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
     }
 
-    const { data, error } = await supabase
-      .from('subscribe_emails')
-      .insert([{ email }]);
+    // Send magic link
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      },
+    });
 
     if (error) {
-      return NextResponse.json({ error: "Submission failed." }, { status: 500 });
+      return NextResponse.json({ error: "Failed to send magic link." }, { status: 500 });
     }
 
-    return NextResponse.json({ message: "You're in!" }, { status: 200 });
+    return NextResponse.json({ message: "Magic link sent! Check your email." }, { status: 200 });
   } catch (error) {
     console.error('Error processing request:', error);
     return NextResponse.json({ error: "Internal server error." }, { status: 500 });
