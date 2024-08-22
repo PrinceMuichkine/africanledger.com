@@ -10,7 +10,7 @@
 // import { Toaster, toast } from "@/components/ui/sonner";
 // import { Search } from "lucide-react"
 // import styles from '../../lib/styles/header.module.css';
-// import { client } from '../../utils/sanity/client'
+// import { client } from '../../lib/sanity/client'
 
 // export default function Header() {
 //   const [scrolled, setScrolled] = useState(false);
