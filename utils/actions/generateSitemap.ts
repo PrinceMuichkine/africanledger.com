@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { XMLBuilder } from 'fast-xml-parser';
-import { getArticles } from '../sanity/queries';
+import { getArticles } from '@/lib/sanity/queries';
 
 const baseUrl = 'https://www.africanledger.com';
 
