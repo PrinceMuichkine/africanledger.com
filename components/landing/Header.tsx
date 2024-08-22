@@ -47,28 +47,28 @@ export default function Header() {
       return;
     }
 
-    const response = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    console.log('Response status:', response.status);
+      const result = await response.json();
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error response:', errorText);
-      toast.error("Failed to send magic link.");
-      return;
+      if (!response.ok) {
+        toast.error(result.error);
+        return;
+      }
+
+      toast.success(result.message);
+      setEmail('');
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error("An unexpected error occurred. Please try again.");
     }
-
-    const result = await response.json();
-    console.log('API response:', result);
-
-    toast.success(result.message);
-    setEmail('');
   };
 
   const handleButtonClick = (event: React.MouseEvent) => {
