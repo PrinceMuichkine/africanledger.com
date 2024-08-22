@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getArticles } from '@/utils/sanity/queries';
+import { getArticles } from '@/lib/sanity/queries';
 import RSS from 'rss';
 
 interface Article {
