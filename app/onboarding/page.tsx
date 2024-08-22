@@ -1,43 +1,34 @@
-"use client"
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import Header from '@/components/landing/Header'
+import { Footer } from '@/components/landing/Footer'
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+export default async function OnboardingPage() {
+    const supabase = createClient()
 
-export default function Onboarding() {
-    const [user, setUser] = useState<any>(null);
-    const router = useRouter();
-    const supabase = createClient();
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
 
-    useEffect(() => {
-        const getUser = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (user) {
-                setUser(user);
-            } else {
-                router.push('/login'); // Redirect to login if no user
-            }
-        };
-
-        getUser();
-    }, [router, supabase.auth]);
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // Handle onboarding form submission
-        // You can update user profile or any other onboarding steps here
-        router.push('/dashboard'); // Redirect to dashboard after onboarding
-    };
-
-    if (!user) return <div>Loading...</div>;
+    if (!user) {
+        return redirect('/login')
+    }
 
     return (
-        <div>
-            <h1>Welcome to Onboarding!</h1>
-            <form onSubmit={handleSubmit}>
-                {/* Add your onboarding form fields here */}
-                <button type="submit">Complete Onboarding</button>
-            </form>
+        <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1 flex flex-col items-center justify-center">
+                <h1 className="text-3xl font-bold mb-4">Welcome to Onboarding!</h1>
+                <p className="mb-4">Hello, {user.email}! Let's get you set up.</p>
+                {/* Add your onboarding form or steps here */}
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => {/* Handle onboarding completion */ }}
+                >
+                    Complete Onboarding
+                </button>
+            </main>
+            <Footer />
         </div>
-    );
+    )
 }

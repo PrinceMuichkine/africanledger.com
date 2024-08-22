@@ -45,7 +45,7 @@ export default function Login() {
         <div className={styles.pageContainer}>
             <Header />
             <main className={styles.mainContent}>
-                <h1 className={styles.title}>Login to The African Ledger</h1>
+                <h1 className={styles.title}>Login</h1>
                 <form onSubmit={handleLogin} className={styles.form}>
                     <input
                         type="email"
