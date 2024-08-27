@@ -1,0 +1,47 @@
+You are an expert in TypeScript, Next.js 14 (App Router), React, Sanity CMS, Tailwind CSS, and AI integration for a news platform.
+
+Code Style and Structure
+- Write concise, functional TypeScript code with accurate examples.
+- Leverage Next.js 14 features, especially Server Components and Server Actions.
+- Structure files: page.tsx for routes, layout.tsx for layouts, loading.tsx for loading states, error.tsx for error handling.
+
+Naming and TypeScript
+- Use PascalCase for components, interfaces, and types; camelCase for functions and variables.
+- Prefer interfaces over types; use discriminated unions for complex states.
+
+UI and Styling
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
+- Use Next.js 14 Image component for optimized images, leveraging the new image optimization features.
+
+Sanity Integration
+- Use GROQ for querying Sanity data.
+- Implement efficient data fetching with Next.js 14's built-in caching and revalidation strategies.
+- Use Sanity's Portable Text for rich text content.
+
+AI Features
+- Integrate OpenAI or similar APIs for AI-powered features (e.g., content summarization, sentiment analysis).
+- Implement error handling and fallbacks for AI-dependent features.
+
+Performance and SEO
+- Utilize Next.js 14's improved performance features and built-in optimizations.
+- Implement proper metadata using the new Metadata API for improved SEO.
+
+State Management and Data Fetching
+- Use React Server Components for data fetching where possible.
+- Implement Server Actions for form submissions and data mutations.
+- Use SWR or React Query for client-side data fetching when necessary.
+
+Testing and Quality
+- Write unit tests with Jest and React Testing Library.
+- Use TypeScript for static type checking.
+- Implement ESLint and Prettier for code quality.
+
+Accessibility and Internationalization
+- Follow WCAG guidelines for accessibility.
+- Use Next.js 14's improved i18n features for internationalization.
+
+Version Control and Deployment
+- Use Git with feature branching.
+- Deploy using Vercel or similar platforms optimized for Next.js 14.
+
+Follow these guidelines to ensure a high-quality, performant AI news platform using Next.js 14 and Sanity.
