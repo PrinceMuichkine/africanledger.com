@@ -1,15 +1,16 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { BsCircleFill } from 'react-icons/bs'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import styles from '../../lib/styles/article.module.css'
-import metaBarStyles from '../../lib/styles/articleMetaBar.module.css'
-import sourceStyles from '../../lib/styles/sourcebox.module.css'
+import styles from '@/lib/styles/article.module.css'
+import metaBarStyles from '@/lib/styles/articleMetaBar.module.css'
+import sourceStyles from '@/lib/styles/sourcebox.module.css'
 import { format } from 'date-fns'
 import ArticleMetaBar from './ArticleMetaBar'
 import { SourceBox, ViewMoreBox, SourcePanel } from './Sourcebox'
+import axios from 'axios'
 
 interface ArticlePageProps {
     article: {
@@ -26,6 +27,7 @@ interface ArticlePageProps {
         authorCity: string
         mainTag: string
         sources: { name: string; url: string }[]
+        originalLanguage: string
     }
 }
 
@@ -91,10 +93,37 @@ const components: PortableTextComponents = {
     },
 }
 
+const LanguageSwitcher: React.FC<{ onLanguageChange: (lang: string) => void, currentLanguage: string }> = ({ onLanguageChange, currentLanguage }) => {
+    const languages = [
+        { code: 'en', name: 'English' },
+        { code: 'fr', name: 'French' },
+        { code: 'zu', name: 'isiZulu' },
+        { code: 'yo', name: 'Yoruba' },
+        { code: 'sw', name: 'Swahili' },
+        { code: 'ha', name: 'Hausa' },
+    ]
+
+    return (
+        <select
+            onChange={(e) => onLanguageChange(e.target.value)}
+            value={currentLanguage}
+            className={styles.languageSwitcher}
+        >
+            {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                    {lang.name}
+                </option>
+            ))}
+        </select>
+    )
+}
+
 const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
     const formattedDate = format(new Date(article.publishedAt), 'MMMM d, yyyy')
     const [isFullScreen, setIsFullScreen] = useState(false)
     const [showAllSources, setShowAllSources] = useState(false)
+    const [currentLanguage, setCurrentLanguage] = useState(article.originalLanguage)
+    const [translatedContent, setTranslatedContent] = useState<Record<string, any>>({})
 
     const handleImageClick = () => {
         setIsFullScreen(true)
@@ -111,22 +140,55 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
         setShowAllSources(true)
     }
 
+    const translateContent = async (text: string, targetLanguage: string) => {
+        try {
+            const response = await axios.post('/api/translate', { text, targetLanguage })
+            return response.data.translatedText
+        } catch (error) {
+            console.error('Translation failed:', error)
+            return text
+        }
+    }
+
+    useEffect(() => {
+        const translateArticle = async () => {
+            if (currentLanguage !== article.originalLanguage) {
+                const translatedTitle = await translateContent(article.title, currentLanguage)
+                const translatedExcerpt = await translateContent(article.excerpt, currentLanguage)
+                const translatedBody = await translateContent(JSON.stringify(article.body), currentLanguage)
+
+                setTranslatedContent({
+                    title: translatedTitle,
+                    excerpt: translatedExcerpt,
+                    body: JSON.parse(translatedBody),
+                })
+            }
+        }
+
+        translateArticle()
+    }, [currentLanguage, article])
+
+    const title = currentLanguage === article.originalLanguage ? article.title : translatedContent.title || article.title
+    const excerpt = currentLanguage === article.originalLanguage ? article.excerpt : translatedContent.excerpt || article.excerpt
+    const body = currentLanguage === article.originalLanguage ? article.body : translatedContent.body || article.body
+
     return (
         <div className={styles.articleContainer}>
             <div className={styles.articleHeader}>
+                <LanguageSwitcher onLanguageChange={setCurrentLanguage} currentLanguage={currentLanguage} />
                 <div className={styles.meta}>
                     <span className={styles.subcategory}>{article.subcategory}</span>
                     <span className={styles.separator}> | </span>
                     <span className={styles.mainTag}>{article.mainTag}</span>
                 </div>
-                <h1 className={styles.title}>{article.title}</h1>
-                <p className={styles.excerpt}>{article.excerpt}</p>
+                <h1 className={styles.title}>{title}</h1>
+                <p className={styles.excerpt}>{excerpt}</p>
                 <div className={styles.imageWrapper}>
                     <div className={styles.imageContainer} onClick={handleImageClick}>
                         {article.featuredImage && (
                             <Image
                                 src={article.featuredImage}
-                                alt={article.title}
+                                alt={title}
                                 layout="fill"
                                 objectFit="cover"
                                 className={styles.featuredImage}
@@ -169,7 +231,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
             <div className={styles.articleContent}>
                 <div className={styles.content}>
                     <PortableText
-                        value={article.body}
+                        value={body}
                         components={components}
                     />
                     <span className={styles.endSquare}>■</span>
@@ -178,7 +240,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
             {isFullScreen && (
                 <FullScreenImage
                     src={article.featuredImage}
-                    alt={article.title}
+                    alt={title}
                     caption={article.caption}
                     onClose={handleCloseFullScreen}
                 />
@@ -191,5 +253,3 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
         </div>
     )
 }
-
-export default ArticlePage

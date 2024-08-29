@@ -1,5 +1,4 @@
-import  defineType  from "sanity"
-import defineField from "sanity"
+import { defineField, defineType } from 'sanity'
 
 export const articleType = defineType({
   name: 'article',
@@ -48,13 +47,29 @@ export const articleType = defineType({
       type: 'string',
       description: 'The primary tag associated with this article; it can be a word or an expression like "Teranga Coconut Frenzy" for an article about high demand for coconuts in Senegal',
     }),
-defineField({
-  name: 'recommendationTag',
-  title: 'Recommendation Tag',
-  type: 'reference',
-  to: {type: 'recommendationTag'},
-  description: 'A tag used for recommending related articles, used for the scroller to display similar articles',
-}),
+    defineField({
+      name: 'originalLanguage',
+      title: 'Original Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'French', value: 'fr' },
+          { title: 'isiZulu', value: 'zu' },
+          { title: 'Yoruba', value: 'yo' },
+        { title: 'Swahili', value: 'sw' },
+      {  title: 'Hausa', value: 'ha' },
+    ],
+},
+      description: 'The original language of the article',
+    }),
+    defineField({
+      name: 'recommendationTag',
+      title: 'Recommendation Tag',
+      type: 'reference',
+      to: {type: 'recommendationTag'},
+      description: 'A tag used for recommending related articles, used for the scroller to display similar articles',
+    }),
     defineField({
       name: 'tags',
       title: 'Tags',
@@ -81,11 +96,47 @@ defineField({
       type: 'text',
       description: 'A brief summary or teaser of the article',
     }),
+      defineField({
+      name: 'preItalic',
+      title: 'Pre-Italic Text',
+      type: 'text',
+      description: 'Text to be displayed before the italic section',
+    }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-      description: 'The main content of the article. Every article must finish with this as final dot: ■',
+      description: 'The main content of the article. Note: Articles last line should NOT have a dot at the end.',
+    }),
+    defineField({
+      name: 'postItalic',
+      title: 'Post-Italic Content',
+      type: 'text',
+      description: 'Content to be displayed after the italic section',
+    }),
+    defineField({
+      name: 'callToAction',
+      title: 'Call to Action',
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'CTA Text',
+          type: 'string',
+        },
+        {
+          name: 'link',
+          title: 'CTA Link',
+          type: 'url',
+        },
+      ],
+      description: 'A call to action for the reader',
+    }),
+    defineField({
+      name: 'pullQuote',
+      title: 'Pull Quote',
+      type: 'text',
+      description: 'A notable quote from the article to be displayed prominently',
     }),
     defineField({
      name: 'sources',

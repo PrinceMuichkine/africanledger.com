@@ -1,10 +1,10 @@
-import defineConfig from 'sanity'
+import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
 
 export default defineConfig({
-  name: 'african-ledger',
+  name: 'africanledger.com',
   title: 'The African Ledger',
 
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
