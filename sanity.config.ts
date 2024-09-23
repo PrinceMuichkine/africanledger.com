@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
 
 export default defineConfig({
-  name: 'africanledger.com',
+  name: 'africanledger',
   title: 'The African Ledger',
 
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,

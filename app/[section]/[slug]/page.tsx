@@ -1,3 +1,4 @@
+import React from 'react'
 import { getArticleBySlug } from '@/lib/sanity/queries'
 import ArticlePage from '@/components/custom/ArticlePage'
 import Header from '@/components/landing/Header-connect'

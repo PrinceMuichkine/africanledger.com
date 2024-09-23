@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { formatDistanceToNow } from 'date-fns'
 import styles from '../../lib/styles/archive.module.css'
+import React from 'react'
 
 interface Article {
     slug: { current: string };

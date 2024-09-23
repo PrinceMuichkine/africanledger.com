@@ -36,6 +36,7 @@ export async function getArticleBySlug(slug: string) {
       subcategory,
       excerpt,
       illustration,
+      originalLanguage,
       authorCity,
       mainTag
     }

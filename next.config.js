@@ -3,17 +3,17 @@ const nextConfig = {
   images: {
     domains: ['www.google.com', 'icons.duckduckgo.com'],
     remotePatterns: [
-  {
-      protocol: 'https',
-    hostname: 'huggingface.co',
-        pathname: '/lelapa/**',
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-    hostname: 'cdn.sanity.io',
-    pathname: '/**',
-  },
-  ],
+        hostname: 'huggingface.co',
+        pathname: '/lelapa/**',
+      },
+    ],
   },
   webpack: (config) => {
     config.externals = [...config.externals, 'canvas', 'jsdom']
@@ -33,4 +33,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
