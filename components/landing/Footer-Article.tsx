@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -9,21 +9,7 @@ import { useColorMode } from '@chakra-ui/react'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 
 export const Footer: React.FC = () => {
-  const [isDesktop, setIsDesktop] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 992);
-    };
-
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <footer className={styles.footer}>

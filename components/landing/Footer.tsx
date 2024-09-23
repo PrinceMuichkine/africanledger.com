@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,21 +10,7 @@ import { useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
 export const Footer: React.FC = () => {
-  const [isDesktop, setIsDesktop] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 992);
-    };
-
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -43,9 +29,6 @@ export const Footer: React.FC = () => {
             <li className={styles.footerLinkItem}><Link href="">africanledger.com</Link></li>
             <li className={styles.footerLinkItem}><Link href="">archive</Link></li>
             <li className={styles.footerLinkItem}><Link href="">advertise</Link></li>
-            {/* <li className={styles.footerLinkItem}><Link href="/about">africanledger.com</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/archive">archive</Link></li>
-            <li className={styles.footerLinkItem}><Link href="/careers">careers</Link></li> */}
           </ul>
         </div>
 
@@ -94,9 +77,6 @@ export const Footer: React.FC = () => {
             <Link href="">Support | Contact</Link>
             <Link href="">Terms of Service</Link>
             <Link href="">Privacy Policy</Link>
-            {/* <Link href="/contact">Support | Contact</Link>
-            <Link href="/terms">Terms of Service</Link>
-            <Link href="/privacy">Privacy Policy</Link> */}
             <button onClick={toggleColorMode} className={styles.colorModeButton}>
               {colorMode === "dark" ? (
                 <SunIcon className={styles.colorModeIcon} />
