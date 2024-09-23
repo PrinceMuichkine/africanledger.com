@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { getStripe } from '@/utils/stripe-helpers';
 
 interface CheckoutButtonProps {
@@ -7,8 +6,6 @@ interface CheckoutButtonProps {
 }
 
 const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-    const router = useRouter();
-
     const handleCheckout = async () => {
         const response = await fetch('/api/create-checkout-session', {
             method: 'POST',
@@ -23,12 +20,15 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
         const { sessionId } = await response.json();
 
         const stripe = await getStripe();
-        const { error } = await stripe!.redirectToCheckout({
-            sessionId,
-        });
-
-        if (error) {
-            console.warn(error.message);
+        if (stripe) {
+            const { error } = await stripe.redirectToCheckout({
+                sessionId,
+            });
+            if (error) {
+                console.warn(error.message);
+            }
+        } else {
+            console.error('Stripe failed to load');
         }
     };
 

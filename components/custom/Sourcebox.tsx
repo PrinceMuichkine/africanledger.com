@@ -69,7 +69,17 @@ interface ViewMoreProps {
 
 export const ViewMoreBox: React.FC<ViewMoreProps> = ({ count, onClick, remainingSources }) => {
     return (
-        <div className={`${styles.sourceBox} ${styles.viewMoreBox}`} onClick={onClick}>
+        <div
+            className={`${styles.sourceBox} ${styles.viewMoreBox}`}
+            onClick={onClick}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    onClick();
+                }
+            }}
+            role="button"
+            tabIndex={0}
+        >
             <div className={styles.viewMoreIcons}>
                 {remainingSources.slice(0, 4).map((source, index) => (
                     <Image

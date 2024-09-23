@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import styles from '../../lib/styles/footer-Article.module.css';
-import { useColorMode } from "@chakra-ui/react";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import styles from '../../lib/styles/footer-Article.module.css'
+import { useColorMode } from '@chakra-ui/react'
+import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 
 export const Footer: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(true);
