@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Header from '@/components/landing/Header-connect';
 import { Footer } from '@/components/landing/Footer';
@@ -11,7 +10,6 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
-    const router = useRouter();
     const supabase = createClient();
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

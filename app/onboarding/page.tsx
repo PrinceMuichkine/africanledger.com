@@ -19,7 +19,7 @@ export default async function OnboardingPage() {
             <Header />
             <main className="flex-1 flex flex-col items-center justify-center">
                 <h1 className="text-3xl font-bold mb-4">Welcome to Onboarding!</h1>
-                <p className="mb-4">Hello, {user.email}! Let's get you set up.</p>
+                <p className="mb-4">Hello, {user.email}! Let&apos;s get you set up.</p>
                 {/* Add your onboarding form or steps here */}
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

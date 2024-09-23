@@ -6,13 +6,6 @@ import styles from '@/lib/styles/archive.module.css'
 
 const CATEGORIES_PER_PAGE = 4
 
-interface Category {
-    slug: string;
-    title: string;
-    description?: string;
-    image?: string;
-}
-
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string } }) {
     const currentPage = Number(searchParams.page) || 1
 

@@ -10,7 +10,7 @@ export default function NotFound() {
                 <h1 className={styles.title}>404</h1>
                 <h2 className={styles.subtitle}>Oops! Page Not Found!</h2>
                 <p className={styles.message}>
-                    It seems like the page you're looking for<br />
+                    It seems like the page you&apos;re looking for<br />
                     does not exist or might have been removed.
                 </p>
                 <div className={styles.buttonContainer}>

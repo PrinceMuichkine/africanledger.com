@@ -36,7 +36,7 @@ const TermsOfService: React.FC = () => {
                     <p>[Specify which laws govern these terms]</p>
 
                     <h2>7. Changes to Terms</h2>
-                    <p>[Explain how you'll notify users of changes to these terms]</p>
+                    <p>[Explain how you&apos;ll notify users of changes to these terms]</p>
 
                     <h2>8. Contact Information</h2>
                     <p>[Provide contact information for terms-related inquiries]</p>

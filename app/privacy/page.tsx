@@ -18,7 +18,7 @@ const PrivacyPolicy: React.FC = () => {
                     <p>Last updated: [Insert Date]</p>
 
                     <h2>1. Introduction</h2>
-                    <p>Welcome to The African Ledger's Privacy Policy. This policy describes how we collect, use, and protect your personal information.</p>
+                    <p>Welcome to The African Ledger&apos;s Privacy Policy. This policy describes how we collect, use, and protect your personal information.</p>
 
                     <h2>2. Information We Collect</h2>
                     <p>[Describe the types of information you collect]</p>
@@ -33,7 +33,7 @@ const PrivacyPolicy: React.FC = () => {
                     <p>[Explain user rights regarding their data]</p>
 
                     <h2>6. Changes to This Policy</h2>
-                    <p>[Explain how you'll notify users of policy changes]</p>
+                    <p>[Explain how you&apos;ll notify users of policy changes]</p>
 
                     <h2>7. Contact Us</h2>
                     <p>[Provide contact information for privacy-related inquiries]</p>
