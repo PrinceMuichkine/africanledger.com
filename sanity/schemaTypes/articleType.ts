@@ -115,24 +115,6 @@ export const articleType = defineType({
       description: 'Content to be displayed after the italic section',
     }),
     defineField({
-      name: 'callToAction',
-      title: 'Call to Action',
-      type: 'object',
-      fields: [
-        {
-          name: 'text',
-          title: 'CTA Text',
-          type: 'string',
-        },
-        {
-          name: 'link',
-          title: 'CTA Link',
-          type: 'url',
-        },
-      ],
-      description: 'A call to action for the reader',
-    }),
-    defineField({
       name: 'pullQuote',
       title: 'Pull Quote',
       type: 'text',

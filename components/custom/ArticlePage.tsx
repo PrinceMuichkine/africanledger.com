@@ -14,6 +14,7 @@ import ArticleMetaBar from './ArticleMetaBar'
 import { SourceBox, ViewMoreBox, SourcePanel } from './Sourcebox'
 import LanguageSwitcher from './LanguageSwitcher'
 import axios from 'axios'
+import Link from 'next/link'
 
 interface Article extends SanityDocument {
     title: string;
@@ -170,6 +171,11 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article }) => {
         <div className={styles.articleContainer}>
             <div className={styles.articleHeader}>
                 <LanguageSwitcher onLanguageChange={setCurrentLanguage} currentLanguage={currentLanguage} />
+                {currentLanguage !== article.originalLanguage && (
+                    <Link href={`/translated/${currentLanguage}/${article.slug.current}`}>
+                        View translated article
+                    </Link>
+                )}
                 <div className={styles.meta}>
                     <span className={styles.subcategory}>{translatedContent.subcategory}</span>
                     <span className={styles.separator}> | </span>

@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from '@/lib/styles/article.module.css'
+import { useRouter } from 'next/navigation'
 
 interface LanguageSwitcherProps {
-    onLanguageChange: (lang: string) => void
+    onLanguageChange: (selectedLanguage: string) => void
     currentLanguage: string
+    article: any
 }
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, currentLanguage }) => {
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, currentLanguage, article }) => {
+    const router = useRouter()
     const languages = [
         { code: 'en', name: 'English' },
         { code: 'fr', name: 'French' },
@@ -16,15 +19,22 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, c
         { code: 'ha', name: 'Hausa' },
     ]
 
+    const handleLanguageChange = (selectedLanguage: string) => {
+        onLanguageChange(selectedLanguage)
+        if (selectedLanguage !== currentLanguage) {
+            router.push(`/translated/${selectedLanguage}/${article.slug.current}`)
+        }
+    }
+
     return (
         <select
-            onChange={(e) => onLanguageChange(e.target.value)}
+            onChange={(e) => handleLanguageChange(e.target.value)}
             value={currentLanguage}
             className={styles.languageSwitcher}
         >
-            {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                    {lang.name}
+            {languages.map((language) => (
+                <option key={language.code} value={language.code}>
+                    {language.name}
                 </option>
             ))}
         </select>
